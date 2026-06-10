@@ -266,27 +266,27 @@ function GrandSlamCard({ tournament }: { tournament: any }) {
   if (nameLower.includes('australian')) {
     logo = '🦘';
     color = '#005BBB'; // AO Blue
-    menChamp = 'Jannik Sinner';
-    womenChamp = 'Aryna Sabalenka';
+    menChamp = '🇮🇹 Jannik Sinner';
+    womenChamp = '🏳️ Aryna Sabalenka';
   } else if (nameLower.includes('roland') || nameLower.includes('french')) {
     logo = '🗼';
     color = '#CB5A36'; // Roland Garros Clay
-    menChamp = 'Carlos Alcaraz';
-    womenChamp = 'Iga Świątek';
+    menChamp = '🇪🇸 Carlos Alcaraz';
+    womenChamp = '🇵🇱 Iga Świątek';
   } else if (nameLower.includes('wimbledon')) {
     logo = '🍓';
     color = '#006B3F'; // Wimbledon Green
-    menChamp = 'Carlos Alcaraz';
-    womenChamp = 'Barbora Krejčíková';
+    menChamp = '🇪🇸 Carlos Alcaraz';
+    womenChamp = '🇨🇿 Barbora Krejčíková';
   } else if (nameLower.includes('us open')) {
     logo = '🗽';
     color = '#002868'; // US Open Blue
-    menChamp = 'Jannik Sinner';
-    womenChamp = 'Aryna Sabalenka';
+    menChamp = '🇮🇹 Jannik Sinner';
+    womenChamp = '🏳️ Aryna Sabalenka';
   }
 
   const isCompleted = t.status === 'completed';
-  const champLabel = isCompleted ? `${t.startDate.getFullYear()} Champ:` : 'Defending Champ:';
+  const champLabel = isCompleted ? 'Champ:' : 'Defending Champ:';
 
   return (
     <div className="gs-card animate-in" style={{ '--gs-color': color } as React.CSSProperties}>

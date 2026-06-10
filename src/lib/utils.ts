@@ -31,11 +31,15 @@ export function formatDateRange(start: string | number | Date, end: string | num
   });
 
   if (sameMonth && sameYear) {
+    return `${startStr} – ${e.getDate()}, ${e.getFullYear()}`;
+  }
+
+  if (sameYear && !sameMonth) {
     const endStr = e.toLocaleDateString('en-US', {
-      day: 'numeric',
-      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
     });
-    return `${startStr} – ${endStr}`;
+    return `${startStr} – ${endStr}, ${e.getFullYear()}`;
   }
 
   const endStr = e.toLocaleDateString('en-US', {
