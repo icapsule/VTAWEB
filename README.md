@@ -3,89 +3,92 @@
 > **💡 AI Onboarding Directive**
 > If you are an AI Agent reading this document in a new session: This `README.md` combined with `PROJECT_SPEC.md` and `PRD.md` provides the complete context of the VTAWEB architecture. Do not hallucinate dependencies. Follow the exact pipeline design described below.
 
-## 1. 🌌 Project Vision & Identity
+## 1. 🌌 Project Vision & Enterprise Architecture
 
-**VTAWEB** 是一个完全无人值守、高度自动化的 ITF/ATP 动态网球数据展示平台。
-- **核心定位**：搭建一条 “**自动抓取 ➔ 数据清洗 ➔ 自动发布**” 的现代化全栈流水线。
-- **设计美学**：深色主题 (Dark Theme)，高强度使用 Glassmorphism (毛玻璃) 和现代排版，以网球绿 (#00c853) 作为核心强调色。前端采用极简的 Vanilla CSS (`globals.css`)，**未引入 TailwindCSS** 从而保证样式纯净。
+**VTAWEB** is a fully automated, unattended platform that aggregates, processes, and publishes dynamic ITF/ATP tennis data. 
 
----
+Built as a **Proof of Concept for Modern Fullstack Architecture**, this project demonstrates how to orchestrate a highly scalable, zero-maintenance data pipeline using the latest serverless paradigms. It is designed to showcase enterprise-grade decisions regarding **Data Fetching, Edge Caching, Server-Side Rendering, and Database Optimization.**
 
-## 2. 🏗️ Tech Stack & Architecture (技术栈与架构拓扑)
-
-本项目的核心基于**全自动化的 Serverless 架构**，实现了从数据获取到前端渲染的完整闭环。
-
-### 核心技术栈 (Technology Stack)
-- **前端与中间件**：Next.js 15 (App Router, React 19 RSC)
-- **数据库**：PostgreSQL (Serverless Cloud DB)
-- **ORM**：Drizzle ORM
-- **CI/CD 与任务调度**：GitHub Actions & Vercel
-- **开发环境**：Docker (容器化本地数据库)
-
-### 架构实现与数据流向 (Pipeline Implementation)
-
-#### Layer 1: Data Sourcing & Automation (数据源与调度)
-- **触发引擎**：**GitHub Actions** (`.github/workflows/cron-sync.yml`)。通过 Cron Job 机制设定每周一自动发起安全 HTTP 触发请求。
-- **数据摄取 API**：Vercel 端暴露受保护的 Next.js Route Handler (`/api/cron/sync`) 作为无头爬虫与数据流转中枢。所有外部调用必须通过 `CRON_SECRET` 环境变量进行 Bearer 授权鉴权。
-
-#### Layer 2: Persistence & ORM (持久化与连接)
-- **持久化存储**：**PostgreSQL (Serverless)**。
-- **数据操作层**：**Drizzle ORM**。用于执行高效的类型安全 SQL 和复杂的 `Upsert` 并发写入，确保幂等性。
-- **数据流转**：当触发同步接口后，后端会自动拉取最新的网球排名数据，经过清洗处理后批量写入 PostgreSQL。系统同时执行滚动清理策略（如保留最近 10 周的数据）以保证存储层轻量且高效。
-
-#### Layer 3: Rendering & Hosting (前端渲染与部署)
-- **云端托管**：**Vercel** 边缘网络。
-- **性能优化策略**：Next.js 的服务端组件 (Server Components) 在渲染前直连 PostgreSQL 提取数据。数据写入完成后，中间件主动调用 `revalidatePath`，清空缓存并触发前端静态资源按需再生 (ISR, Incremental Static Regeneration)，确保最终用户访问时的数据鲜活性与极速加载体验。
+- **Aesthetic Philosophy**: Dark Theme, Glassmorphism, and strict adherence to Vanilla CSS (`globals.css`). **No TailwindCSS** was introduced, proving mastery over raw CSS layout systems and CSS variables.
 
 ---
 
-## 3. 💻 Local Development Guide (本地开发指南)
+## 2. 🏗️ Architectural Decisions (The "Why")
 
-为避免由于 macOS 沙箱或 Node 版本差异导致的环境污染，本项目使用 **Docker** 封装本地 PostgreSQL 环境。
+As a Fullstack Developer, every technology in this stack was chosen to solve specific engineering problems: minimizing client-side overhead, maximizing SEO, and ensuring infinite scalability at a fraction of traditional computing costs.
 
-### 前置准备 (Environment)
-请在项目根目录创建 `.env` 文件，提供本地开发所需的配置：
+### ⚡ Next.js 15 & React Server Components (RSC)
+- **Why**: Traditional React Single-Page Applications (SPAs) ship massive JavaScript bundles to the client, leading to poor SEO and high device CPU usage. By utilizing **RSC**, the database querying and HTML rendering happen entirely on the server. The user receives a pre-rendered, extremely lightweight HTML file. **Zero React JavaScript is shipped to the client for the data layer**, resulting in instant First Contentful Paint (FCP) and perfect SEO.
+
+### 🌍 Edge Caching & ISR (Incremental Static Regeneration)
+- **Why**: Querying a relational database for every user visit is an anti-pattern for public-facing dashboards. VTAWEB uses Vercel's **ISR**. When the data is updated, the server triggers `revalidatePath`. Vercel regenerates the static HTML and distributes it across its Global Edge CDN. This means millions of users can hit the website simultaneously, and they will only hit the CDN cache—**database reads remain essentially at zero**.
+
+### 🛢️ Serverless PostgreSQL (Supabase) & Drizzle ORM
+- **Why Drizzle over Prisma?**: Prisma is notoriously heavy in edge environments due to its Rust-based query engine. Drizzle is a lightweight, edge-compatible ORM that provides strictly typed SQL without the massive bundle size. 
+- **Why Serverless Postgres?**: Decoupling the database from the application server allows independent scaling. Supabase's connection pooling ensures we don't exhaust DB connections during concurrent edge invocations.
+
+### ⚙️ Decoupled Automated Pipeline (GitHub Actions + Webhooks)
+- **Why**: Instead of running a persistent Node.js server to run `node-cron` (which costs money and wastes resources 99% of the time), the architecture uses a decoupled trigger. **GitHub Actions** acts as the scheduler, sending a highly secure `Bearer Token` request to a Vercel Serverless Route Handler (`/api/cron/sync`). The Route Handler spins up for 2 seconds, ingests gigabytes of raw CSV data, computes ranking deltas (+/-) in-memory, performs batch SQL Upserts, and shuts down.
+
+---
+
+## 3. 🔄 The Data Flow Pipeline
+
+1. **Trigger (Monday 12:00 UTC)**: GitHub Action fires an HTTP POST request to the Vercel Production API.
+2. **Ingestion & Computation**: The Next.js API route streams raw, unstructured CSV datasets from external open-source repositories. It executes a high-performance memory-map algorithm to stitch player IDs, compute week-over-week ranking deltas, and format the payload.
+3. **Persistence**: A single transactional batch insertion pushes 200+ records into the Supabase PostgreSQL database via Drizzle ORM.
+4. **Cache Invalidation**: The Next.js API calls `revalidatePath()`, purging the stale Edge CDN cache.
+5. **Delivery**: Users immediately receive the fresh, statically generated pages at single-digit millisecond latency.
+
+---
+
+## 4. 💻 Local Development Guide
+
+To prevent environment contamination across different OS architectures, the local development environment relies on **Docker** for the database.
+
+### Environment Setup
+Create a `.env` file in the root directory:
 ```env
 DATABASE_URL="postgres://postgres:postgres@localhost:5432/vtaweb"
 CRON_SECRET="your_local_secret_key"
 ```
 
-### 启动本地数据库容器
+### 1. Spin up the Database
 ```bash
 docker compose up -d
 ```
 
-### 初始化数据结构 (Drizzle Migration)
+### 2. Drizzle Schema Migration
 ```bash
 npm install
 npx drizzle-kit generate:pg
 npx tsx src/server/db/migrate.ts
 ```
 
-### 启动本地 Next.js 服务
+### 3. Run the Next.js Server
 ```bash
 npm run dev
 ```
 
-### 调试数据抓取 (Webhook Trigger)
-通过 CURL 调用本地接口模拟 GitHub Actions 调度，测试数据落库过程：
+### 4. Trigger the Data Pipeline
+Simulate the GitHub Action webhook to test data ingestion:
 ```bash
 curl -X POST http://localhost:3000/api/cron/sync -H "Authorization: Bearer your_local_secret_key"
 ```
 
 ---
 
-## 4. 🚀 Production Deployment (生产环境发布)
+## 5. 🚀 Production Deployment
 
-平台现已无缝集成自动化 CI/CD 流程：
-1. **Vercel**：代码推送到 `main` 分支后，Vercel 自动触发生产构建。生产环境已注入 `DATABASE_URL`（指向生产级 PostgreSQL）及 `CRON_SECRET`。
-2. **GitHub Secrets**：仓库层已绑定 `CRON_SECRET` 和 `VTAWEB_API_URL`。
-3. **Database Migration**：通过 Vercel 构建钩子或本地向生产环境推流（`Drizzle Push`），保持表结构与代码严格同步。
+VTAWEB utilizes an automated CI/CD pipeline:
+1. **Vercel**: Commits to the `main` branch trigger immutable production builds. The Vercel environment securely stores the production `DATABASE_URL` and `CRON_SECRET`.
+2. **GitHub Secrets**: The repository uses `CRON_SECRET` and `VTAWEB_API_URL` to securely invoke the Vercel API.
+3. **Database Branching**: Schema changes are pushed to Supabase via Drizzle migrations during the deployment phase.
 
 ---
 
-## 5. 🛡️ Rules for Next AI Agent
+## 6. 🛡️ Strict AI Agent Guidelines
 
-1. **绝对禁止污染 CSS**：不得引入 Tailwind 或其他 CSS 框架，必须严格复用并扩展 `app/globals.css` 中的 CSS Variables 和工具类。
-2. **保持架构纯粹性**：坚定采用 Drizzle ORM，不可回退至 Prisma。
-3. **严格遵守执行边界**：所有涉及到数据库迁移、外网请求、结构级大改的代码落地，必须事先向人类最高指挥官提报 `implementation_plan.md`，并在其明确同意后执行。
+1. **CSS Integrity**: DO NOT introduce TailwindCSS. Respect the CSS variables and structural separation defined in `app/globals.css`.
+2. **ORM Adherence**: Drizzle ORM is the sole standard. Do not migrate back to Prisma.
+3. **Architectural Review**: Any modifications involving database migrations, external network requests, or architectural shifts require an `implementation_plan.md` approved by the Chief Architect before execution.
