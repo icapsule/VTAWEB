@@ -43,45 +43,56 @@ export async function POST(request: Request) {
     const wtaPlayerMap = new Map();
     wtaPlayers.forEach(p => wtaPlayerMap.set(p.player_id, p));
 
-    // 3. Find latest dates
-    let atpMaxDate = '0';
-    for (const r of atpRankings) {
-      if (r.ranking_date > atpMaxDate) atpMaxDate = r.ranking_date;
-    }
+    // 3. Find latest dates and previous dates
+    const atpDates = [...new Set(atpRankings.map(r => r.ranking_date))].filter(Boolean).sort((a, b) => b.localeCompare(a));
+    const atpMaxDate = atpDates[0] || '0';
+    const atpPrevDate = atpDates[1] || '0';
 
-    let wtaMaxDate = '0';
-    for (const r of wtaRankings) {
-      if (r.ranking_date > wtaMaxDate) wtaMaxDate = r.ranking_date;
-    }
+    const wtaDates = [...new Set(wtaRankings.map(r => r.ranking_date))].filter(Boolean).sort((a, b) => b.localeCompare(a));
+    const wtaMaxDate = wtaDates[0] || '0';
+    const wtaPrevDate = wtaDates[1] || '0';
 
-    // 4. Filter current Top 100
+    // 4. Build previous rankings maps to calculate deltas
+    const atpPrevMap = new Map();
+    atpRankings.filter(r => r.ranking_date === atpPrevDate).forEach(r => atpPrevMap.set(r.player, parseInt(r.rank)));
+
+    const wtaPrevMap = new Map();
+    wtaRankings.filter(r => r.ranking_date === wtaPrevDate).forEach(r => wtaPrevMap.set(r.player, parseInt(r.rank)));
+
+    // 5. Filter current Top 100
     const atpCurrent = atpRankings.filter(r => r.ranking_date === atpMaxDate && parseInt(r.rank) <= 100);
     const wtaCurrent = wtaRankings.filter(r => r.ranking_date === wtaMaxDate && parseInt(r.rank) <= 100);
 
-    // 5. Construct DB payload (Real Standard + Mock Race)
+    // 6. Construct DB payload (Real Standard + Mock Race)
     const insertData = [
       ...atpCurrent.map(r => {
         const p = atpPlayerMap.get(r.player);
+        const currentRank = parseInt(r.rank);
+        const previousRank = atpPrevMap.get(r.player);
+        const change = previousRank ? previousRank - currentRank : 0;
         return {
           tour: 'atp' as const,
           type: 'standard' as const,
-          rank: parseInt(r.rank),
+          rank: currentRank,
           name: p ? `${p.name_first} ${p.name_last}`.trim() : 'Unknown Player',
           country: p ? p.ioc : 'UNK',
           points: parseInt(r.points),
-          change: 0 // Sackmann's current CSV doesn't track weekly deltas inline
+          change: change
         };
       }),
       ...wtaCurrent.map(r => {
         const p = wtaPlayerMap.get(r.player);
+        const currentRank = parseInt(r.rank);
+        const previousRank = wtaPrevMap.get(r.player);
+        const change = previousRank ? previousRank - currentRank : 0;
         return {
           tour: 'wta' as const,
           type: 'standard' as const,
-          rank: parseInt(r.rank),
+          rank: currentRank,
           name: p ? `${p.name_first} ${p.name_last}`.trim() : 'Unknown Player',
           country: p ? p.ioc : 'UNK',
           points: parseInt(r.points),
-          change: 0
+          change: change
         };
       }),
       // Option A: Restore the mock data for Race to Turin/WTA Finals
