@@ -4,22 +4,22 @@
 
 /**
  * Format a date string to a human-readable format.
- * @param {string} dateStr - ISO date string (YYYY-MM-DD)
- * @param {object} options - Intl.DateTimeFormat options
- * @returns {string}
+ * @param dateStr - ISO date string (YYYY-MM-DD), timestamp, or Date object
+ * @param options - Intl.DateTimeFormat options
+ * @returns Formatted string
  */
-export function formatDate(dateStr, options = {}) {
-  const defaults = { month: 'short', day: 'numeric', year: 'numeric' };
+export function formatDate(dateStr: string | number | Date, options: Intl.DateTimeFormatOptions = {}): string {
+  const defaults: Intl.DateTimeFormatOptions = { month: 'short', day: 'numeric', year: 'numeric' };
   return new Date(dateStr).toLocaleDateString('en-US', { ...defaults, ...options });
 }
 
 /**
  * Format a date range (e.g., "Jun 15 – Jun 21, 2026").
- * @param {string} start - ISO date string
- * @param {string} end - ISO date string
- * @returns {string}
+ * @param start - ISO date string
+ * @param end - ISO date string
+ * @returns Formatted string
  */
-export function formatDateRange(start, end) {
+export function formatDateRange(start: string | number | Date, end: string | number | Date): string {
   const s = new Date(start);
   const e = new Date(end);
   const sameMonth = s.getMonth() === e.getMonth();
@@ -48,11 +48,11 @@ export function formatDateRange(start, end) {
 
 /**
  * Get the CSS class for a surface type.
- * @param {string} surface
- * @returns {string}
+ * @param surface
+ * @returns CSS class string
  */
-export function getSurfaceClass(surface) {
-  const map = {
+export function getSurfaceClass(surface: string): string {
+  const map: Record<string, string> = {
     Hard: 'surface--hard',
     Clay: 'surface--clay',
     Grass: 'surface--grass',
@@ -63,11 +63,11 @@ export function getSurfaceClass(surface) {
 
 /**
  * Get the CSS class for a tournament/match status badge.
- * @param {string} status
- * @returns {string}
+ * @param status
+ * @returns CSS class string
  */
-export function getStatusBadgeClass(status) {
-  const map = {
+export function getStatusBadgeClass(status: string): string {
+  const map: Record<string, string> = {
     live: 'badge--live',
     upcoming: 'badge--upcoming',
     completed: 'badge--completed',
@@ -77,13 +77,13 @@ export function getStatusBadgeClass(status) {
 
 /**
  * Format the relative time since last update.
- * @param {string} isoString
- * @returns {string}
+ * @param isoString
+ * @returns Formatted relative time string
  */
-export function timeAgo(isoString) {
+export function timeAgo(isoString: string | number | Date): string {
   const now = new Date();
   const then = new Date(isoString);
-  const diffMs = now - then;
+  const diffMs = now.getTime() - then.getTime();
   const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
 
   if (diffHours < 1) return 'Just now';
@@ -95,10 +95,10 @@ export function timeAgo(isoString) {
 
 /**
  * Format ranking change as a string with direction indicator.
- * @param {number} change - positive = up, negative = down, 0 = stable
- * @returns {{ text: string, className: string }}
+ * @param change - positive = up, negative = down, 0 = stable
+ * @returns Object with text and className
  */
-export function formatRankChange(change) {
+export function formatRankChange(change: number): { text: string; className: string } {
   if (change > 0) return { text: `▲ ${change}`, className: 'change--up' };
   if (change < 0) return { text: `▼ ${Math.abs(change)}`, className: 'change--down' };
   return { text: '—', className: 'change--stable' };
@@ -106,11 +106,11 @@ export function formatRankChange(change) {
 
 /**
  * Get country flag emoji from 3-letter IOC code.
- * @param {string} iocCode
- * @returns {string}
+ * @param iocCode
+ * @returns Flag emoji
  */
-export function getCountryFlag(iocCode) {
-  const map = {
+export function getCountryFlag(iocCode: string): string {
+  const map: Record<string, string> = {
     'ITA': '🇮🇹', 'ESP': '🇪🇸', 'GER': '🇩🇪', 'SRB': '🇷🇸', 'RUS': '🇷🇺',
     'USA': '🇺🇸', 'NOR': '🇳🇴', 'DEN': '🇩🇰', 'BUL': '🇧🇬', 'AUS': '🇦🇺',
     'POL': '🇵🇱', 'GRE': '🇬🇷', 'BLR': '🇧🇾', 'KAZ': '🇰🇿', 'CHN': '🇨🇳',
