@@ -1,0 +1,30 @@
+name: Weekly Rankings Sync
+
+on:
+  schedule:
+    # Run every Monday at 12:00 UTC
+    - cron: '0 12 * * 1'
+  workflow_dispatch: # Allows manual trigger from GitHub UI
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger VTAWEB Sync API
+        run: |
+          echo "Triggering API sync route..."
+          response=$(curl -s -w "\n%{http_code}" -X POST ${{ secrets.VTAWEB_API_URL }}/api/cron/sync \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}")
+          
+          # Extract HTTP status code and body
+          http_code=$(echo "$response" | tail -n1)
+          body=$(echo "$response" | head -n -1)
+          
+          echo "Response Body: $body"
+          echo "HTTP Status: $http_code"
+          
+          if [ "$http_code" -ne 200 ]; then
+            echo "❌ Sync failed with status $http_code"
+            exit 1
+          fi
+          echo "✅ Sync completed successfully"
