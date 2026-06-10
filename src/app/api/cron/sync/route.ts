@@ -2,7 +2,22 @@ import { NextResponse } from 'next/server';
 import { revalidatePath } from 'next/cache';
 import { db } from '@/server/db';
 import { rankings } from '@/server/db/schema';
-import { atpRankings, wtaRankings, atpRaceRankings, wtaRaceRankings } from '@/lib/mock-data';
+import Papa from 'papaparse';
+import { atpRaceRankings, wtaRaceRankings } from '@/lib/mock-data';
+
+async function fetchAndParseCsv(url: string) {
+  const response = await fetch(url);
+  if (!response.ok) throw new Error(`Failed to fetch ${url}: ${response.statusText}`);
+  const csvText = await response.text();
+  return new Promise<any[]>((resolve, reject) => {
+    Papa.parse(csvText, {
+      header: true,
+      skipEmptyLines: true,
+      complete: (results) => resolve(results.data),
+      error: (error: any) => reject(error),
+    });
+  });
+}
 
 export async function POST(request: Request) {
   try {
@@ -11,30 +26,82 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    console.log('🔄 Cron Triggered: Syncing rankings data...');
+    console.log('🔄 Cron Triggered: Fetching real data from Jeff Sackmann...');
 
-    // In a real implementation, we would fetch(API_URL, { headers: { 'X-RapidAPI-Key': ... } })
-    // For now, we seed/sync using our local structured mock data to prove the DB ingestion pipeline.
-    
-    // Clear old rankings
-    await db.delete(rankings);
-    
+    // 1. Fetch CSVs
+    const [atpRankings, atpPlayers, wtaRankings, wtaPlayers] = await Promise.all([
+      fetchAndParseCsv('https://raw.githubusercontent.com/JeffSackmann/tennis_atp/master/atp_rankings_current.csv'),
+      fetchAndParseCsv('https://raw.githubusercontent.com/JeffSackmann/tennis_atp/master/atp_players.csv'),
+      fetchAndParseCsv('https://raw.githubusercontent.com/JeffSackmann/tennis_wta/master/wta_rankings_current.csv'),
+      fetchAndParseCsv('https://raw.githubusercontent.com/JeffSackmann/tennis_wta/master/wta_players.csv')
+    ]);
+
+    // 2. Build Player Maps
+    const atpPlayerMap = new Map();
+    atpPlayers.forEach(p => atpPlayerMap.set(p.player_id, p));
+
+    const wtaPlayerMap = new Map();
+    wtaPlayers.forEach(p => wtaPlayerMap.set(p.player_id, p));
+
+    // 3. Find latest dates
+    let atpMaxDate = '0';
+    for (const r of atpRankings) {
+      if (r.ranking_date > atpMaxDate) atpMaxDate = r.ranking_date;
+    }
+
+    let wtaMaxDate = '0';
+    for (const r of wtaRankings) {
+      if (r.ranking_date > wtaMaxDate) wtaMaxDate = r.ranking_date;
+    }
+
+    // 4. Filter current Top 100
+    const atpCurrent = atpRankings.filter(r => r.ranking_date === atpMaxDate && parseInt(r.rank) <= 100);
+    const wtaCurrent = wtaRankings.filter(r => r.ranking_date === wtaMaxDate && parseInt(r.rank) <= 100);
+
+    // 5. Construct DB payload (Real Standard + Mock Race)
     const insertData = [
-      ...atpRankings.map(p => ({ tour: 'atp' as const, type: 'standard' as const, rank: p.rank, name: p.name, country: p.country, points: p.points, change: p.change })),
-      ...wtaRankings.map(p => ({ tour: 'wta' as const, type: 'standard' as const, rank: p.rank, name: p.name, country: p.country, points: p.points, change: p.change })),
+      ...atpCurrent.map(r => {
+        const p = atpPlayerMap.get(r.player);
+        return {
+          tour: 'atp' as const,
+          type: 'standard' as const,
+          rank: parseInt(r.rank),
+          name: p ? `${p.name_first} ${p.name_last}`.trim() : 'Unknown Player',
+          country: p ? p.ioc : 'UNK',
+          points: parseInt(r.points),
+          change: 0 // Sackmann's current CSV doesn't track weekly deltas inline
+        };
+      }),
+      ...wtaCurrent.map(r => {
+        const p = wtaPlayerMap.get(r.player);
+        return {
+          tour: 'wta' as const,
+          type: 'standard' as const,
+          rank: parseInt(r.rank),
+          name: p ? `${p.name_first} ${p.name_last}`.trim() : 'Unknown Player',
+          country: p ? p.ioc : 'UNK',
+          points: parseInt(r.points),
+          change: 0
+        };
+      }),
+      // Option A: Restore the mock data for Race to Turin/WTA Finals
       ...atpRaceRankings.map(p => ({ tour: 'atp' as const, type: 'race' as const, rank: p.rank, name: p.name, country: p.country, points: p.points, change: p.change })),
-      ...wtaRaceRankings.map(p => ({ tour: 'wta' as const, type: 'race' as const, rank: p.rank, name: p.name, country: p.country, points: p.points, change: p.change })),
+      ...wtaRaceRankings.map(p => ({ tour: 'wta' as const, type: 'race' as const, rank: p.rank, name: p.name, country: p.country, points: p.points, change: p.change }))
     ];
 
+    console.log(`Prepared ${insertData.length} ranking rows. Inserting to DB...`);
+
+    // 6. DB Transaction: Delete old and insert new
+    await db.delete(rankings);
     await db.insert(rankings).values(insertData);
 
-    console.log('✅ Rankings data synced to DB successfully.');
+    console.log('✅ Real Rankings (and Mock Race) data synced to DB successfully.');
 
-    // Revalidate the Next.js static cache
+    // 7. Revalidate Cache
     revalidatePath('/');
     revalidatePath('/rankings');
 
-    return NextResponse.json({ success: true, message: 'Data synced and cache revalidated.' });
+    return NextResponse.json({ success: true, message: `Real Data synced (${insertData.length} records) and cache revalidated.` });
 
   } catch (error) {
     console.error('❌ Error syncing data:', error);
