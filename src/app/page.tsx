@@ -17,6 +17,16 @@ export default async function HomePage() {
   const liveTournaments = allTournaments.filter((t) => t.status === 'live');
   const upcomingTournaments = allTournaments.filter((t) => t.status === 'upcoming').slice(0, 4);
   
+  const grandSlams = allTournaments.filter(t => t.category === 'Grand Slam');
+  const uniqueGrandSlams: any[] = [];
+  const seenGsNames = new Set();
+  for (const t of grandSlams) {
+    if (!seenGsNames.has(t.name)) {
+      seenGsNames.add(t.name);
+      uniqueGrandSlams.push(t);
+    }
+  }
+
   // Fetch from Real DB
   const allRankings = await db.select().from(rankings).orderBy(asc(rankings.rank));
   
@@ -84,17 +94,21 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ---- Live & Upcoming Tournaments ---- */}
+      {/* ---- Grand Slams Dashboard ---- */}
       <section className="section" id="tournaments-section">
         <div className="container">
-          <h2 className="section-title">Tournaments</h2>
-          <div className="tournament-grid">
-            {[...liveTournaments, ...upcomingTournaments].map((t) => (
-              <TournamentCard key={t.id} tournament={t} />
+          <h2 className="section-title">The Grand Slams</h2>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: 'var(--space-md)',
+          }}>
+            {uniqueGrandSlams.map((t: any) => (
+              <GrandSlamCard key={t.id} tournament={t} />
             ))}
           </div>
           <div style={{ marginTop: 'var(--space-lg)', textAlign: 'right' }}>
-            <a href="/tournaments" className="view-all-link" id="tournaments-view-all">View All Tournaments →</a>
+            <a href="/tournaments" className="view-all-link" id="tournaments-view-all">View Tournament Calendar →</a>
           </div>
         </div>
       </section>
@@ -146,39 +160,128 @@ export default async function HomePage() {
         .change--up { color: var(--color-accent); font-size: 0.8rem; }
         .change--down { color: var(--color-accent-red); font-size: 0.8rem; }
         .change--stable { color: var(--color-text-muted); font-size: 0.8rem; }
+        
+        .gs-card {
+          background: var(--color-bg-elevated);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-lg);
+          padding: var(--space-lg);
+          display: flex;
+          flex-direction: column;
+          position: relative;
+          overflow: hidden;
+          transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+        }
+        .gs-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+        }
+        .gs-card::before {
+          content: '';
+          position: absolute;
+          top: 0; left: 0; right: 0;
+          height: 6px;
+          background: var(--gs-color, var(--color-accent));
+        }
+        .gs-card__header {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          margin-bottom: var(--space-md);
+        }
+        .gs-card__name {
+          font-family: var(--font-display);
+          font-size: 1.25rem;
+          font-weight: 700;
+          color: var(--color-text);
+        }
+        .gs-card__logo {
+          font-size: 2rem;
+          line-height: 1;
+        }
+        .gs-card__info {
+          font-size: 0.85rem;
+          color: var(--color-text-secondary);
+          margin-bottom: var(--space-md);
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        }
+        .gs-card__champions {
+          margin-top: auto;
+          padding-top: var(--space-md);
+          border-top: 1px solid var(--color-border);
+          font-size: 0.85rem;
+        }
+        .gs-card__champ-row {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 4px;
+        }
+        .gs-card__champ-label {
+          color: var(--color-text-muted);
+        }
+        .gs-card__champ-name {
+          font-weight: 600;
+          color: var(--color-text);
+        }
       `}</style>
     </div>
   );
 }
 
-
-/* ---- Tournament Card Component ---- */
-function TournamentCard({ tournament }: { tournament: any }) {
+/* ---- Grand Slam Card Component ---- */
+function GrandSlamCard({ tournament }: { tournament: any }) {
   const t = tournament;
+  const nameLower = t.name.toLowerCase();
+  
+  // Hardcoded Theme and Champions
+  let logo = '🎾';
+  let color = 'var(--color-accent)';
+  let menChamp = 'TBD';
+  let womenChamp = 'TBD';
+
+  if (nameLower.includes('australian')) {
+    logo = '🦘';
+    color = '#005BBB'; // AO Blue
+    menChamp = 'Jannik Sinner';
+    womenChamp = 'Aryna Sabalenka';
+  } else if (nameLower.includes('roland') || nameLower.includes('french')) {
+    logo = '🗼';
+    color = '#CB5A36'; // Roland Garros Clay
+    menChamp = 'Carlos Alcaraz';
+    womenChamp = 'Iga Świątek';
+  } else if (nameLower.includes('wimbledon')) {
+    logo = '🍓';
+    color = '#006B3F'; // Wimbledon Green
+    menChamp = 'Carlos Alcaraz';
+    womenChamp = 'Barbora Krejčíková';
+  } else if (nameLower.includes('us open')) {
+    logo = '🗽';
+    color = '#002868'; // US Open Blue
+    menChamp = 'Jannik Sinner';
+    womenChamp = 'Aryna Sabalenka';
+  }
+
   return (
-    <div className="tournament-card" id={`tournament-${t.id}`}>
-      <div className="tournament-card__header">
-        <div>
-          <div className="tournament-card__name">{t.name}</div>
-          <div className="tournament-card__location">📍 {t.city}, {t.country}</div>
+    <div className="gs-card animate-in" style={{ '--gs-color': color } as React.CSSProperties}>
+      <div className="gs-card__header">
+        <div className="gs-card__name">{t.name}</div>
+        <div className="gs-card__logo">{logo}</div>
+      </div>
+      <div className="gs-card__info">
+        <div>📍 {t.city}, {t.country === 'UNK' ? t.city : t.country}</div>
+        <div>📅 {formatDateRange(t.startDate, t.endDate)}</div>
+      </div>
+      <div className="gs-card__champions">
+        <div className="gs-card__champ-row">
+          <span className="gs-card__champ-label">Men's Champ:</span>
+          <span className="gs-card__champ-name">{menChamp}</span>
         </div>
-        <span className={`badge ${getStatusBadgeClass(t.status)}`}>
-          {t.status === 'live' ? '● LIVE' : t.status.charAt(0).toUpperCase() + t.status.slice(1)}
-        </span>
-      </div>
-      <div className="tournament-card__meta">
-        <span className={`tournament-card__surface ${getSurfaceClass(t.surface)}`}>
-          {t.surface}
-        </span>
-        <span className={`badge ${t.tour === 'atp' ? 'badge--atp' : 'badge--wta'}`}>
-          {t.tour.toUpperCase()}
-        </span>
-        <span className="badge" style={{ background: 'var(--color-bg-elevated)', color: 'var(--color-text-secondary)' }}>
-          {t.category}
-        </span>
-      </div>
-      <div className="tournament-card__dates">
-        📅 {formatDateRange(t.startDate, t.endDate)}
+        <div className="gs-card__champ-row">
+          <span className="gs-card__champ-label">Women's Champ:</span>
+          <span className="gs-card__champ-name">{womenChamp}</span>
+        </div>
       </div>
     </div>
   );
