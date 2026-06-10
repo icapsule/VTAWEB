@@ -1,4 +1,7 @@
-import { atpRankings, wtaRankings, atpRaceRankings, wtaRaceRankings, tournaments, recentMatches, lastUpdated } from '@/lib/mock-data';
+import { db } from '@/server/db';
+import { rankings } from '@/server/db/schema';
+import { asc } from 'drizzle-orm';
+import { tournaments, recentMatches } from '@/lib/mock-data';
 import { formatDateRange, getSurfaceClass, getStatusBadgeClass } from '@/lib/utils';
 import { RankingsContainer } from '@/components/features/RankingsContainer';
 
@@ -7,11 +10,23 @@ export const metadata = {
   description: 'Real-time ATP and WTA tennis rankings, upcoming tournaments, and recent match results.',
 };
 
-export default function HomePage() {
+export const revalidate = 604800; // 1 week
+
+export default async function HomePage() {
   const liveTournaments = tournaments.filter((t) => t.status === 'live');
   const upcomingTournaments = tournaments.filter((t) => t.status === 'upcoming').slice(0, 4);
-  const topATP = atpRankings.slice(0, 10);
-  const topWTA = wtaRankings.slice(0, 10);
+  
+  // Fetch from Real DB
+  const allRankings = await db.select().from(rankings).orderBy(asc(rankings.rank));
+  
+  const atpStandard = allRankings.filter(r => r.tour === 'atp' && r.type === 'standard');
+  const atpRace = allRankings.filter(r => r.tour === 'atp' && r.type === 'race');
+  const wtaStandard = allRankings.filter(r => r.tour === 'wta' && r.type === 'standard');
+  const wtaRace = allRankings.filter(r => r.tour === 'wta' && r.type === 'race');
+
+  // Top 10 for dashboard
+  const topATP = atpStandard.slice(0, 10);
+  const topWTA = wtaStandard.slice(0, 10);
 
   return (
     <div className="page-content">
@@ -33,13 +48,13 @@ export default function HomePage() {
           <div className="stats-grid">
             <div className="stat-card animate-in">
               <span className="stat-card__label">ATP #1</span>
-              <span className="stat-card__value">{topATP[0].name.split(' ').pop()}</span>
-              <span className="stat-card__sub">{topATP[0].points.toLocaleString()} pts</span>
+              <span className="stat-card__value">{topATP[0]?.name.split(' ').pop() || 'N/A'}</span>
+              <span className="stat-card__sub">{topATP[0]?.points.toLocaleString() || 0} pts</span>
             </div>
             <div className="stat-card animate-in" style={{ animationDelay: '0.1s' }}>
               <span className="stat-card__label">WTA #1</span>
-              <span className="stat-card__value">{topWTA[0].name.split(' ').pop()}</span>
-              <span className="stat-card__sub">{topWTA[0].points.toLocaleString()} pts</span>
+              <span className="stat-card__value">{topWTA[0]?.name.split(' ').pop() || 'N/A'}</span>
+              <span className="stat-card__sub">{topWTA[0]?.points.toLocaleString() || 0} pts</span>
             </div>
             <div className="stat-card animate-in" style={{ animationDelay: '0.2s' }}>
               <span className="stat-card__label">Live Tournaments</span>
@@ -59,8 +74,8 @@ export default function HomePage() {
       <section className="section" id="combined-rankings-section">
         <div className="container">
           <RankingsContainer 
-            atpData={{ standard: topATP, race: atpRaceRankings.slice(0, 10) }}
-            wtaData={{ standard: topWTA, race: wtaRaceRankings.slice(0, 10) }}
+            atpData={{ standard: topATP, race: atpRace.slice(0, 10) }}
+            wtaData={{ standard: topWTA, race: wtaRace.slice(0, 10) }}
           />
           <div style={{ marginTop: 'var(--space-md)', textAlign: 'center' }}>
             <a href="/rankings" className="view-all-link" id="view-all-rankings">View Full Rankings →</a>

@@ -13,77 +13,70 @@
 
 ## 2. 🏗️ Architecture & Pipeline (架构拓扑)
 
-本项目的核心是一个**全免费、Serverless 的三层自动化架构**：
+本项目的核心是一个**全免费、Serverless 的自动化架构**：
 
 ### Layer 1: Data Sourcing (数据源采集)
-- **执行实体**：`scripts/fetch_tennis_data.py` (Python)
-- **数据源设计**：
-  - **Primary**: RapidAPI Tennis API (覆盖赛程、实时比分、排名)。
-  - **Fallback**: Jeff Sackmann 提供的 GitHub 纯净 CSV 历史数据集（无需鉴权，完全开源）。
+- **触发引擎**：**GitHub Actions** (`.github/workflows/cron-sync.yml`)。通过 Cron Job 每周定期自动发起安全触发。
+- **数据摄取 API**：`/api/cron/sync` (Next.js Route Handler) 作为无头爬虫与数据中转站。通过 `CRON_SECRET` 进行授权鉴权。
 
-### Layer 2: Automation & Storage (无人值守触发与存储)
-- **调度引擎**：**GitHub Actions** (`.github/workflows/fetch-data.yml`)。通过 Cron Job 每天 UTC 02:00 自动唤醒 Python 脚本。
-- **持久化存储**：**Cloudflare D1 (SQLite)**。Python 脚本清洗数据后，通过 REST API 调用 Cloudflare Endpoint 执行 `INSERT OR REPLACE`，写入 `init_d1.sql` 所定义的 Schema 中。
+### Layer 2: Persistence & ORM (持久化与连接)
+- **持久化存储**：**PostgreSQL (Serverless)** (推荐 Neon / Supabase)。
+- **ORM 映射**：**Drizzle ORM**，负责执行高效的类型安全 SQL 和 `Upsert` 并发写入。
+- **数据流转**：API 接口拉取到最新网球排名数据后，自动写入 Postgres，同时滚动清理 10 周前的旧数据以防容量超载。
 
-### Layer 3: Rendering (前端渲染)
-- **框架**：**Next.js 15 (App Router)**
-- **托管**：**Vercel (Hobby Tier)**
-- **数据流向**：Vercel 端部署的 Next.js Server Components 通过 Cloudflare D1 HTTP API 拉取最新数据，并结合 ISR (Incremental Static Regeneration) 缓存策略，实现前端页面的极速加载和零维护更新。
-
----
-
-## 3. 🚦 Current State & AI Handoff (当前开发进度)
-
-我们目前已完成 **Phase 1 (MVP 骨架构建)**。新加入的 AI 助手请从 Phase 2 继续推进。
-
-### ✅ 已完成 (Phase 1)
-1. **Next.js 骨架**：`app/layout.js`, `page.js`, `rankings/page.js`, `tournaments/page.js`。
-2. **纯享级 CSS Design System**：位于 `app/globals.css`，定义了所有的 Tokens、Glass Cards、Badges 和 Animations。
-3. **Python 爬虫底座**：`scripts/fetch_tennis_data.py` 已具备双源回退机制逻辑和 D1 REST API 写入逻辑。
-4. **数据库 Schema**：`scripts/init_d1.sql` 已定义 `rankings`, `tournaments`, `matches`。
-5. **本地 Mock 引擎**：目前前端页面通过 `lib/mock-data.js` 渲染出极其真实的 UI 界面，用于本地调试。
-6. **Docker 本地化容器**：`Dockerfile` 和 `docker-compose.yml` 已就绪。
-
-### ⏳ 待处理 (Phase 2 & 3 - AI Next Steps)
-- **Phase 2 (数据打通)**：
-  1. 协助用户在 Cloudflare Dashboard 创建 D1 数据库。
-  2. 获取 `CF_ACCOUNT_ID`, `CF_D1_DATABASE_ID`, `CF_API_TOKEN`，并配置到 GitHub Secrets 中。
-  3. 将前端 `lib/mock-data.js` 替换为 `lib/db.js`，实现对 Cloudflare D1 的真实请求读取。
-- **Phase 3 (上线收尾)**：
-  1. 将代码推送到 GitHub，并在 Vercel 中导入项目实现自动部署。
+### Layer 3: Rendering & Hosting (前端渲染与部署)
+- **框架**：**Next.js 15 (App Router / React 19 RSC)**
+- **托管**：**Vercel**
+- **性能策略**：Next.js Server Components 在渲染前直连 PostgreSQL 取数，数据更新后通过调用 `revalidatePath` 执行静态资源的按需再生 (ISR)，保障极速加载。
 
 ---
 
-## 4. 💻 Local Development Guide (本地运行指南)
+## 3. 💻 Local Development Guide (本地运行指南)
 
-为避免由于 macOS 沙箱或 Node 版本污染导致的环境问题，本项目使用 **Docker** 作为标准本地开发环境。
+为避免由于 macOS 沙箱或 Node 版本污染导致的环境问题，本项目使用 **Docker** 封装本地 PostgreSQL 服务。
 
-### 启动服务
-在终端进入 `VTAWEB` 根目录，执行：
-```bash
-docker compose up -d --build
-```
-启动后，访问 `http://localhost:3000` 即可预览完整 UI。
-
-### 停止服务
-```bash
-docker compose down
+### 前置准备 (Environment)
+请在根目录创建 `.env` 文件：
+```env
+DATABASE_URL="postgres://postgres:postgres@localhost:5432/vtaweb"
+CRON_SECRET="your_local_secret_key"
 ```
 
-### 数据库脚本本地测试 (Dry Run)
-如果您需要在本地测试 Python 抓取逻辑，请确保已安装 Python 3.12+：
+### 启动数据库容器
 ```bash
-cd scripts
-python3 -m venv .venv
-source .venv/bin/activate
-pip install requests
-python fetch_tennis_data.py --dry-run
+docker compose up -d
 ```
+
+### 初始化数据结构 (Drizzle Migration)
+```bash
+npm install
+npx drizzle-kit generate:pg
+npx tsx src/server/db/migrate.ts
+```
+
+### 启动本地 Next.js 服务
+```bash
+npm run dev
+```
+
+### 测试数据抓取 (Webhook Trigger)
+通过 CURL 调用本地接口模拟 GitHub Actions 触发：
+```bash
+curl -X POST http://localhost:3000/api/cron/sync -H "Authorization: Bearer your_local_secret_key"
+```
+
+---
+
+## 4. 🚀 Production Deployment (生产上线)
+
+1. 配置 **Vercel**: 导入项目，并注入生产环境的 `DATABASE_URL` 和 `CRON_SECRET`。
+2. 配置 **GitHub Secrets**: 在 GitHub 仓库设置中注入 `CRON_SECRET` 和 `VERCEL_URL`，以确保 GitHub Actions 有权限向生产接口推送数据。
+3. 执行 **Drizzle Push**: 向生产环境的 PostgreSQL 推送 Schema。
 
 ---
 
 ## 5. 🛡️ Rules for Next AI Agent
 
 1. **绝对禁止污染 CSS**：不得引入 Tailwind 或其他 CSS 框架，必须严格复用并扩展 `app/globals.css` 中的 CSS Variables 和工具类。
-2. **保持 Serverless 纯粹性**：不得在项目中引入诸如 Prisma 这样体积庞大且需要持久连接的 ORM。继续使用纯粹的 REST HTTP 调用来与 Cloudflare D1 交互。
-3. **严防安全漏洞**：在编写 `lib/db.js` 查询 D1 时，必须注意 SQL 注入风险，并妥善通过环境变量隔离 Token。
+2. **保持架构纯粹性**：使用 Drizzle ORM，不可切换到 Prisma。
+3. **严格遵守执行边界**：所有涉及到数据库迁移、外网请求、结构级大改的代码落地，必须事先向人类最高指挥官提报 `implementation_plan.md`，并在其明确同意后执行。
