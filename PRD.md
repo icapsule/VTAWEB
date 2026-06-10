@@ -55,3 +55,5 @@
 
 - [x] [Tech Debt]: Migrate fake data in `src/lib/mock-data.ts` to a real PostgreSQL database powered by Drizzle ORM.
 - [x] [Idea]: Integrate external open-source CSVs (Jeff Sackmann) to automatically fetch and calculate daily tennis rankings into the DB.
+- [x] [Idea]: Implement an internal lightweight scraper hitting the Wikipedia API to parse and synchronize real-time ATP/WTA "Race to Turin/WTA Finals" rankings, bypassing complex external python scraping services.
+- [x] [Design]: Redesigned the homepage metrics section into a highly polished, glassmorphism "Big Titles Leaderboard" featuring dynamic player flags and statistics.

@@ -37,6 +37,7 @@ The platform relies on a 100% serverless, zero-maintenance infrastructure.
 graph TD
     A[GitHub Actions<br>Cron Trigger] -->|Mon 12:00 UTC| B(Next.js Route Handler<br>/api/cron/sync)
     B -->|Fetch & Parse CSVs| C[(Jeff Sackmann<br>GitHub Datasets)]
+    B -->|Regex Parse Wikitext| W[(Wikipedia API<br>Race Rankings)]
     B -->|Memory-Map & Compute Deltas| D{Compute Engine}
     D -->|Drizzle ORM Batch Upsert| E[(Supabase<br>Serverless Postgres)]
     B -->|revalidatePath| F[Vercel Edge CDN]
@@ -54,7 +55,7 @@ graph TD
 
 ### 🔄 The Pipeline Lifecycle
 1. **Trigger**: GitHub Action fires an HTTP POST request to the Vercel Production API.
-2. **Ingestion & Computation**: The Next.js API route streams raw CSV datasets, executes a high-performance memory-map algorithm to stitch player IDs, computes week-over-week ranking deltas (+/-), and formats the payload.
+2. **Ingestion & Computation**: The Next.js API route streams raw CSV datasets for 52-week rankings and directly scrapes the Wikipedia API for "Race" rankings. It executes a high-performance memory-map algorithm to stitch player IDs, computes week-over-week ranking deltas (+/-), and formats the payload.
 3. **Persistence**: A single transactional batch insertion pushes 200+ records into Supabase via Drizzle ORM.
 4. **Cache Invalidation**: The Next.js API calls `revalidatePath()`, purging the stale Edge CDN cache.
 5. **Delivery**: Users immediately receive the fresh, statically generated pages at single-digit millisecond latency.

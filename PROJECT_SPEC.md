@@ -58,6 +58,7 @@ graph TD
     
     %% External Data Sources
     SportRadar["Jeff Sackmann Open Source (Data Source)"]:::external
+    WikiAPI["Wikipedia Open API (Race Data Source)"]:::external
     
     %% --- Core Data Flow ---
     
@@ -69,7 +70,9 @@ graph TD
     %% Write/Ingestion Flow
     GitHub -- "A. Trigger Every Monday" --> API
     API -- "B. Fetch Latest CSV Rankings" --> SportRadar
+    API -- "B2. Fetch Wikitext & Regex Parse" --> WikiAPI
     SportRadar -- "C. Return Raw CSV" --> API
+    WikiAPI -- "C2. Return JSON Wikitext" --> API
     API -- "D. Parse, Compute Deltas, and Drizzle Upsert" --> Postgres
     API -- "E. Call revalidatePath() to purge stale cache" --> Cache
 ```
@@ -107,3 +110,6 @@ graph TD
 - **[2026-06-10] [Decision]**: Dynamically computing week-over-week deltas (+/-).
   - *Context*: The raw CSV doesn't track weekly changes.
   - *Execution*: Built an algorithmic pipeline inside the Vercel API to memory-map the top 2 historical dates, calculating the precise ranking change before persistence.
+- **[2026-06-10] [Decision]**: Consolidated the "Race to Turin/Finals" web scraper into the Next.js API route.
+  - *Context*: Needed Race rankings alongside the 52-week standard rankings, but standard CSV sources don't cover live Race points.
+  - *Trade-off*: Wrote a custom Regex parser for Wikipedia's raw Wikitext API in TypeScript. This eliminated the need for a separate Python scraper pipeline, centralizing all DB ingestion directly inside the Next.js edge environment for architectural purity.
