@@ -263,6 +263,9 @@ function GrandSlamCard({ tournament }: { tournament: any }) {
     womenChamp = 'Aryna Sabalenka';
   }
 
+  const isCompleted = t.status === 'completed';
+  const champLabel = isCompleted ? `${t.startDate.getFullYear()} Champ:` : 'Defending Champ:';
+
   return (
     <div className="gs-card animate-in" style={{ '--gs-color': color } as React.CSSProperties}>
       <div className="gs-card__header">
@@ -275,11 +278,11 @@ function GrandSlamCard({ tournament }: { tournament: any }) {
       </div>
       <div className="gs-card__champions">
         <div className="gs-card__champ-row">
-          <span className="gs-card__champ-label">Men's Champ:</span>
+          <span className="gs-card__champ-label">Men's {champLabel}</span>
           <span className="gs-card__champ-name">{menChamp}</span>
         </div>
         <div className="gs-card__champ-row">
-          <span className="gs-card__champ-label">Women's Champ:</span>
+          <span className="gs-card__champ-label">Women's {champLabel}</span>
           <span className="gs-card__champ-name">{womenChamp}</span>
         </div>
       </div>

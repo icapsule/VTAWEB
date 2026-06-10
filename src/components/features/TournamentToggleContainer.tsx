@@ -6,9 +6,8 @@ import { formatDateRange, getSurfaceClass, getStatusBadgeClass } from '@/lib/uti
 export function TournamentToggleContainer({ allTournaments }: { allTournaments: any[] }) {
   const [tour, setTour] = useState<'atp' | 'wta'>('atp');
 
-  // Filter for the current tour
-  // Note: Grand Slams are marked with a specific tour in the db by the scraper (it inserts one for ATP and one for WTA)
-  const currentTournaments = allTournaments.filter(t => t.tour === tour);
+  // Filter for the current tour and EXCLUDE Grand Slams (they are shown on the Dashboard)
+  const currentTournaments = allTournaments.filter(t => t.tour === tour && t.category !== 'Grand Slam');
 
   // Categorize
   const liveTournaments = currentTournaments.filter(t => t.status === 'live');
