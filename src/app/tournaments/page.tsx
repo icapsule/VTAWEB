@@ -95,7 +95,7 @@ export default function TournamentsPage() {
   );
 }
 
-function TournamentDetailCard({ tournament }) {
+function TournamentDetailCard({ tournament }: { tournament: any }) {
   const t = tournament;
   return (
     <div className="tournament-card" id={`tournament-detail-${t.id}`}>
