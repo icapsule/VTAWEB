@@ -1,3 +1,3 @@
 #!/bin/bash
-cd /Users/icapsule/Developer/VTAWEB
+cd "$(dirname "$0")"
 docker compose up -d --build
