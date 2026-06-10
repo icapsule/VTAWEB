@@ -17,15 +17,45 @@ export default async function HomePage() {
   const liveTournaments = allTournaments.filter((t) => t.status === 'live');
   const upcomingTournaments = allTournaments.filter((t) => t.status === 'upcoming').slice(0, 4);
   
-  const grandSlams = allTournaments.filter(t => t.category === 'Grand Slam');
-  const uniqueGrandSlams: any[] = [];
-  const seenGsNames = new Set();
-  for (const t of grandSlams) {
-    if (!seenGsNames.has(t.name)) {
-      seenGsNames.add(t.name);
-      uniqueGrandSlams.push(t);
+  const currentYear = new Date().getFullYear();
+  const uniqueGrandSlams = [
+    {
+      id: 'gs-ao',
+      name: 'Australian Open',
+      city: 'Melbourne',
+      country: 'Australia',
+      startDate: new Date(`${currentYear}-01-12T00:00:00`),
+      endDate: new Date(`${currentYear}-01-25T23:59:59`),
+      status: new Date() > new Date(`${currentYear}-01-25T23:59:59`) ? 'completed' : new Date() >= new Date(`${currentYear}-01-12T00:00:00`) ? 'live' : 'upcoming'
+    },
+    {
+      id: 'gs-rg',
+      name: 'Roland Garros',
+      city: 'Paris',
+      country: 'France',
+      startDate: new Date(`${currentYear}-05-24T00:00:00`),
+      endDate: new Date(`${currentYear}-06-07T23:59:59`),
+      status: new Date() > new Date(`${currentYear}-06-07T23:59:59`) ? 'completed' : new Date() >= new Date(`${currentYear}-05-24T00:00:00`) ? 'live' : 'upcoming'
+    },
+    {
+      id: 'gs-wi',
+      name: 'Wimbledon',
+      city: 'London',
+      country: 'UK',
+      startDate: new Date(`${currentYear}-06-29T00:00:00`),
+      endDate: new Date(`${currentYear}-07-12T23:59:59`),
+      status: new Date() > new Date(`${currentYear}-07-12T23:59:59`) ? 'completed' : new Date() >= new Date(`${currentYear}-06-29T00:00:00`) ? 'live' : 'upcoming'
+    },
+    {
+      id: 'gs-us',
+      name: 'US Open',
+      city: 'New York',
+      country: 'USA',
+      startDate: new Date(`${currentYear}-08-31T00:00:00`),
+      endDate: new Date(`${currentYear}-09-13T23:59:59`),
+      status: new Date() > new Date(`${currentYear}-09-13T23:59:59`) ? 'completed' : new Date() >= new Date(`${currentYear}-08-31T00:00:00`) ? 'live' : 'upcoming'
     }
-  }
+  ];
 
   // Fetch from Real DB
   const allRankings = await db.select().from(rankings).orderBy(asc(rankings.rank));

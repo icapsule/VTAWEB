@@ -19,8 +19,7 @@ async function fetchAndParseCsv(url: string) {
   });
 }
 
-async function syncTournamentsWiki(tour: 'atp' | 'wta') {
-  const year = new Date().getFullYear();
+async function fetchWikiYear(tour: 'atp' | 'wta', year: number) {
   const pageName = `${year}_${tour.toUpperCase()}_Tour`;
   const url = `https://en.wikipedia.org/w/api.php?action=parse&page=${pageName}&prop=wikitext&format=json`;
   
@@ -50,7 +49,7 @@ async function syncTournamentsWiki(tour: 'atp' | 'wta') {
        }
     }
     
-    if (line.includes('Grand Slam') || line.includes('ATP Masters 1000') || line.includes('WTA 1000') || line.includes('ATP Finals') || line.includes('WTA Finals')) {
+    if (line.includes('Grand Slam') || line.includes('ATP Masters 1000') || line.includes('WTA 1000') || line.includes('ATP Finals') || line.includes('WTA Finals') || line.includes('ATP Tour Masters 1000')) {
        
        let name = "Unknown Tournament";
        const links = [...line.matchAll(/\[\[([^\]]+)\]\]/g)];
@@ -73,7 +72,7 @@ async function syncTournamentsWiki(tour: 'atp' | 'wta') {
        if (links.length > 1) {
            const parts = links[1][1].split('|');
            city = parts.length > 1 ? parts[1] : parts[0];
-           if (city === 'Grand Slam' || city === 'ATP Masters 1000' || city === 'WTA 1000') {
+           if (city === 'Grand Slam' || city === 'ATP Masters 1000' || city === 'WTA 1000' || city === 'ATP Tour Masters 1000') {
                city = "Unknown";
            }
        }
@@ -98,6 +97,16 @@ async function syncTournamentsWiki(tour: 'atp' | 'wta') {
            });
        }
     }
+  }
+  return results;
+}
+
+async function syncTournamentsWiki(tour: 'atp' | 'wta') {
+  const currentYear = new Date().getFullYear();
+  let results = await fetchWikiYear(tour, currentYear);
+  if (results.length === 0) {
+    console.log(`No tournaments found for ${tour} in ${currentYear}, falling back to ${currentYear - 1}...`);
+    results = await fetchWikiYear(tour, currentYear - 1);
   }
   return results;
 }
