@@ -25,7 +25,7 @@
 
 Built to showcase **Fullstack Seniority**, this project demonstrates how to orchestrate a highly scalable, zero-maintenance data pipeline using the latest serverless paradigms. It is designed to prove mastery over **Data Fetching, Edge Caching, Server-Side Rendering, and Database Optimization.**
 
-- **Aesthetic Philosophy**: Dark Theme, Glassmorphism, and strict adherence to Vanilla CSS (`globals.css`). **No TailwindCSS** was introduced, proving fundamental mastery over raw CSS layout systems and CSS variables.
+- **Aesthetic Philosophy**: Dark Theme, Glassmorphism, Cinematic 1080p Full-Bleed Background Video, and strict adherence to Vanilla CSS (`globals.css`). **No TailwindCSS** was introduced, proving fundamental mastery over raw CSS layout systems and CSS variables.
 
 ---
 
@@ -55,7 +55,7 @@ graph TD
 
 ### 🔄 The Pipeline Lifecycle
 1. **Trigger**: GitHub Action fires an HTTP POST request to the Vercel Production API.
-2. **Ingestion & Computation**: The Next.js API route streams raw CSV datasets for 52-week rankings and directly scrapes the Wikipedia API for "Race" rankings. It executes a high-performance memory-map algorithm to stitch player IDs, computes week-over-week ranking deltas (+/-), and formats the payload.
+2. **Ingestion & Computation**: The Next.js API route streams raw CSV datasets for 52-week rankings and directly scrapes the Wikipedia API for "Race" rankings. It uses the Wikipedia Revision History API to fetch 7-day-old wikitext, executes a high-performance memory-map algorithm to stitch player IOC codes, computes week-over-week ranking deltas (+/-), and formats the payload.
 3. **Persistence**: A single transactional batch insertion pushes 200+ records into Supabase via Drizzle ORM.
 4. **Cache Invalidation**: The Next.js API calls `revalidatePath()`, purging the stale Edge CDN cache.
 5. **Delivery**: Users immediately receive the fresh, statically generated pages at single-digit millisecond latency.

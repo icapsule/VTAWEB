@@ -113,3 +113,6 @@ graph TD
 - **[2026-06-10] [Decision]**: Consolidated the "Race to Turin/Finals" web scraper into the Next.js API route.
   - *Context*: Needed Race rankings alongside the 52-week standard rankings, but standard CSV sources don't cover live Race points.
   - *Trade-off*: Wrote a custom Regex parser for Wikipedia's raw Wikitext API in TypeScript. This eliminated the need for a separate Python scraper pipeline, centralizing all DB ingestion directly inside the Next.js edge environment for architectural purity.
+- **[2026-06-10] [Decision]**: Leveraged Wikipedia Revision API for week-over-week tracking.
+  - *Context*: Calculating the `+/-` delta for Race rankings requires historical data, but the DB overwrites daily/weekly to save space.
+  - *Execution*: Instead of building a complex historical snapshotting system in PostgreSQL, the backend calculates exactly `T-7 days`, queries Wikipedia's Revision History API for the exact wikitext from a week ago, and compares it in-memory against today's parsed data. Zero DB schema changes needed.

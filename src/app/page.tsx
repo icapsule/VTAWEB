@@ -63,12 +63,28 @@ export default async function HomePage() {
 
   return (
     <div className="page-content">
-      {/* ---- Hero Section ---- */}
-      <section className="hero" id="hero-section">
-        <div className="container">
+      {/* ---- Hero Section (Cinematic Full-Bleed) ---- */}
+      <section className="hero" id="hero-section" style={{ position: 'relative', overflow: 'hidden', minHeight: '80vh', display: 'flex', alignItems: 'center' }}>
+        
+        {/* Cinematic Background Video Layer */}
+        <div className="hero-video-wrapper">
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline 
+            className="hero-video"
+          >
+            <source src="/videos/big3-highlights.mp4" type="video/mp4" />
+          </video>
+          {/* Dark Gradient Overlay to ensure text readability */}
+          <div className="hero-video-overlay"></div>
+        </div>
+
+        <div className="container" style={{ position: 'relative', zIndex: 10, width: '100%' }}>
           <p className="hero__eyebrow">Automated Tennis Intelligence</p>
           <h1 className="hero__title">Live Rankings &<br />Tournament Tracker</h1>
-          <p className="hero__subtitle">
+          <p className="hero__subtitle" style={{ maxWidth: '600px' }}>
             ATP & WTA rankings, tournament schedules, and match results — automatically
             synced daily from open data sources. Zero manual updates.
           </p>
@@ -214,6 +230,36 @@ export default async function HomePage() {
           transition: opacity var(--transition-fast);
         }
         .view-all-link:hover { opacity: 0.7; }
+        
+        /* ---- Cinematic Hero Video CSS ---- */
+        .hero-video-wrapper {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 0;
+          pointer-events: none;
+        }
+        
+        .hero-video {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center 15%; /* Favor the top to ensure the head is visible */
+        }
+        
+        .hero-video-overlay {
+          position: absolute;
+          inset: 0;
+          background: 
+            linear-gradient(to bottom, transparent 60%, var(--color-bg) 100%),
+            linear-gradient(to right, var(--color-bg) 0%, transparent 30%, transparent 70%, var(--color-bg) 100%),
+            rgba(10, 15, 25, 0.5); /* Base tint for text legibility */
+        }
+
         
         .table-container {
           background: var(--color-bg-elevated);
