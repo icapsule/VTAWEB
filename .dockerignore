@@ -1,0 +1,12 @@
+node_modules
+.next
+.git
+.github
+out
+build
+*.py
+*.txt
+.env*.local
+README.md
+PRD.md
+PROJECT_SPEC.md

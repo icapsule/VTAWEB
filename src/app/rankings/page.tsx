@@ -13,7 +13,12 @@ export const revalidate = 604800; // 1 week
 
 export default async function RankingsPage() {
   // Fetch all rankings from PostgreSQL
-  const allRankings = await db.select().from(rankings).orderBy(asc(rankings.rank));
+  let allRankings: any[] = [];
+  try {
+    allRankings = await db.select().from(rankings).orderBy(asc(rankings.rank));
+  } catch (error) {
+    console.warn("⚠️ Failed to fetch rankings from database at build time:", error);
+  }
   
   const atpStandard = allRankings.filter(r => r.tour === 'atp' && r.type === 'standard');
   const atpRace = allRankings.filter(r => r.tour === 'atp' && r.type === 'race');

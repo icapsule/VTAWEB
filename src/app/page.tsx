@@ -50,7 +50,12 @@ export default async function HomePage() {
   const upcomingTournaments = processedStatic.filter((t: any) => t.status === 'upcoming');
 
   // Fetch from Real DB
-  const allRankings = await db.select().from(rankings).orderBy(asc(rankings.rank));
+  let allRankings: any[] = [];
+  try {
+    allRankings = await db.select().from(rankings).orderBy(asc(rankings.rank));
+  } catch (error) {
+    console.warn("⚠️ Failed to fetch rankings from database at build time:", error);
+  }
   
   const atpStandard = allRankings.filter(r => r.tour === 'atp' && r.type === 'standard');
   const atpRace = allRankings.filter(r => r.tour === 'atp' && r.type === 'race');
