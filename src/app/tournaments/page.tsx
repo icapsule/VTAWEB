@@ -1,4 +1,6 @@
-import { tournaments } from '@/lib/mock-data';
+import { db } from '@/server/db';
+import { tournaments } from '@/server/db/schema';
+import { asc } from 'drizzle-orm';
 import { formatDateRange, getSurfaceClass, getStatusBadgeClass } from '@/lib/utils';
 
 export const metadata = {
@@ -6,10 +8,11 @@ export const metadata = {
   description: 'Complete ATP and WTA tournament calendar with dates, surfaces, and status. Automatically updated.',
 };
 
-export default function TournamentsPage() {
-  const liveTournaments = tournaments.filter((t) => t.status === 'live');
-  const upcomingTournaments = tournaments.filter((t) => t.status === 'upcoming');
-  const completedTournaments = tournaments.filter((t) => t.status === 'completed');
+export default async function TournamentsPage() {
+  const allTournaments = await db.select().from(tournaments).orderBy(asc(tournaments.startDate));
+  const liveTournaments = allTournaments.filter((t) => t.status === 'live');
+  const upcomingTournaments = allTournaments.filter((t) => t.status === 'upcoming');
+  const completedTournaments = allTournaments.filter((t) => t.status === 'completed');
 
   return (
     <div className="page-content">

@@ -1,7 +1,7 @@
 import { db } from '@/server/db';
-import { rankings } from '@/server/db/schema';
+import { rankings, tournaments } from '@/server/db/schema';
 import { asc } from 'drizzle-orm';
-import { tournaments, recentMatches } from '@/lib/mock-data';
+import { recentMatches } from '@/lib/mock-data';
 import { formatDateRange, getSurfaceClass, getStatusBadgeClass } from '@/lib/utils';
 import { RankingsContainer } from '@/components/features/RankingsContainer';
 
@@ -13,8 +13,9 @@ export const metadata = {
 export const revalidate = 604800; // 1 week
 
 export default async function HomePage() {
-  const liveTournaments = tournaments.filter((t) => t.status === 'live');
-  const upcomingTournaments = tournaments.filter((t) => t.status === 'upcoming').slice(0, 4);
+  const allTournaments = await db.select().from(tournaments).orderBy(asc(tournaments.startDate));
+  const liveTournaments = allTournaments.filter((t) => t.status === 'live');
+  const upcomingTournaments = allTournaments.filter((t) => t.status === 'upcoming').slice(0, 4);
   
   // Fetch from Real DB
   const allRankings = await db.select().from(rankings).orderBy(asc(rankings.rank));
@@ -98,11 +99,39 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ---- Recent Results ---- */}
+      {/* ---- Live Scores & Results ---- */}
       <section className="section" id="recent-results-section">
         <div className="container">
-          <h2 className="section-title">Recent Results</h2>
-          <MatchResultsTable matches={recentMatches} />
+          <h2 className="section-title">Live Scores & Results</h2>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gap: 'var(--space-md)',
+            marginTop: 'var(--space-md)'
+          }}>
+            <a 
+              href="https://www.atptour.com/en/scores/current/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="stat-card animate-in"
+              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textDecoration: 'none', padding: 'var(--space-xl)' }}
+            >
+              <span style={{ fontSize: '2rem', marginBottom: 'var(--space-sm)' }}>🎾</span>
+              <span className="stat-card__label" style={{ fontSize: '1.2rem', color: 'var(--color-text)' }}>ATP Tour Live Scores</span>
+              <span className="stat-card__sub" style={{ marginTop: 'var(--space-xs)' }}>View real-time point-by-point updates on official site ↗</span>
+            </a>
+            <a 
+              href="https://www.wtatennis.com/scores" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="stat-card animate-in"
+              style={{ animationDelay: '0.1s', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textDecoration: 'none', padding: 'var(--space-xl)' }}
+            >
+              <span style={{ fontSize: '2rem', marginBottom: 'var(--space-sm)' }}>🔥</span>
+              <span className="stat-card__label" style={{ fontSize: '1.2rem', color: 'var(--color-text)' }}>WTA Tour Live Scores</span>
+              <span className="stat-card__sub" style={{ marginTop: 'var(--space-xs)' }}>View latest women's tennis scores and results ↗</span>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -151,46 +180,6 @@ function TournamentCard({ tournament }: { tournament: any }) {
       <div className="tournament-card__dates">
         📅 {formatDateRange(t.startDate, t.endDate)}
       </div>
-    </div>
-  );
-}
-
-/* ---- Match Results Table Component ---- */
-function MatchResultsTable({ matches }: { matches: any[] }) {
-  return (
-    <div className="data-table-wrapper">
-      <table className="data-table" id="recent-matches-table">
-        <thead>
-          <tr>
-            <th>Tournament</th>
-            <th>Round</th>
-            <th>Players</th>
-            <th>Score</th>
-            <th style={{ width: '100px' }}>Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {matches.map((m) => (
-            <tr key={m.id}>
-              <td style={{ fontWeight: 500 }}>{m.tournamentName}</td>
-              <td><span className="badge badge--upcoming">{m.round}</span></td>
-              <td>
-                <span style={{ fontWeight: m.winner === m.player1 ? 700 : 400 }}>
-                  {m.player1}
-                </span>
-                {' vs '}
-                <span style={{ fontWeight: m.winner === m.player2 ? 700 : 400 }}>
-                  {m.player2}
-                </span>
-              </td>
-              <td style={{ fontFamily: 'var(--font-display)', fontWeight: 600 }}>{m.score}</td>
-              <td style={{ color: 'var(--color-text-muted)', fontSize: '0.85rem' }}>
-                {new Date(m.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
     </div>
   );
 }
