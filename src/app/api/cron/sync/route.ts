@@ -19,98 +19,6 @@ async function fetchAndParseCsv(url: string) {
   });
 }
 
-async function fetchWikiYear(tour: 'atp' | 'wta', year: number) {
-  const pageName = `${year}_${tour.toUpperCase()}_Tour`;
-  const url = `https://en.wikipedia.org/w/api.php?action=parse&page=${pageName}&prop=wikitext&format=json`;
-  
-  const res = await fetch(url);
-  if (!res.ok) return [];
-  const json = await res.json();
-  if (!json.parse || !json.parse.wikitext) return [];
-  const wikitext = json.parse.wikitext['*'] as string;
-  
-  const lines = wikitext.split('\n');
-  const results: any[] = [];
-  
-  let currentDates = "";
-  let insideTable = false;
-  
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i].trim();
-    if (line.startsWith('{| class="wikitable"')) insideTable = true;
-    if (line.startsWith('|}')) insideTable = false;
-    
-    if (!insideTable) continue;
-
-    if (line.startsWith('!') && (line.includes('Jan') || line.includes('Feb') || line.includes('Mar') || line.includes('Apr') || line.includes('May') || line.includes('Jun') || line.includes('Jul') || line.includes('Aug') || line.includes('Sep') || line.includes('Oct') || line.includes('Nov') || line.includes('Dec'))) {
-       const match = line.match(/\d{1,2} [A-Z][a-z]{2}/g);
-       if (match && line.startsWith('!')) {
-           currentDates = match.join(' - ');
-       }
-    }
-    
-    if (line.includes('Grand Slam') || line.includes('ATP Masters 1000') || line.includes('WTA 1000') || line.includes('ATP Finals') || line.includes('WTA Finals') || line.includes('ATP Tour Masters 1000')) {
-       
-       let name = "Unknown Tournament";
-       const links = [...line.matchAll(/\[\[([^\]]+)\]\]/g)];
-       if (links.length > 0) {
-           const parts = links[0][1].split('|');
-           name = parts.length > 1 ? parts[1] : parts[0];
-           if (name === 'Grand Slam' && links.length > 1) {
-              const parts2 = links[1][1].split('|');
-              name = parts2.length > 1 ? parts2[1] : parts2[0];
-           }
-       }
-       
-       let category = line.includes('Grand Slam') ? 'Grand Slam' : 
-                      line.includes('Finals') ? 'Finals' : 
-                      tour === 'atp' ? 'Masters 1000' : 'WTA 1000';
-                      
-       let surface = line.includes('Hard') ? 'Hard' : line.includes('Clay') ? 'Clay' : line.includes('Grass') ? 'Grass' : 'Hard';
-       
-       let city = "Unknown";
-       if (links.length > 1) {
-           const parts = links[1][1].split('|');
-           city = parts.length > 1 ? parts[1] : parts[0];
-           if (city === 'Grand Slam' || city === 'ATP Masters 1000' || city === 'WTA 1000' || city === 'ATP Tour Masters 1000') {
-               city = "Unknown";
-           }
-       }
-       
-       let startDateStr = currentDates.split('-')[0]?.trim();
-       let endDateStr = currentDates.split('-').pop()?.trim() || startDateStr;
-       
-       let startDate = new Date(`${startDateStr} ${year}`);
-       let endDate = new Date(`${endDateStr} ${year}`);
-       
-       if (isNaN(startDate.getTime())) startDate = new Date();
-       if (isNaN(endDate.getTime())) endDate = new Date();
-
-       let status = 'upcoming';
-       const now = new Date();
-       if (now > endDate) status = 'completed';
-       else if (now >= startDate && now <= endDate) status = 'live';
-
-       if (name && !name.includes('Grand Slam') && !name.includes('ATP Masters') && !name.includes('WTA 1000') && !results.find(r => r.name === name)) {
-           results.push({
-             name, city, country: 'UNK', surface, status, tour, category, startDate, endDate
-           });
-       }
-    }
-  }
-  return results;
-}
-
-async function syncTournamentsWiki(tour: 'atp' | 'wta') {
-  const currentYear = new Date().getFullYear();
-  let results = await fetchWikiYear(tour, currentYear);
-  if (results.length === 0) {
-    console.log(`No tournaments found for ${tour} in ${currentYear}, falling back to ${currentYear - 1}...`);
-    results = await fetchWikiYear(tour, currentYear - 1);
-  }
-  return results;
-}
-
 export async function POST(request: Request) {
   try {
     const authHeader = request.headers.get('authorization');
@@ -118,7 +26,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    console.log('🔄 Cron Triggered: Fetching real data from Jeff Sackmann and Wikipedia...');
+    console.log('🔄 Cron Triggered: Fetching real ranking data from Jeff Sackmann...');
 
     // 1. Fetch CSVs for Rankings
     const [atpRankings, atpPlayers, wtaRankings, wtaPlayers] = await Promise.all([
@@ -127,13 +35,6 @@ export async function POST(request: Request) {
       fetchAndParseCsv('https://raw.githubusercontent.com/JeffSackmann/tennis_wta/master/wta_rankings_current.csv'),
       fetchAndParseCsv('https://raw.githubusercontent.com/JeffSackmann/tennis_wta/master/wta_players.csv')
     ]);
-
-    // 2. Fetch Tournaments from Wikipedia
-    const [atpTournaments, wtaTournaments] = await Promise.all([
-      syncTournamentsWiki('atp'),
-      syncTournamentsWiki('wta')
-    ]);
-    const allTournaments = [...atpTournaments, ...wtaTournaments];
 
     // Build Player Maps
     const atpPlayerMap = new Map();
@@ -198,26 +99,22 @@ export async function POST(request: Request) {
       ...wtaRaceRankings.map(p => ({ tour: 'wta' as const, type: 'race' as const, rank: p.rank, name: p.name, country: p.country, points: p.points, change: p.change }))
     ];
 
-    console.log(`Prepared ${insertData.length} ranking rows and ${allTournaments.length} tournament rows. Inserting to DB...`);
+    console.log(`Prepared ${insertData.length} ranking rows. Inserting to DB...`);
 
     // DB Transaction: Delete old and insert new
     await db.delete(rankings);
     await db.insert(rankings).values(insertData);
 
-    if (allTournaments.length > 0) {
-      await db.delete(tournaments);
-      await db.insert(tournaments).values(allTournaments);
-    }
-
-    console.log('✅ Real Rankings and Wikipedia Tournaments synced to DB successfully.');
+    console.log('✅ Real Rankings synced to DB successfully.');
 
     // Revalidate Cache
     revalidatePath('/');
     revalidatePath('/rankings');
+    revalidatePath('/tournaments');
 
     return NextResponse.json({ 
       success: true, 
-      message: `Synced ${insertData.length} ranking records and ${allTournaments.length} tournaments.` 
+      message: `Synced ${insertData.length} ranking records.` 
     });
 
   } catch (error) {
