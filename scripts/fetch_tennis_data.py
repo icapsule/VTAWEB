@@ -25,6 +25,7 @@ import sys
 import json
 import csv
 import io
+import re
 from datetime import datetime, timezone
 
 try:
@@ -182,6 +183,74 @@ def fetch_rapidapi_rankings(tour="atp", top_n=50):
 
 
 # ============================================================
+# Data Source: Wikipedia (For Race to Turin/Riyadh)
+# ============================================================
+
+def fetch_wiki_race_rankings(tour="atp"):
+    """
+    Fetch Race points from Wikipedia ATP/WTA Finals pages.
+    """
+    year = datetime.now(timezone.utc).year
+    page_name = f"{year}_ATP_Finals" if tour == "atp" else f"{year}_WTA_Finals"
+    url = f"https://en.wikipedia.org/w/api.php?action=parse&page={page_name}&prop=wikitext&format=json"
+    
+    log(f"Fetching {tour.upper()} Race rankings from Wikipedia ({page_name})...")
+    headers = {'User-Agent': 'VTAWEB_Bot/1.0'}
+    
+    try:
+        resp = requests.get(url, headers=headers, timeout=30)
+        resp.raise_for_status()
+        data = resp.json()
+        
+        wikitext = data.get('parse', {}).get('wikitext', {}).get('*', '')
+        if not wikitext:
+            log(f"WARNING: No wikitext found for {page_name}")
+            return []
+            
+        table_match = re.search(r'===\s*Singles\s*===.*?\{\|class="wikitable.*?\n(.*?)\n\|\}', wikitext, re.DOTALL)
+        if not table_match:
+            log(f"WARNING: Could not find Singles Race table in {page_name}")
+            return []
+            
+        singles_text = table_match.group(1)
+        rows_raw = singles_text.split('|-')
+        
+        results = []
+        for row in rows_raw:
+            if 'align="left"' not in row:
+                continue
+                
+            rank_match = re.search(r'\|\s*(\d+)', row)
+            name_match = re.search(r'\[\[(.*?)\]\]', row)
+            points_match = re.search(r'\!\s*([\d,]+)', row)
+            
+            if rank_match and name_match and points_match:
+                rank = int(rank_match.group(1))
+                name_raw = name_match.group(1)
+                name = name_raw.split('|')[0] if '|' in name_raw else name_raw
+                points = int(points_match.group(1).replace(',', ''))
+                
+                results.append({
+                    "id": f"{tour}_race_{rank}",
+                    "tour": tour,
+                    "type": "race",
+                    "rank": rank,
+                    "player_name": name,
+                    "country": "UNK", # Optional: Parse flagicon if needed
+                    "points": points,
+                    "rank_change": 0,
+                    "updated_at": NOW_ISO,
+                })
+                
+        log(f"Parsed {len(results)} {tour.upper()} Race rankings from Wikipedia.")
+        return results
+        
+    except Exception as e:
+        log(f"ERROR: Failed to fetch {tour.upper()} Race rankings from Wikipedia: {e}")
+        return []
+
+
+# ============================================================
 # Cloudflare D1 Writer
 # ============================================================
 
@@ -223,15 +292,17 @@ def write_to_d1(sql_statements):
     return True
 
 
-def rankings_to_sql(rankings):
+def rankings_to_sql(rankings, rtype="standard"):
     """Convert ranking data to INSERT OR REPLACE SQL statements."""
     statements = []
     for r in rankings:
         sql = (
-            "INSERT OR REPLACE INTO rankings (id, tour, rank, player_name, country, points, rank_change, updated_at) "
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
+            "INSERT OR REPLACE INTO rankings (id, tour, type, rank, player_name, country, points, rank_change, updated_at) "
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
         )
-        params = [r["id"], r["tour"], r["rank"], r["player_name"], r["country"], r["points"], r["rank_change"], r["updated_at"]]
+        # Handle 'type' dynamically or from dict
+        rt = r.get("type", rtype)
+        params = [r["id"], r["tour"], rt, r["rank"], r["player_name"], r["country"], r["points"], r["rank_change"], r["updated_at"]]
         statements.append({"sql": sql, "params": params})
     return statements
 
@@ -249,7 +320,7 @@ def main():
 
     all_sql = []
 
-    # Fetch rankings for both tours
+    # Fetch standard rankings for both tours
     for tour in ["atp", "wta"]:
         if RAPIDAPI_KEY:
             rankings = fetch_rapidapi_rankings(tour, top_n=50)
@@ -257,10 +328,18 @@ def main():
             rankings = fetch_sackmann_rankings(tour, top_n=50)
 
         if rankings:
-            all_sql.extend(rankings_to_sql(rankings))
-            log(f"✅ {tour.upper()}: {len(rankings)} rankings queued for write.")
+            all_sql.extend(rankings_to_sql(rankings, rtype="standard"))
+            log(f"✅ {tour.upper()} Standard: {len(rankings)} rankings queued for write.")
         else:
-            log(f"⚠️ {tour.upper()}: No rankings data fetched.")
+            log(f"⚠️ {tour.upper()} Standard: No rankings data fetched.")
+            
+        # Fetch Race rankings
+        race_rankings = fetch_wiki_race_rankings(tour)
+        if race_rankings:
+            all_sql.extend(rankings_to_sql(race_rankings, rtype="race"))
+            log(f"✅ {tour.upper()} Race: {len(race_rankings)} rankings queued for write.")
+        else:
+            log(f"⚠️ {tour.upper()} Race: No rankings data fetched.")
 
     # Write to D1
     if all_sql:

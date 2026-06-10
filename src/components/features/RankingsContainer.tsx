@@ -64,7 +64,7 @@ export function RankingsContainer({ atpData, wtaData }: RankingsContainerProps) 
         <RankingsSection
           tour="atp"
           title="Men's Singles Rankings"
-          raceTitle="PIF ATP Live Race to Turin"
+          raceTitle="ATP Live Race to Turin"
           standardRankings={atpData.standard}
           raceRankings={atpData.race}
         />

@@ -1,0 +1,1113 @@
+{{Infobox tennis tournament year|2026|ATP Finals|
+|date=15–22 November
+|edition=57th (singles) / 52nd (doubles)
+|draw=8S/8D
+|category=[[ATP Finals]]
+|prize_money=
+|surface=[[Tennis court#Indoor courts|Hard (indoor)]]
+|venue = [[Inalpi Arena]]
+|location= [[Turin]], [[Italy]]
+|defchamps={{flagicon|ITA}} [[Jannik Sinner]]
+|defchampd={{flagicon|FIN}} [[Harri Heliövaara]] / {{flagicon|GBR}} [[Henry Patten]]
+}}
+The '''2026 ATP Finals''' (also known as the '''2026 Nitto ATP Finals''' due to [[Nitto Denko|Nitto]] sponsorship) is a planned men's [[tennis]] tournament that is scheduled to run from 15 to 22 November 2026. It is set to be played on indoor hard courts at the [[Inalpi Arena]] in [[Turin]], [[Italy]] for the sixth consecutive time,<ref>{{Cite web|title=ATP Finals to stay in Turin through 2026, but future unclear|url=https://www.espn.co.uk/tennis/story/_/id/45763419/atp-finals-stay-turin-2026-future-unclear|date=17 July 2025|website=ESPN.cu.uk}}</ref> and will be the [[ATP Finals|season-ending event]] for the highest-ranked singles players and doubles teams on the [[2026 ATP Tour]]. The tournament is due to be the 57th edition of the singles event and the 52nd edition of the doubles competition. 
+
+== Format ==
+The ATP Finals group stage has a [[Round-robin tournament|round-robin]] format, with eight players/teams divided into two groups of four and each player/team in a group playing the other three in the group. The eight seeds are determined by the PIF ATP rankings and ATP Doubles Team Rankings on the Monday after the last ATP Tour tournament of the calendar year. All singles matches, including the final, are best of three sets with tie-breaks in each set including the third. All doubles matches are two sets (no ad) and a Match Tie-break.<ref name="rules">{{Cite web|title=Rules and Format Nitto ATP Finals|url=https://www.nittoatpfinals.com/en/event/rules-and-format|accessdate=13 November 2025|website=Nitto ATP Finals}}</ref>
+
+In deciding placement within a group, the following criteria are used, in order:<ref name="rules" />
+
+# Most wins.
+# Most matches played (e.g., a 2–1 record beats a 2–0 record).
+# Head-to-head result between tied players/teams.
+# Highest percentage of sets won.
+# Highest percentage of games won.
+# ATP rank after the last ATP Tour tournament of the year.
+
+Criteria 4–6 are used only in the event of a three-way tie; if one of these criteria decided a winner or loser among the three, the remaining two will have been ranked by head-to-head result.
+
+The top two of each group will advance to semifinals, with the winner of each group playing the runner-up of the other group. The winners of the semifinals then will play for the title.
+
+== Qualification ==
+
+=== Singles ===
+Eight players compete at the tournament, with two named alternates. Players receive places in the following order of precedence:<ref name="Rulebook IV">{{Cite web|url=https://www.atptour.com/-/media/files/rulebook/2026/2026-rulebook-chapter-4_world-championships_193dec25.pdf|title=2026 ATP Official Rulebook - IV: World Championships|accessdate=23 December 2025|website=ATP Tour}}</ref>
+# First, the top 7 players in the [[ATP Race]] to Turin after the 2026 Paris Masters.
+# Second, up to two 2026 [[Grand Slam (tennis)|Grand Slam tournament]] winners ranked anywhere 8th–20th, in ranking order
+# Third, the eighth ranked player in the ATP rankings
+In the event of this totaling more than 8 players, those lower down in the selection order become the alternates. If further alternates are needed, these players are selected by the ATP.
+
+Provisional rankings are published weekly as the ''ATP Race to Turin'', coinciding with the 52-week rolling ATP rankings on the date of selection.<ref name="FAQ">{{Cite web|title=Rankings FAQ|url=https://www.atptour.com/en/rankings/rankings-faq|accessdate=13 November 2025|website=ATP Tour}}</ref> Points are accumulated in [[Grand Slam (tennis)|Grand Slam]], [[ATP Tour]], [[United Cup]], [[ATP Challenger Tour]] and [[ITF Men's Circuit|ITF Tour]] tournaments. Players accrue points across 18 tournaments, usually made up of:<ref name="Rulebook IX">{{Cite web|url=https://www.atptour.com/-/media/files/rulebook/2026/2026-rulebook-chapter-9_pif-atp-rankings_31mar26.pdf|title=2026 ATP Official Rulebook - IX: PIF ATP Rankings|accessdate=20 May 2026|website=ATP Tour}}</ref>
+* The 4 Grand Slam tournaments
+* The 8 mandatory [[ATP Tour Masters 1000|ATP Masters 1000]] tournaments
+* The best results from any 6 other tournaments that carry ranking points (Monte-Carlo Masters, United Cup, ATP 500, ATP 250, Challenger, ITF)
+* Player can replace up to 3 mandatory Masters 1000 results with a better score from ATP 500 or ATP 250
+
+=== Doubles ===
+Eight teams compete at the tournament, with one named alternate. The eight competing teams receive places according to the same order of precedence as in singles. The named alternate will be offered first to any unaccepted teams in the selection order, then to the highest ranked unaccepted team, and then to a team selected by the ATP. Points are accumulated in the same competitions as for the singles tournament. However, for doubles teams there are no commitment tournaments, so teams are ranked according to their 18 highest points scoring results from any tournaments on the [[2024 ATP Tour|ATP Tour]].<ref name="Rulebook IV" />
+
+== Points breakdown ==
+<small>'''Grand Slam:''' Australian Open, French Open, Wimbledon, US Open.<br/>
+'''Masters:''' IW = Indian Wells; MI = Miami Open; MA = Madrid Open; IT = Italian Open; CA = Canada Open; CI = Cincinnati Open; SH = Shanghai Masters; PA = Paris Masters<br/>
+'''Results:''' W = Winner; F = Finals; SF= Semifinals; QF= Quarterfinals; R16 = Round of 16; R32 = Round of 32, R64 = Round of 64; R128 = Round of 128; RR = Round Robin; A = absent; Tourn = Number of tournaments.</small>
+
+=== Singles ===
+{{legend|afeeee|Player is active in [[2026 Libéma Open – Men's singles|'s-Hertogenbosch]] or [[2026 BOSS Open – Singles|Stuttgart]].}}
+
+''Updated {{as of|2026|6|9|lc=yes}}.''<ref>{{cite web|url=https://www.atptour.com/en/rankings/singles-race-to-turin|title=ATP Race to Turin|website=ATP|accessdate=29 December 2025}}</ref>
+
+{|class="wikitable nowrap" style=font-size:90%;text-align:center
+! rowspan="2" | Rank
+! rowspan="2" | Player
+! colspan="4" | [[Grand Slam (tennis)#Tournaments|Grand Slam]]
+! colspan="8" | [[ATP Masters 1000 tournaments|ATP Masters 1000]] (mandatory){{efn|Player can replace points from up to three mandatory Masters 1000 with other next-best results.<ref name="Rulebook IX"/> Ranking points are shown in ''italics'' in these cases.}}
+! colspan="6" | Best other
+! rowspan="2" | {{ns}}Total{{ns}}<br/>points
+! rowspan="2" | Tourn
+! rowspan="2" | Titles
+|-
+! [[Australian Open|AUS]]
+! [[French Open|FRA]]
+! [[Wimbledon Championships|WIM]]
+! [[US Open (tennis)|USO]]
+! [[Indian Wells Open|IW]]
+! [[Miami Open (tennis)|MI]]
+! [[Madrid Open (tennis)|MA]]
+! [[Italian Open (tennis)|IT]]
+! [[Canadian Open (tennis)|CA]]
+! [[Cincinnati Open|CI]]
+! [[Shanghai Masters (tennis)|SH]]
+! [[Paris Masters|PA]]
+! 1
+! 2
+! 3
+! 4
+! 5
+! 6
+|-
+| 1
+| align="left" | {{flagicon|ITA}} [[Jannik Sinner]]
+| bgcolor="yellow" | <!--Australian Open--> [[2026 Australian Open – Men's singles|SF]]<br/>800
+| bgcolor="afeeee" | <!--French Open--> [[2026 French Open – Men's singles|R64]]<br/>50
+| <!--Wimbledon-->
+| <!--US Open-->
+| bgcolor="lime" | <!--Indian Wells--> [[2026 BNP Paribas Open – Men's singles|'''W''']]<br/>1000
+| bgcolor="lime" | <!--Miami--> [[2026 Miami Open – Men's singles|'''W''']]<br/>1000
+| bgcolor="lime" | <!--Madrid--> [[2026 Mutua Madrid Open – Men's singles|'''W''']]<br/>1000
+| bgcolor="lime" | <!--Rome--> [[2026 Italian Open – Men's singles|'''W''']]<br/>1000
+| <!--Canada-->
+| <!--Cincinnati-->
+| <!--Shanghai-->
+| <!--Paris-->
+| bgcolor="lime" | [[2026 Monte-Carlo Masters – Singles|'''W''']]<br/>1000
+| bgcolor="ffebcd" | [[2026 Qatar ExxonMobil Open – Singles|QF]]<br/>100
+| <!---3--->
+| <!---4--->
+| <!---5--->
+| <!---6--->
+! 5,950
+! 8
+! 5
+|-
+| 2
+| align="left" | {{flagicon|GER}} [[Alexander Zverev]]
+| bgcolor="yellow" | <!--Australian Open--> [[2026 Australian Open – Men's singles|SF]]<br/>800
+| bgcolor="lime" | <!--French Open--> [[2026 French Open – Men's singles|'''W''']]<br/>2000
+| <!--Wimbledon-->
+| <!--US Open-->
+| bgcolor="yellow" | <!--Indian Wells--> [[2026 BNP Paribas Open – Men's singles|SF]]<br/>400
+| bgcolor="yellow" | <!--Miami--> [[2026 Miami Open – Men's singles|SF]]<br/>400
+| bgcolor="thistle" | <!--Madrid--> [[2026 Mutua Madrid Open – Men's singles|F]]<br/>650
+| bgcolor="afeeee" | <!--Rome--> [[2026 Italian Open – Men's singles|R16]]<br/>100
+| <!--Canada-->
+| <!--Cincinnati-->
+| <!--Shanghai-->
+| <!--Paris-->
+| bgcolor="yellow" | [[2026 Monte-Carlo Masters – Singles|SF]]<br/>400
+| bgcolor="yellow" | [[2026 BMW Open – Singles|SF]]<br/>200
+| bgcolor="afeeee" | [[2026 Abierto Mexicano Telcel – Singles|R16]]<br/>50
+| bgcolor="afeeee" | [[2026 United Cup|RR]]<br/>40
+| <!---5--->
+| <!---6--->
+! 5,040
+! 10
+! 1
+|-
+| 3
+| align="left" | {{flagicon|ESP}} [[Carlos Alcaraz]]
+| bgcolor="lime" | <!--Australian Open--> [[2026 Australian Open – Men's singles|'''W''']]<br/>2000
+| <!--French Open--> A<br/>0
+| <!--Wimbledon--> A<br/>0
+| <!--US Open-->
+| bgcolor="yellow" | <!--Indian Wells--> [[2026 BNP Paribas Open – Men's singles|SF]]<br/>400
+| bgcolor="afeeee" | <!--Miami--> [[2026 Miami Open – Men's singles|R32]]<br/>50
+| <!--Madrid--> A<br/>0
+| <!--Rome--> A<br/>0
+| <!--Canada-->
+| <!--Cincinnati-->
+| <!--Shanghai-->
+| <!--Paris-->
+| bgcolor="thistle" | [[2026 Monte-Carlo Masters – Singles|F]]<br/>650
+| bgcolor="lime" | [[2026 Qatar ExxonMobil Open – Singles|'''W''']]<br/>500
+| bgcolor="afeeee" | [[2026 Barcelona Open Banc Sabadell – Singles|R16]]<br/>50
+| <!---4--->
+| <!---5--->
+| <!---6--->
+! 3,650
+! 6
+! 2
+|-
+| 4
+| align="left" | {{flagicon|ITA}} [[Flavio Cobolli]]
+| bgcolor="afeeee" | <!--Australian Open--> [[2026 Australian Open – Men's singles|R128]]<br/>10
+| bgcolor="thistle" | <!--French Open--> [[2026 French Open – Men's singles|F]]<br/>1300
+| <!--Wimbledon-->
+| <!--US Open-->
+| bgcolor="afeeee" | <!--Indian Wells--> [[2026 BNP Paribas Open – Men's singles|R32]]<br/>50
+| bgcolor="afeeee" | <!--Miami--> [[2026 Miami Open – Men's singles|R64]]<br/>10
+| bgcolor="ffebcd" | <!--Madrid--> [[2026 Mutua Madrid Open – Men's singles|QF]]<br/>200
+| bgcolor="afeeee" | <!--Rome--> [[2026 Italian Open – Men's singles|R32]]<br/>50
+| <!--Canada-->
+| <!--Cincinnati-->
+| <!--Shanghai-->
+| <!--Paris-->
+| bgcolor="lime" | [[2026 Abierto Mexicano Telcel – Singles|'''W''']]<br/>500
+| bgcolor="thistle" | [[2026 BMW Open – Singles|F]]<br/>330
+| bgcolor="yellow" | [[2026 Delray Beach Open – Singles|SF]]<br/>100
+| bgcolor="afeeee" | [[2026 Monte-Carlo Masters – Singles|R32]]<br/>50
+| bgcolor="afeeee" | [[2026 United Cup|RR]]<br/>20
+| bgcolor="afeeee" | [[2026 Dallas Open – Singles|R32]]<br/>0
+! 2,620
+! 14
+! 1
+|-
+| 5
+| align="left" bgcolor="afeeee" | {{flagicon|}} [[Daniil Medvedev]]
+| bgcolor="afeeee" | <!--Australian Open--> [[2026 Australian Open – Men's singles|R16]]<br/>200
+| bgcolor="afeeee" | <!--French Open--> [[2026 French Open – Men's singles|R128]]<br/>10
+| <!--Wimbledon-->
+| <!--US Open-->
+| bgcolor="thistle" | <!--Indian Wells--> [[2026 BNP Paribas Open – Men's singles|F]]<br/>650
+| bgcolor="afeeee" | <!--Miami--> [[2026 Miami Open – Men's singles|R32]]<br/>50
+| bgcolor="afeeee" | <!--Madrid--> [[2026 Mutua Madrid Open – Men's singles|R16]]<br/>100
+| bgcolor="yellow" | <!--Rome--> [[2026 Italian Open – Men's singles|SF]]<br/>400
+| <!--Canada-->
+| <!--Cincinnati-->
+| <!--Shanghai-->
+| <!--Paris-->
+| bgcolor="lime" | [[2026 Dubai Tennis Championships – Men's singles|'''W''']]<br/>500
+| bgcolor="lime" | [[2026 Brisbane International – Men's singles|'''W''']]<br/>250
+| bgcolor="afeeee" | [[2026 Qatar ExxonMobil Open – Singles|R16]]<br/>50
+| bgcolor="afeeee" | [[2026 Monte-Carlo Masters – Singles|R32]]<br/>10
+| bgcolor="afeeee" | [[2026 ABN AMRO Open – Singles|R32]]<br/>0
+| bgcolor="afeeee" | [[2026 Libéma Open – Men's singles|R16]]<br/>0
+! 2,220
+! 12
+! 2
+|-
+| 6
+| align="left" | {{flagicon|FRA}} [[Arthur Fils]]
+| <!--Australian Open--> A<br/>0
+| <!--French Open--> A<br/>0
+| <!--Wimbledon-->
+| <!--US Open-->
+| bgcolor="ffebcd" | <!--Indian Wells--> [[2026 BNP Paribas Open – Men's singles|QF]]<br/>200
+| bgcolor="yellow" | <!--Miami--> [[2026 Miami Open – Men's singles|SF]]<br/>400
+| bgcolor="yellow" | <!--Madrid--> [[2026 Mutua Madrid Open – Men's singles|SF]]<br/>400
+| bgcolor="afeeee" | <!--Rome--> [[2026 Italian Open – Men's singles|R64]]<br/>10
+| <!--Canada-->
+| <!--Cincinnati-->
+| <!--Shanghai-->
+| <!--Paris-->
+| bgcolor="lime" | [[2026 Barcelona Open Banc Sabadell – Singles|'''W''']]<br/>500
+| bgcolor="thistle" | [[2026 Qatar ExxonMobil Open – Singles|F]]<br/>330
+| bgcolor="ffebcd" | [[2026 Open Occitanie – Singles|QF]]<br/>50
+| bgcolor="afeeee" | [[2026 ABN AMRO Open – Singles|R32]]<br/>0
+| <!---5--->
+| <!---6--->
+! 1,890
+! 8
+! 1
+|-
+| 7
+| align="left" | {{flagicon|CZE}} [[Jakub Menšík]]
+| bgcolor="afeeee" | <!--Australian Open-->[[2026 Australian Open – Men's singles|R16]]<br/>200
+| bgcolor="yellow" | <!--French Open--> [[2026 French Open – Men's singles|SF]]<br/>800
+| <!--Wimbledon-->
+| <!--US Open-->
+| bgcolor="afeeee" | <!--Indian Wells-->[[2026 BNP Paribas Open – Men's singles|R32]]<br/>50
+| bgcolor="afeeee" | <!--Miami-->[[2026 Miami Open – Men's singles|R32]]<br/>50
+| bgcolor="afeeee" | <!--Madrid-->[[2026 Mutua Madrid Open – Men's singles|R16]]<br/>100
+| bgcolor="afeeee" | <!--Rome-->[[2026 Italian Open – Men's singles|R64]]<br/>10
+| <!--Canada-->
+| <!--Cincinnati-->
+| <!--Shanghai-->
+| <!--Paris-->
+| bgcolor="lime" | [[2026 ASB Classic – Men's singles|'''W''']]<br/>250
+| bgcolor="yellow" | [[2026 Qatar ExxonMobil Open – Singles|SF]]<br/>200
+| bgcolor="ffebcd" | [[2026 Dubai Tennis Championships – Men's singles|QF]]<br/>100
+| bgcolor="afeeee" | [[2026 Hamburg Open – Men's singles|R16]]<br/>50
+| bgcolor="ffebcd" | [[2026 United Cup|QF]]<br/>45
+| <!---6--->
+! 1,855
+! 11
+! 1
+|-
+| 8
+| align="left" bgcolor="afeeee" | {{flagicon|USA}} [[Ben Shelton]]
+| bgcolor="ffebcd" | <!--Australian Open--> [[2026 Australian Open – Men's singles|QF]]<br/>400
+| bgcolor="afeeee" | <!--French Open--> [[2026 French Open – Men's singles|R64]]<br/>50
+| <!--Wimbledon-->
+| <!--US Open-->
+| bgcolor="afeeee" | <!--Indian Wells--> [[2026 BNP Paribas Open – Men's singles|R32]]<br/>50
+| bgcolor="afeeee" | <!--Miami--> [[2026 Miami Open – Men's singles|R64]]<br/>10
+| bgcolor="afeeee" | <!--Madrid--> [[2026 Mutua Madrid Open – Men's singles|R64]]<br/>10
+| bgcolor="afeeee" | <!--Rome--> [[2026 Italian Open – Men's singles|R64]]<br/>10
+| <!--Canada-->
+| <!--Cincinnati-->
+| <!--Shanghai-->
+| <!--Paris-->
+| bgcolor="lime" | [[2026 Dallas Open – Singles|'''W''']]<br/>500
+| bgcolor="lime" | [[2026 BMW Open – Singles|'''W''']]<br/>500
+| bgcolor="afeeee" | [[2026 Hamburg Open – Men's singles|R16]]<br/>50
+| bgcolor="ffebcd" | [[2026 ASB Classic – Men's singles|QF]]<br/>50
+| bgcolor="ffebcd" | [[2026 U.S. Men's Clay Court Championships – Singles|QF]]<br/>50
+| bgcolor="afeeee" | [[2026 BOSS Open – Singles|R16]]<br/>0
+! 1,680
+! 12
+! 2
+|-
+| colspan="23" | '''Alternates'''
+|-
+| 9
+| align="left" bgcolor="afeeee" | {{flagicon|CAN}} [[Félix Auger-Aliassime]]
+| bgcolor="afeeee" | <!--Australian Open--> [[2026 Australian Open – Men's singles|R128]]<br/>10
+| bgcolor="ffebcd" | <!--French Open--> [[2026 French Open – Men's singles|QF]]<br/>400
+| <!--Wimbledon-->
+| <!--US Open-->
+| bgcolor="afeeee" | <!--Indian Wells--> [[2026 BNP Paribas Open – Men's singles|R16]]<br/>100
+| bgcolor="afeeee" | <!--Miami--> [[2026 Miami Open – Men's singles|R32]]<br/>50
+| bgcolor="afeeee" | <!--Madrid--> [[2026 Mutua Madrid Open – Men's singles|R32]]<br/>50
+| bgcolor="afeeee" | <!--Rome--> [[2026 Italian Open – Men's singles|R64]]<br/>10
+| <!--Canada-->
+| <!--Cincinnati-->
+| <!--Shanghai-->
+| <!--Paris-->
+| bgcolor="thistle" | [[2026 ABN AMRO Open – Singles|F]]<br/>330
+| bgcolor="lime" | [[2026 Open Occitanie – Singles|'''W''']]<br/>250
+| bgcolor="ffebcd" | [[2026 Monte-Carlo Masters – Singles|QF]]<br/>200
+| bgcolor="yellow" | [[2026 Dubai Tennis Championships – Men's singles|SF]]<br/>200
+| bgcolor="afeeee" | [[2026 Hamburg Open – Men's singles|R16]]<br/>50
+| bgcolor="afeeee" | [[2026 United Cup|RR]]<br/>25
+! 1,675
+! 13
+! 1
+|-
+| 10
+| align="left" | {{flagicon|NOR}} [[Casper Ruud]]
+| bgcolor="afeeee" | <!--Australian Open--> [[2026 Australian Open – Men's singles|R16]]<br/>200
+| bgcolor="afeeee" | <!--French Open--> [[2026 French Open – Men's singles|R16]]<br/>200
+| <!--Wimbledon-->
+| <!--US Open-->
+| bgcolor="afeeee" | <!--Indian Wells--> [[2026 BNP Paribas Open – Men's singles|R16]]<br/>100
+| bgcolor="afeeee" | <!--Miami--> [[2026 Miami Open – Men's singles|R64]]<br/>10
+| bgcolor="ffebcd" | <!--Madrid--> [[2026 Mutua Madrid Open – Men's singles|QF]]<br/>200
+| bgcolor="thistle" | <!--Rome--> [[2026 Italian Open – Men's singles|F]]<br/>650
+| <!--Canada-->
+| <!--Cincinnati-->
+| <!--Shanghai-->
+| <!--Paris-->
+| bgcolor="afeeee" | [[2026 Monte-Carlo Masters – Singles|R16]]<br/>100
+| bgcolor="yellow" | [[2026 Geneva Open – Singles|SF]]<br/>100
+| bgcolor="afeeee" | [[2026 United Cup|RR]]<br/>55
+| bgcolor="ffebcd" | [[2026 Delray Beach Open – Singles|QF]]<br/>50
+| bgcolor="afeeee" | [[2026 Abierto Mexicano Telcel – Singles|R32]]<br/>0
+| bgcolor="afeeee" | [[2026 ASB Classic - Men's singles|R16]]<br/>0
+! 1,665
+! 12
+! 0
+|-
+| 11
+| align="left" bgcolor="afeeee" | {{flagicon|AUS}} [[Alex de Minaur]]
+| bgcolor="ffebcd" | <!--Australian Open--> [[2026 Australian Open – Men's singles|QF]]<br/>400
+| bgcolor="afeeee" | <!--French Open--> [[2026 French Open – Men's singles|R32]]<br/>100
+| <!--Wimbledon-->
+| <!--US Open-->
+| bgcolor="afeeee" | <!--Indian Wells--> [[2026 BNP Paribas Open – Men's singles|R32]]<br/>50
+| bgcolor="afeeee" | <!--Miami--> [[2026 Miami Open – Men's singles|R64]]<br/>10
+| bgcolor="afeeee" | <!--Madrid--> [[2026 Mutua Madrid Open – Men's singles|R64]]<br/>10
+| bgcolor="afeeee" | <!--Rome--> [[2026 Italian Open – Men's singles|R64]]<br/>10
+| <!--Canada-->
+| <!--Cincinnati-->
+| <!--Shanghai-->
+| <!--Paris-->
+| bgcolor="lime" | [[2026 ABN AMRO Open – Singles|'''W''']]<br/>500
+| bgcolor="ffebcd" | [[2026 Monte-Carlo Masters – Singles|QF]]<br/>200
+| bgcolor="yellow" | [[2026 Hamburg Open – Men's singles|SF]]<br/>200
+| bgcolor="ffebcd" | [[2026 United Cup|QF]]<br/>85
+| bgcolor="afeeee" | [[2026 Barcelona Open Banc Sabadell – Singles|R16]]<br/>50
+| bgcolor="afeeee" | [[2026 Abierto Mexicano Telcel – Singles|R32]]<br/>0
+! 1,615
+! 13
+! 1
+|-
+| 12
+| align="left" | {{flagicon|ESP}} [[Rafael Jódar]]
+| bgcolor="afeeee" | <!--Australian Open--> [[2026 Australian Open – Men's singles|R64]]<br/>80
+| bgcolor="ffebcd" | <!--French Open--> [[2026 French Open – Men's singles|QF]]<br/>400
+| <!--Wimbledon-->
+| <!--US Open-->
+| bgcolor="afeeee" | <!--Indian Wells--> [[2026 BNP Paribas Open – Men's singles|R128]]<br/>0
+| bgcolor="afeeee" | <!--Miami--> [[2026 Miami Open – Men's singles|R32]]<br/>70
+| bgcolor="ffebcd" | <!--Madrid--> [[2026 Mutua Madrid Open – Men's singles|QF]]<br/>200
+| bgcolor="ffebcd" | <!--Rome--> [[2026 Italian Open – Men's singles|QF]]<br/>200
+| <!--Canada-->
+| <!--Cincinnati-->
+| <!--Shanghai-->
+| <!--Paris-->
+| bgcolor="lime" | [[2026 Grand Prix Hassan II – Singles|'''W''']]<br/>250
+| bgcolor="yellow" | [[2026 Barcelona Open Banc Sabadell – Singles|SF]]<br/>200
+| bgcolor="thistle" | [[2026 Canberra Tennis International – Men's singles|F]]<br/>69
+| bgcolor="afeeee" | [[2026 Abierto Mexicano Telcel – Singles|R16]]<br/>50
+| bgcolor="afeeee" | [[2026 Dallas Open – Singles|R32]]<br/>25
+| bgcolor="afeeee" | [[2026 Delray Beach Open – Singles|R16]]<br/>25
+! 1,569
+! 12
+! 1
+|-
+| 13
+| align="left" | {{flagicon|SRB}} [[Novak Djokovic]]
+| bgcolor="thistle" | <!--Australian Open--> [[2026 Australian Open – Men's singles|F]]<br/>1300
+| bgcolor="afeeee" | <!--French Open--> [[2026 French Open – Men's singles|R32]]<br/>100
+| <!--Wimbledon-->
+| <!--US Open-->
+| bgcolor="afeeee" | <!--Indian Wells--> [[2026 BNP Paribas Open – Men's singles|R16]]<br/>100
+| <!--Miami--> A<br/>0
+| <!--Madrid--> A<br/>0
+| bgcolor="afeeee" | <!--Rome--> [[2026 Italian Open – Men's singles|R64]]<br/>10
+| <!--Canada-->
+| <!--Cincinnati-->
+| <!--Shanghai-->
+| <!--Paris-->
+| <!---1--->
+| <!---2--->
+| <!---3--->
+| <!---4--->
+| <!---5--->
+| <!---6--->
+! 1,510
+! 4
+! 0
+|-
+| 14
+| align="left" | {{flagicon|USA}} [[Tommy Paul (tennis)|Tommy Paul]]
+| bgcolor="afeeee" | <!--Australian Open--> [[2026 Australian Open – Men's singles|R16]]<br/>200
+| bgcolor="afeeee" | <!--French Open--> [[2026 French Open – Men's singles|R32]]<br/>100
+| <!--Wimbledon-->
+| <!--US Open-->
+| bgcolor="afeeee" | <!--Indian Wells--> [[2026 BNP Paribas Open – Men's singles|R32]]<br/>50
+| bgcolor="ffebcd" | <!--Miami--> [[2026 Miami Open – Men's singles|QF]]<br/>200
+| bgcolor="afeeee" | <!--Madrid--> [[2026 Mutua Madrid Open – Men's singles|R64]]<br/>10
+| bgcolor="afeeee" | <!--Rome--> [[2026 Italian Open – Men's singles|R32]]<br/>50
+| <!--Canada-->
+| <!--Cincinnati-->
+| <!--Shanghai-->
+| <!--Paris-->
+| bgcolor="thistle" | [[2026 Hamburg Open – Men's singles|F]]<br/>330
+| bgcolor="lime" | [[2026 U.S. Men's Clay Court Championships – Singles|'''W''']]<br/>250
+| bgcolor="thistle" | [[2026 Delray Beach Open – Singles|F]]<br/>165
+| bgcolor="yellow" | [[2026 Adelaide International – Men's singles|SF]]<br/>100
+| bgcolor="afeeee" | [[2026 Dallas Open – Singles|R16]]<br/>50
+| bgcolor="afeeee" | [[2026 Brisbane International – Men's singles|R32]]<br/>0
+! 1,505
+! 12
+! 1
+
+|-
+| 15
+| align="left" | {{flagicon|ITA}} [[Luciano Darderi]]
+| bgcolor="afeeee" | <!--Australian Open--> [[2026 Australian Open – Men's singles|R16]]<br/>200
+| bgcolor="afeeee" | <!--French Open--> [[2026 French Open – Men's singles|R64]]<br/>50
+| <!--Wimbledon-->
+| <!--US Open-->
+| bgcolor="afeeee" | <!--Indian Wells--> [[2026 BNP Paribas Open – Men's singles|R64]]<br/>10
+| bgcolor="afeeee" | <!--Miami--> [[2026 Miami Open – Men's singles|R64]]<br/>10
+| bgcolor="afeeee" | <!--Madrid--> [[2026 Mutua Madrid Open – Men's singles|R32]]<br/>50
+| bgcolor="yellow" | <!--Rome--> [[2026 Italian Open – Men's singles|SF]]<br/>400
+| <!--Canada-->
+| <!--Cincinnati-->
+| <!--Shanghai-->
+| <!--Paris-->
+| bgcolor="lime" | [[2026 Chile Open – Singles|'''W''']]<br/>250
+| bgcolor="thistle" | [[2026 Argentina Open – Singles|F]]<br/>165
+| bgcolor="ffebcd" | [[2026 Hamburg Open – Men's singles|QF]]<br/>100
+| bgcolor="yellow" | [[2026 Grand Prix Hassan II – Singles|SF]]<br/>100
+| bgcolor="afeeee" | [[2026 BMW Open – Singles|R16]]<br/>50
+| bgcolor="ffebcd" | [[2026 ASB Classic – Men's singles|QF]]<br/>50
+! 1,435
+! 14
+! 1
+|-
+| 16
+| align="left" | {{flagicon|}} [[Andrey Rublev]]
+| bgcolor="afeeee" | <!--Australian Open--> [[2026 Australian Open – Men's singles|R32]]<br/>100
+| bgcolor="afeeee" | <!--French Open--> [[2026 French Open – Men's singles|R16]]<br/>200
+| <!--Wimbledon-->
+| <!--US Open-->
+| bgcolor="afeeee" | <!--Indian Wells--> [[2026 BNP Paribas Open – Men's singles|R64]]<br/>10
+| bgcolor="afeeee" | <!--Miami--> [[2026 Miami Open – Men's singles|R64]]<br/>10
+| bgcolor="afeeee" | <!--Madrid--> [[2026 Mutua Madrid Open – Men's singles|R64]]<br/>10
+| bgcolor="ffebcd" | <!--Rome--> [[2026 Italian Open – Men's singles|QF]]<br/>200
+| <!--Canada-->
+| <!--Cincinnati-->
+| <!--Shanghai-->
+| <!--Paris-->
+| bgcolor="thistle" | [[2026 Barcelona Open Banc Sabadell – Singles|F]]<br/>330
+| bgcolor="yellow" | [[2026 Qatar ExxonMobil Open – Singles|SF]]<br/>200
+| bgcolor="yellow" | [[2026 Dubai Tennis Championships – Men's singles|SF]]<br/>200
+| bgcolor="yellow" | [[2026 ATP Hong Kong Tennis Open – Singles|SF]]<br/>100
+| bgcolor="afeeee" | [[2026 Monte-Carlo Masters – Singles|R32]]<br/>50
+| <!---6--->
+! 1,410
+! 11
+! 0
+|-
+| 17
+| align="left" bgcolor="afeeee" | {{flagicon|CZE}} [[Jiří Lehečka]]
+| bgcolor="afeeee" | <!--Australian Open--> [[2026 Australian Open – Men's singles|R128]]<br/>10
+| bgcolor="afeeee" | <!--French Open--> [[2026 French Open – Men's singles|R128]]<br/>10
+| <!--Wimbledon-->
+| <!--US Open-->
+| bgcolor="afeeee" | <!--Indian Wells--> [[2026 BNP Paribas Open – Men's singles|R64]]<br/>10
+| bgcolor="thistle" | <!--Miami--> [[2026 Miami Open – Men's singles|F]]<br/>650
+| bgcolor="ffebcd" | <!--Madrid--> [[2026 Mutua Madrid Open – Men's singles|QF]]<br/>200
+| bgcolor="afeeee" | <!--Rome--> [[2026 Italian Open – Men's singles|R32]]<br/>50
+| <!--Canada-->
+| <!--Cincinnati-->
+| <!--Shanghai-->
+| <!--Paris-->
+| bgcolor="afeeee" | [[2026 Monte-Carlo Masters – Singles|R16]]<br/>100
+| bgcolor="ffebcd" | [[2026 Qatar ExxonMobil Open – Singles|QF]]<br/>100
+| bgcolor="ffebcd" | [[2026 Dubai Tennis Championships – Men's singles|QF]]<br/>100
+| bgcolor="afeeee" | [[2026 Brisbane International – Men's singles|R16]]<br/>25
+| bgcolor="afeeee" | [[2026 BOSS Open – Singles|R16]]<br/>0
+| <!---6--->
+! 1,255
+! 11
+! 0
+|-
+| 18
+| align="left" bgcolor="afeeee" | {{flagicon|USA}} [[Frances Tiafoe]]
+| bgcolor="afeeee" | <!--Australian Open--> [[2026 Australian Open – Men's singles|R32]]<br/>100
+| bgcolor="afeeee" | <!--French Open--> [[2026 French Open – Men's singles|R16]]<br/>200
+| <!--Wimbledon-->
+| <!--US Open-->
+| bgcolor="afeeee" | <!--Indian Wells--> [[2026 BNP Paribas Open – Men's singles|R16]]<br/>100
+| bgcolor="ffebcd" | <!--Miami--> [[2026 Miami Open – Men's singles|QF]]<br/>200
+| <!--Madrid--> A<br/>0
+| bgcolor="afeeee" | <!--Rome--> [[2026 Italian Open – Men's singles|R32]]<br/>50
+| <!--Canada-->
+| <!--Cincinnati-->
+| <!--Shanghai-->
+| <!--Paris-->
+| bgcolor="thistle" | [[2026 Abierto Mexicano Telcel – Singles|F]]<br/>330
+| bgcolor="yellow" | [[2026 U.S. Men's Clay Court Championships – Singles|SF]]<br/>100
+| bgcolor="afeeee" | [[2026 Dallas Open – Singles|R16]]<br/>50
+| bgcolor="afeeee" | [[2026 Hamburg Open – Men's singles|R16]]<br/>50
+| bgcolor="ffebcd" | [[2026 Delray Beach Open – Singles|QF]]<br/>50
+| bgcolor="afeeee" | [[2026 Brisbane International – Men's singles|R16]]<br/>25
+! 1,255
+! 12
+! 0
+|-
+| 19
+| align="left" | {{flagicon|ARG}} [[Francisco Cerúndolo]]
+| bgcolor="afeeee" | <!--Australian Open--> [[2026 Australian Open – Men's singles|R16]]<br/>200
+| bgcolor="afeeee" | <!--French Open--> [[2026 French Open – Men's singles|R32]]<br/>100
+| <!--Wimbledon-->
+| <!--US Open-->
+| bgcolor="afeeee" | <!--Indian Wells--> [[2026 BNP Paribas Open – Men's singles|R32]]<br/>50
+| bgcolor="ffebcd" | <!--Miami--> [[2026 Miami Open – Men's singles|QF]]<br/>200
+| bgcolor="afeeee" | <!--Madrid--> [[2026 Mutua Madrid Open – Men's singles|R16]]<br/>100
+| bgcolor="afeeee" | <!--Rome--> [[2026 Italian Open – Men's singles|R32]]<br/>50
+| <!--Canada-->
+| <!--Cincinnati-->
+| <!--Shanghai-->
+| <!--Paris-->
+| bgcolor="lime" | [[2026 Argentina Open – Singles|'''W''']]<br/>250
+| bgcolor="ffebcd" | [[2026 BMW Open – Singles|QF]]<br/>100
+| bgcolor="yellow" | [[2026 Chile Open – Singles|SF]]<br/>100
+| bgcolor="afeeee" | [[2026 Monte-Carlo Masters – Singles|R32]]<br/>50
+| bgcolor="afeeee" | [[2026 Rio Open – Singles|R16]]<br/>50
+| bgcolor="afeeee" | [[2026 Hamburg Open – Men's singles|R32]]<br/>0
+! 1,250
+! 13
+! 1
+|-
+| 20
+| align="left" | {{flagicon|USA}} [[Learner Tien]]
+| bgcolor="ffebcd" | <!--Australian Open--> [[2026 Australian Open – Men's singles|QF]]<br/>400
+| bgcolor="afeeee" | <!--French Open--> [[2026 French Open – Men's singles|R32]]<br/>100
+| <!--Wimbledon-->
+| <!--US Open-->
+| bgcolor="ffebcd" | <!--Indian Wells--> [[2026 BNP Paribas Open – Men's singles|QF]]<br/>200
+| bgcolor="afeeee" | <!--Miami--> [[2026 Miami Open – Men's singles|R64]]<br/>10
+| bgcolor="afeeee" | <!--Madrid-->[[2026 Mutua Madrid Open – Men's singles|R64]]<br/>10
+| bgcolor="afeeee" | <!--Rome--> [[2026 Italian Open – Men's singles|R16]]<br/>100
+| <!--Canada-->
+| <!--Cincinnati-->
+| <!--Shanghai-->
+| <!--Paris-->
+| bgcolor="lime" | [[2026 Geneva Open – Singles|'''W''']]<br/>250
+| bgcolor="yellow" | [[2026 Delray Beach Open – Singles|SF]]<br/>100
+| bgcolor="ffebcd" | [[2026 U.S. Men's Clay Court Championships – Singles|QF]]<br/>50
+| bgcolor="afeeee" | [[2026 Brisbane International – Men's singles|R16]]<br/>25
+| bgcolor="afeeee" | [[2026 Dallas Open – Singles|R32]]<br/>0
+| <!---6--->
+! 1,245
+! 11
+! 1
+|}
+'''Notes'''
+{{notelist}}
+
+=== Doubles ===
+{{legend|afeeee|Team is active in [[2026 Libéma Open – Men's doubles|'s-Hertogenbosch]].}}
+
+''Updated {{as of|2026|6|9|lc=yes}}.''<ref>{{cite web|url=https://www.atptour.com/en/rankings/doubles-team-rankings|title=ATP Doubles Teams Rankings|website=ATP|accessdate=5 January 2026}}</ref>
+
+{|class="wikitable nowrap" style=font-size:90%;text-align:center
+! rowspan="2" | Rank
+! rowspan="2" | Team
+! colspan="18" | Points
+! rowspan="2" | {{ns}}Total{{ns}}<br/>points
+! rowspan="2" | Tourn
+! rowspan="2" | Titles
+|-
+! 1
+! 2
+! 3
+! 4
+! 5
+! 6
+! 7
+! 8
+! 9
+! 10
+! 11
+! 12
+! 13
+! 14
+! 15
+! 16
+! 17
+! 18
+|-
+| 1
+| align="left" | {{flagicon|FIN}} [[Harri Heliövaara]]<br/>{{flagicon|GBR}} [[Henry Patten]]
+| bgcolor="thistle" | [[2026 French Open – Men's doubles|F]]<br/>1200
+| bgcolor="lime" | [[2026 Mutua Madrid Open – Men's doubles|'''W''']]<br/>1000
+| bgcolor="thistle" | [[2026 Miami Open – Men's doubles|F]]<br/>600
+| bgcolor="lime" | [[2026 Qatar ExxonMobil Open – Doubles|'''W''']]<br/>500
+| bgcolor="lime" | [[2026 Dubai Tennis Championships – Men's doubles|'''W''']]<br/>500
+| bgcolor="lime" | [[2026 Adelaide International – Men's doubles|'''W''']]<br/>250
+| bgcolor="afeeee" | [[2026 Australian Open – Men's doubles|R16]]<br/>180
+| bgcolor="ffebcd" | [[2026 Monte-Carlo Masters – Doubles|QF]]<br/>180
+| bgcolor="ffebcd" | [[2026 Italian Open – Men's doubles|QF]]<br/>180
+| bgcolor="afeeee" | [[2026 Barcelona Open Banc Sabadell – Doubles|R16]]<br/>0
+| <!---11--->
+| <!---12--->
+| <!---13--->
+| <!---14--->
+| <!---15--->
+| <!---16--->
+| <!---17--->
+| <!---18--->
+! 4,590
+! 10
+! 4
+|-
+| 2
+| align="left" | {{flagicon|ESP}} [[Marcel Granollers]]<br/>{{flagicon|ARG}} [[Horacio Zeballos]]
+| bgcolor="lime" | [[2026 French Open – Men's doubles|'''W''']]<br/>2000
+| bgcolor="yellow" | [[2026 Australian Open – Men's doubles|SF]]<br/>720
+| bgcolor="thistle" | [[2026 Italian Open – Men's doubles|F]]<br/>600
+| bgcolor="yellow" | [[2026 BNP Paribas Open – Men's doubles|SF]]<br/>360
+| bgcolor="yellow" | [[2026 Miami Open – Men's doubles|SF]]<br/>360
+| bgcolor="thistle" | [[2026 Dallas Open – Doubles|F]]<br/>300
+| bgcolor="ffebcd" | [[2026 Monte-Carlo Masters – Doubles|QF]]<br/>180
+| bgcolor="afeeee" | [[2026 Mutua Madrid Open – Men's doubles|R32]]<br/>0
+| <!---9--->
+| <!---10--->
+| <!---11--->
+| <!---12--->
+| <!---13--->
+| <!---14--->
+| <!---15--->
+| <!---16--->
+| <!---17--->
+| <!---18--->
+! 4,520
+! 8
+! 1
+|-
+| 3
+| align="left" | {{flagicon|ITA}} [[Simone Bolelli]]<br/>{{flagicon|ITA}} [[Andrea Vavassori]]
+| bgcolor="lime" | [[2026 Miami Open – Men's doubles|'''W''']]<br/>1000
+| bgcolor="lime" | [[2026 Italian Open – Men's doubles|'''W''']]<br/>1000
+| bgcolor="yellow" | [[2026 French Open – Men's doubles|SF]]<br/>720
+| bgcolor="lime" | [[2026 ABN AMRO Open – Doubles|'''W''']]<br/>500
+| bgcolor="yellow" | [[2026 Qatar ExxonMobil Open – Doubles|SF]]<br/>180
+| bgcolor="yellow" | [[2026 Dubai Tennis Championships – Men's doubles|SF]]<br/>180
+| bgcolor="yellow" | [[2026 Adelaide International – Men's doubles|SF]]<br/>90
+| bgcolor="afeeee" | [[2026 Australian Open – Men's doubles|R64]]<br/>0
+| bgcolor="afeeee" | [[2026 Mutua Madrid Open – Men's doubles|R32]]<br/>0
+| bgcolor="afeeee" | [[2026 Hamburg Open – Men's doubles|R16]]<br/>0
+| <!---11--->
+| <!---12--->
+| <!---13--->
+| <!---14--->
+| <!---15--->
+| <!---16--->
+| <!---17--->
+| <!---18--->
+! 3,670
+! 10
+! 3
+|-
+| 4
+| align="left" | {{flagicon|USA}} [[Christian Harrison]]<br/>{{flagicon|GBR}} [[Neal Skupski]]
+| bgcolor="lime" | [[2026 Australian Open – Men's doubles|'''W''']]<br/>2000
+| bgcolor="yellow" | [[2026 Italian Open – Men's doubles|SF]]<br/>360
+| bgcolor="ffebcd" | [[2026 BNP Paribas Open – Men's doubles|QF]]<br/>180
+| bgcolor="ffebcd" | [[2026 Miami Open – Men's doubles|QF]]<br/>180
+| bgcolor="ffebcd" | [[2026 Monte-Carlo Masters – Doubles|QF]]<br/>180
+| bgcolor="afeeee" | [[2026 French Open – Men's doubles|R32]]<br/>90
+| bgcolor="afeeee" | [[2026 Mutua Madrid Open – Men's doubles|R16]]<br/>90
+| bgcolor="ffebcd" | [[2026 Dallas Open – Doubles|QF]]<br/>90
+| bgcolor="ffebcd" | [[2026 Hamburg Open – Men's doubles|QF]]<br/>90
+| bgcolor="yellow" | [[2026 Adelaide International – Men's doubles|SF]]<br/>90
+| bgcolor="afeeee" | [[2026 Abierto Mexicano Telcel – Doubles|R16]]<br/>0
+| bgcolor="afeeee" | [[2026 Barcelona Open Banc Sabadell – Doubles|R16]]<br/>0
+| <!---13--->
+| <!---14--->
+| <!---15--->
+| <!---16--->
+| <!---17--->
+| <!---18--->
+! 3,350
+! 12
+! 1
+|-
+| 5
+| align="left" | {{flagicon|ARG}} [[Guido Andreozzi]]<br/>{{flagicon|FRA}} [[Manuel Guinard]]
+| bgcolor="lime" | [[2026 BNP Paribas Open – Men's doubles|'''W''']]<br/>1000
+| bgcolor="thistle" | [[2026 Mutua Madrid Open – Men's doubles|F]]<br/>600
+| bgcolor="yellow" | [[2026 Monte-Carlo Masters – Doubles|SF]]<br/>360
+| bgcolor="yellow" | [[2026 Rio Open – Doubles|SF]]<br/>180
+| bgcolor="yellow" | [[2026 Hamburg Open – Men's doubles|SF]]<br/>180
+| bgcolor="ffebcd" | [[2026 Abierto Mexicano Telcel – Doubles|QF]]<br/>90
+| bgcolor="ffebcd" | [[2026 Barcelona Open Banc Sabadell – Doubles|QF]]<br/>90
+| bgcolor="yellow" | [[2026 Argentina Open – Doubles|SF]]<br/>90
+| bgcolor="afeeee" | [[2026 Australian Open – Men's doubles|R64]]<br/>0
+| bgcolor="afeeee" | [[2026 French Open – Men's doubles|R64]]<br/>0
+| bgcolor="afeeee" | [[2026 Miami Open – Men's doubles|R32]]<br/>0
+| bgcolor="afeeee" | [[2026 Adelaide International – Men's doubles|R16]]<br/>0
+| <!---13--->
+| <!---14--->
+| <!---15--->
+| <!---16--->
+| <!---17--->
+| <!---18--->
+! 2,590
+! 12
+! 1
+|-
+| 6
+| align="left" | {{flagicon|ESA}} [[Marcelo Arévalo]]<br/>{{flagicon|CRO}} [[Mate Pavić]]
+| bgcolor="thistle" | [[2026 Monte-Carlo Masters – Doubles|F]]<br/>600
+| bgcolor="ffebcd" | [[2026 Australian Open – Men's doubles|QF]]<br/>360
+| bgcolor="thistle" | [[2026 Dubai Tennis Championships – Men's doubles|F]]<br/>300
+| bgcolor="afeeee" | [[2026 French Open – Men's doubles|R16]]<br/>180
+| bgcolor="ffebcd" | [[2026 Miami Open – Men's doubles|QF]]<br/>180
+| bgcolor="ffebcd" | [[2026 Mutua Madrid Open – Men's doubles|QF]]<br/>180
+| bgcolor="ffebcd" | [[2026 Italian Open – Men's doubles|QF]]<br/>180
+| bgcolor="yellow" | [[2026 ABN AMRO Open – Doubles|SF]]<br/>180
+| bgcolor="ffebcd" | [[2026 Qatar ExxonMobil Open – Doubles|QF]]<br/>90
+| bgcolor="ffebcd" | [[2026 Adelaide International – Men's doubles|QF]]<br/>45
+| bgcolor="afeeee" | [[2026 BNP Paribas Open – Men's doubles|R32]]<br/>0
+| bgcolor="afeeee" | [[2026 Barcelona Open Banc Sabadell – Doubles|R16]]<br/>0
+| <!---13--->
+| <!---14--->
+| <!---15--->
+| <!---16--->
+| <!---17--->
+| <!---18--->
+! 2,295
+! 12
+! 0
+|-
+| 7
+| align="left" | {{flagicon|GER}} [[Kevin Krawietz]]<br/>{{flagicon|GER}} [[Tim Pütz]]
+| bgcolor="lime" | [[2026 Monte-Carlo Masters – Doubles|'''W''']]<br/>1000
+| bgcolor="lime" | [[2026 Hamburg Open – Men's doubles|'''W''']]<br/>500
+| bgcolor="afeeee" | [[2026 French Open – Men's doubles|R16]]<br/>180
+| bgcolor="thistle" | [[2026 Adelaide International – Men's doubles|F]]<br/>150
+| bgcolor="afeeee" | [[2026 Australian Open – Men's doubles|R32]]<br/>90
+| bgcolor="afeeee" | [[2026 BNP Paribas Open – Men's doubles|R16]]<br/>90
+| bgcolor="afeeee" | [[2026 Italian Open – Men's doubles|R16]]<br/>90
+| bgcolor="afeeee" | [[2026 Mutua Madrid Open – Men's doubles|R32]]<br/>0
+| bgcolor="afeeee" | [[2026 ABN AMRO Open – Doubles|R16]]<br/>0
+| bgcolor="afeeee" | [[2026 BMW Open – Doubles|R16]]<br/>0
+| <!---11--->
+| <!---12--->
+| <!---13--->
+| <!---14--->
+| <!---15--->
+| <!---16--->
+| <!---17--->
+| <!---18--->
+! 2,100
+! 10
+! 2
+|-
+| 8
+| align="left" | {{flagicon|FRA}} [[Sadio Doumbia]]<br/>{{flagicon|FRA}} [[Fabien Reboul]]
+| bgcolor="ffebcd" | [[2026 Australian Open – Men's doubles|QF]]<br/>360
+| bgcolor="thistle" | [[2026 Hamburg Open – Men's doubles|F]]<br/>300
+| bgcolor="lime" | [[2026 Țiriac Open – Doubles|'''W''']]<br/>250
+| bgcolor="ffebcd" | [[2026 Mutua Madrid Open – Men's doubles|QF]]<br/>180
+| bgcolor="ffebcd" | [[2026 Italian Open – Men's doubles|QF]]<br/>180
+| bgcolor="yellow" | [[2026 Dallas Open – Doubles|SF]]<br/>180
+| bgcolor="afeeee" | [[2026 BNP Paribas Open – Men's doubles|R16]]<br/>90
+| bgcolor="afeeee" | [[2026 Miami Open – Men's doubles|R16]]<br/>90
+| bgcolor="ffebcd" | [[2026 Rio Open – Doubles|QF]]<br/>90
+| bgcolor="ffebcd" | [[2026 Abierto Mexicano Telcel – Doubles|QF]]<br/>90
+| bgcolor="ffebcd" | [[2026 BMW Open – Doubles|QF]]<br/>90
+| bgcolor="yellow" | [[2026 Brisbane International – Men's doubles|SF]]<br/>90
+| bgcolor="yellow" | [[2026 Open Occitanie – Doubles|SF]]<br/>90
+| bgcolor="afeeee" | [[2026 French Open – Men's doubles|R64]]<br/>0
+| bgcolor="afeeee" | [[2026 Monte-Carlo Masters – Doubles|R32]]<br/>0
+| bgcolor="afeeee" | [[2026 ASB Classic – Men's doubles|R16]]<br/>0
+| <!---17--->
+| <!---18--->
+! 2,080
+! 16
+! 1
+|-
+| colspan="23" | '''Alternates'''
+|-
+| 9
+| align="left" bgcolor="afeeee" | {{flagicon|FRA}} [[Théo Arribagé]]<br/>{{flagicon|FRA}} [[Albano Olivetti]]
+| bgcolor="lime" | [[2026 Dallas Open – Doubles|'''W''']]<br/>500
+| bgcolor="thistle" | [[2026 BMW Open – Doubles|F]]<br/>300
+| bgcolor="lime" | [[2026 ASB Classic – Men's doubles|'''W''']]<br/>250
+| bgcolor="lime" | [[2026 Open Occitanie – Doubles|'''W''']]<br/>250
+| bgcolor="afeeee" | [[2026 Australian Open – Men's doubles|R32]]<br/>90
+| bgcolor="afeeee" | [[2026 Miami Open – Men's doubles|R16]]<br/>90
+| bgcolor="afeeee" | [[2026 Mutua Madrid Open – Men's doubles|R16]]<br/>90
+| bgcolor="ffebcd" | [[2026 Dubai Tennis Championships – Men's doubles|QF]]<br/>90
+| bgcolor="ffebcd" | [[2026 Hamburg Open – Men's doubles|QF]]<br/>90
+| bgcolor="yellow" | [[2026 Grand Prix Hassan II – Doubles|SF]]<br/>90
+| bgcolor="ffebcd" | [[2026 ATP Hong Kong Tennis Open – Doubles|QF]]<br/>45
+| bgcolor="ffebcd" | [[2026 Delray Beach Open – Doubles|QF]]<br/>45
+| bgcolor="afeeee" | [[2026 French Open – Men's doubles|R64]]<br/>0
+| bgcolor="afeeee" | [[2026 BNP Paribas Open – Men's doubles|R32]]<br/>0
+| bgcolor="afeeee" | [[2026 Italian Open – Men's doubles|R32]]<br/>0
+| bgcolor="afeeee" | [[2026 Libéma Open – Men's doubles|R16]]<br/>0
+| bgcolor="afeeee" | [[2026 Arizona Tennis Classic – Doubles|R16]]<br/>0
+| <!---18--->
+! 1,930
+! 17
+! 3
+|-
+| 10
+| align="left" | {{flagicon|GBR}} [[Julian Cash]]<br/>{{flagicon|GBR}} [[Lloyd Glasspool]]
+| bgcolor="lime" | [[2026 Barcelona Open Banc Sabadell – Doubles|'''W''']]<br/>545
+| bgcolor="thistle" | [[2026 Qatar ExxonMobil Open – Doubles|F]]<br/>300
+| bgcolor="ffebcd" | [[2026 Monte-Carlo Masters – Doubles|QF]]<br/>180
+| bgcolor="yellow" | [[2026 Dubai Tennis Championships – Men's doubles|SF]]<br/>180
+| bgcolor="thistle" | [[2026 Brisbane International – Men's doubles|F]]<br/>150
+| bgcolor="afeeee" | [[2026 Australian Open – Men's doubles|R32]]<br/>90
+| bgcolor="afeeee" | [[2026 French Open – Men's doubles|R32]]<br/>90
+| bgcolor="afeeee" | [[2026 Miami Open – Men's doubles|R16]]<br/>90
+| bgcolor="ffebcd" | [[2026 Hamburg Open – Men's doubles|QF]]<br/>90
+| bgcolor="afeeee" | [[2026 BNP Paribas Open – Men's doubles|R32]]<br/>0
+| bgcolor="afeeee" | [[2026 Mutua Madrid Open – Men's doubles|R32]]<br/>0
+| bgcolor="afeeee" | [[2026 Italian Open – Men's doubles|R32]]<br/>0
+| bgcolor="afeeee" | [[2026 Adelaide International – Men's doubles|R16]]<br/>0
+| <!---14--->
+| <!---15--->
+| <!---16--->
+| <!---17--->
+| <!---18--->
+! 1,670
+! 13
+! 1
+|-
+| 11
+| align="left" | {{flagicon|GER}} [[Jakob Schnaitter]]<br/>{{flagicon|GER}} [[Mark Wallner]]
+| bgcolor="lime" | [[2026 BMW Open – Doubles|'''W''']]<br/>545
+| bgcolor="yellow" | [[2026 ABN AMRO Open – Doubles|SF]]<br/>180
+| bgcolor="yellow" | [[2026 Rio Open – Doubles|SF]]<br/>180
+| bgcolor="yellow" | [[2026 Hamburg Open – Men's doubles|SF]]<br/>180
+| bgcolor="afeeee" | [[2026 French Open – Men's doubles|R32]]<br/>90
+| bgcolor="afeeee" | [[2026 Italian Open – Men's doubles|R16]]<br/>90
+| bgcolor="yellow" | [[2026 Open Occitanie – Doubles|SF]]<br/>90
+| bgcolor="ffebcd" | [[2026 Chile Open – Doubles|QF]]<br/>45
+| bgcolor="ffebcd" | [[2026 Copa Cap Cana – Doubles|QF]]<br/>32
+| bgcolor="ffebcd" | [[2026 Open Aix Provence – Doubles|QF]]<br/>32
+| bgcolor="afeeee" | [[2026 Adelaide International – Men's doubles|R16]]<br/>20
+| bgcolor="ffebcd" | [[2026 Morelos Open – Doubles|QF]]<br/>16
+| bgcolor="afeeee" | [[2026 Australian Open – Men's doubles|R64]]<br/>0
+| bgcolor="afeeee" | [[2026 Mutua Madrid Open – Men's doubles|R32]]<br/>0
+| bgcolor="afeeee" | [[2026 Brisbane International – Men's doubles|R32]]<br/>0
+| bgcolor="afeeee" | [[2026 Țiriac Open – Doubles|R16]]<br/>0
+| bgcolor="afeeee" | [[2026 BOSS Open – Doubles|R16]]<br/>0
+| bgcolor="afeeee" | [[2026 Monza Open – Doubles|R16]]<br/>0
+! 1,500
+! 18
+! 1
+|-
+| 12
+| align="left" | {{flagicon|BRA}} [[Orlando Luz]]<br/>{{flagicon|BRA}} [[Rafael Matos]]
+| bgcolor="ffebcd" | [[2026 Australian Open – Men's doubles|QF]]<br/>360
+| bgcolor="lime" | [[2026 Argentina Open – Doubles|'''W''']]<br/>250
+| bgcolor="lime" | [[2026 Chile Open – Doubles|'''W''']]<br/>250
+| bgcolor="yellow" | [[2026 BMW Open – Doubles|SF]]<br/>180
+| bgcolor="thistle" | [[2026 U.S. Men's Clay Court Championships – Doubles|F]]<br/>150
+| bgcolor="afeeee" | [[2026 BNP Paribas Open – Men's doubles|R16]]<br/>90
+| bgcolor="afeeee" | [[2026 Miami Open – Men's doubles|R16]]<br/>90
+| bgcolor="yellow" | [[2026 Copa Faulconbridge – Doubles|SF]]<br/>60
+| bgcolor="ffebcd" | [[2026 Brisbane International – Men's doubles|QF]]<br/>45
+| bgcolor="afeeee" | [[2026 Adelaide International – Men's doubles|R16]]<br/>20
+| bgcolor="afeeee" | [[2026 French Open – Men's doubles|R64]]<br/>0
+| bgcolor="afeeee" | [[2026 Mutua Madrid Open – Men's doubles|R32]]<br/>0
+| bgcolor="afeeee" | [[2026 Italian Open – Men's doubles|R32]]<br/>0
+| bgcolor="afeeee" | [[2026 Rio Open – Doubles|R16]]<br/>0
+| bgcolor="afeeee" | [[2026 Hamburg Open – Men's doubles|R16]]<br/>0
+| bgcolor="afeeee" | [[2026 BOSS Open – Doubles|R16]]<br/>0
+| <!---17--->
+| <!---18--->
+! 1,495
+! 16
+! 2
+|-
+| 13
+| align="left" | {{flagicon|GBR}} [[Luke Johnson (tennis)|Luke Johnson]]<br/>{{flagicon|POL}} [[Jan Zieliński]]
+| bgcolor="yellow" | [[2026 Australian Open – Men's doubles|SF]]<br/>720
+| bgcolor="yellow" | [[2026 Mutua Madrid Open – Men's doubles|SF]]<br/>360
+| bgcolor="ffebcd" | [[2026 BMW Open – Doubles|QF]]<br/>90
+| bgcolor="yellow" | [[2026 Arizona Tennis Classic – Doubles|SF]]<br/>60
+| bgcolor="afeeee" | [[2026 Adelaide International – Men's doubles|R16]]<br/>20
+| bgcolor="afeeee" | [[2026 BNP Paribas Open – Men's doubles|R32]]<br/>0
+| bgcolor="afeeee" | [[2026 Miami Open – Men's doubles|R32]]<br/>0
+| bgcolor="afeeee" | [[2026 Monte-Carlo Masters – Doubles|R32]]<br/>0
+| bgcolor="afeeee" | [[2026 Abierto Mexicano Telcel – Doubles|R16]]<br/>0
+| bgcolor="afeeee" | [[2026 Delray Beach Open – Doubles|R16]]<br/>0
+| bgcolor="afeeee" | [[2026 Grand Prix Hassan II – Doubles|R16]]<br/>0
+| <!---12--->
+| <!---13--->
+| <!---14--->
+| <!---15--->
+| <!---16--->
+| <!---17--->
+| <!---18--->
+! 1,250
+! 11
+! 0
+|-
+| 14
+| align="left" | {{flagicon|MON}} [[Hugo Nys]]<br/>{{flagicon|FRA}} [[Édouard Roger-Vasselin]]
+| bgcolor="ffebcd" | [[2026 French Open – Men's doubles|QF]]<br/>360
+| bgcolor="yellow" | [[2026 Monte-Carlo Masters – Doubles|SF]]<br/>360
+| bgcolor="ffebcd" | [[2026 Miami Open – Men's doubles|QF]]<br/>180
+| bgcolor="thistle" | [[2026 Arizona Tennis Classic – Doubles|F]]<br/>100
+| bgcolor="afeeee" | [[2026 Italian Open – Men's doubles|R16]]<br/>90
+| bgcolor="ffebcd" | [[2026 Barcelona Open Banc Sabadell – Doubles|QF]]<br/>90
+| bgcolor="ffebcd" | [[2026 Adelaide International – Men's doubles|QF]]<br/>45
+| bgcolor="afeeee" | [[2026 Australian Open – Men's doubles|R64]]<br/>0
+| bgcolor="afeeee" | [[2026 BNP Paribas Open – Men's doubles|R32]]<br/>0
+| bgcolor="afeeee" | [[2026 Mutua Madrid Open – Men's doubles|R32]]<br/>0
+| bgcolor="afeeee" | [[2026 ABN AMRO Open – Doubles|R16]]<br/>0
+| bgcolor="afeeee" | [[2026 Abierto Mexicano Telcel – Doubles|R16]]<br/>0
+| bgcolor="afeeee" | [[2026 Hamburg Open – Men's doubles|R16]]<br/>0
+| bgcolor="afeeee" | [[2026 Grand Prix Hassan II – Doubles|R16]]<br/>0
+| <!---15--->
+| <!---16--->
+| <!---17--->
+| <!---18--->
+! 1,225
+! 14
+! 0
+|-
+| 15
+| align="left" | {{flagicon|AUS}} [[Jason Kubler]]<br/>{{flagicon|AUS}} [[Marc Polmans]]
+| bgcolor="thistle" | [[2026 Australian Open – Men's doubles|F]]<br/>1200
+| <!---2--->
+| <!---3--->
+| <!---4--->
+| <!---5--->
+| <!---6--->
+| <!---7--->
+| <!---8--->
+| <!---9--->
+| <!---10--->
+| <!---11--->
+| <!---12--->
+| <!---13--->
+| <!---14--->
+| <!---15--->
+| <!---16--->
+| <!---17--->
+| <!---18--->
+! 1,200
+! 1
+! 0
+|-
+| 16
+| align="left" | {{flagicon|GER}} [[Constantin Frantzen]]<br/>{{flagicon|NED}} [[Robin Haase]]
+| bgcolor="thistle" | [[2026 Rio Open – Doubles|F]]<br/>300
+| bgcolor="ffebcd" | [[2026 BNP Paribas Open – Men's doubles|QF]]<br/>180
+| bgcolor="lime" | [[2026 Copa Faulconbridge – Doubles|'''W''']]<br/>175
+| bgcolor="thistle" | [[2026 Open Occitanie – Doubles|F]]<br/>150
+| bgcolor="ffebcd" | [[2026 Dallas Open – Doubles|QF]]<br/>90
+| bgcolor="yellow" | [[2026 Geneva Open – Doubles|SF]]<br/>90
+| bgcolor="ffebcd" | [[2026 ATP Hong Kong Tennis Open – Doubles|QF]]<br/>45
+| bgcolor="ffebcd" | [[2026 ASB Classic – Men's doubles|QF]]<br/>45
+| bgcolor="ffebcd" | [[2026 Țiriac Open – Doubles|QF]]<br/>45
+| bgcolor="ffebcd" | [[2026 Sardegna Open – Doubles|QF]]<br/>32
+| bgcolor="afeeee" | [[2026 Australian Open – Men's doubles|R64]]<br/>0
+| bgcolor="afeeee" | [[2026 French Open – Men's doubles|R64]]<br/>0
+| bgcolor="afeeee" | [[2026 Miami Open – Men's doubles|R32]]<br/>0
+| bgcolor="afeeee" | [[2026 Abierto Mexicano Telcel – Doubles|R16]]<br/>0
+| bgcolor="afeeee" | [[2026 Barcelona Open Banc Sabadell – Doubles|R16]]<br/>0
+| bgcolor="afeeee" | [[2026 BOSS Open – Doubles|R16]]<br/>0
+| <!---17--->
+| <!---18--->
+! 1,152
+! 16
+! 0
+|-
+| 17
+| align="left" | {{flagicon|USA}} [[Austin Krajicek]]<br/>{{flagicon|CRO}} [[Nikola Mektić]]
+| bgcolor="yellow" | [[2026 Italian Open – Men's doubles|SF]]<br/>360
+| bgcolor="lime" | [[2026 Delray Beach Open – Doubles|'''W''']]<br/>250
+| bgcolor="afeeee" | [[2026 Australian Open – Men's doubles|R16]]<br/>180
+| bgcolor="ffebcd" | [[2026 Miami Open – Men's doubles|QF]]<br/>180
+| bgcolor="afeeee" | [[2026 French Open – Men's doubles|R32]]<br/>90
+| bgcolor="afeeee" | [[2026 Monte-Carlo Masters – Doubles|R16]]<br/>90
+| bgcolor="afeeee" | [[2026 BNP Paribas Open – Men's doubles|R32]]<br/>0
+| bgcolor="afeeee" | [[2026 Mutua Madrid Open – Men's doubles|R32]]<br/>0
+| bgcolor="afeeee" | [[2026 Dallas Open – Doubles|R16]]<br/>0
+| bgcolor="afeeee" | [[2026 Abierto Mexicano Telcel – Doubles|R16]]<br/>0
+| bgcolor="afeeee" | [[2026 Barcelona Open Banc Sabadell – Doubles|R16]]<br/>0
+| bgcolor="afeeee" | [[2026 Adelaide International – Men's doubles|R16]]<br/>0
+| bgcolor="afeeee" | [[2026 Geneva Open – Doubles|R16]]<br/>0
+| bgcolor="afeeee" | [[2026 Arizona Tennis Classic – Doubles|R16]]<br/>0
+| <!---15--->
+| <!---16--->
+| <!---17--->
+| <!---18--->
+! 1,150
+! 14
+! 1
+|-
+| 18
+| align="left" | {{flagicon|USA}} [[Vasil Kirkov]]<br/>{{flagicon|NED}} [[Bart Stevens]]
+| bgcolor="yellow" | [[2026 Abierto Mexicano Telcel – Doubles|SF]]<br/>225
+| bgcolor="thistle" | [[2026 Grand Prix Hassan II – Doubles|F]]<br/>150
+| bgcolor="thistle" | [[2026 Open Aix Provence – Doubles|F]]<br/>100
+| bgcolor="afeeee" | [[2026 Australian Open – Men's doubles|R32]]<br/>90
+| bgcolor="afeeee" | [[2026 French Open – Men's doubles|R32]]<br/>90
+| bgcolor="ffebcd" | [[2026 ABN AMRO Open – Doubles|QF]]<br/>90
+| bgcolor="yellow" | [[2026 ATP Hong Kong Tennis Open – Doubles|SF]]<br/>90
+| bgcolor="thistle" | [[2026 Bahrain Ministry of Interior Tennis Challenger – Doubles|F]]<br/>75
+| bgcolor="ffebcd" | [[2026 Delray Beach Open – Doubles|QF]]<br/>45
+| bgcolor="ffebcd" | [[2026 Geneva Open – Doubles|QF]]<br/>45
+| bgcolor="ffebcd" | [[2026 Copa Cap Cana – Doubles|QF]]<br/>32
+| bgcolor="afeeee" | [[2026 ASB Classic – Men's doubles|R16]]<br/>0
+| bgcolor="afeeee" | [[2026 Open Occitanie – Doubles|R16]]<br/>0
+| bgcolor="afeeee" | [[2026 Monza Open – Doubles|R16]]<br/>0
+| bgcolor="afeeee" | [[2026 Copa Faulconbridge – Doubles|R16]]<br/>0
+| <!---16--->
+| <!---17--->
+| <!---18--->
+! 1,032
+! 15
+! 0
+|-
+| 19
+| align="left" | {{flagicon|FRA}} [[Pierre-Hugues Herbert]]<br/>{{flagicon|FRA}} [[Quentin Halys]]
+| bgcolor="yellow" | [[2026 French Open – Men's doubles|SF]]<br/>720
+| bgcolor="yellow" | [[2026 Qatar ExxonMobil Open – Doubles|SF]]<br/>225
+| bgcolor="yellow" | [[2026 BNP Paribas Primrose Bordeaux – Doubles|SF]]<br/>60
+| <!---4--->
+| <!---5--->
+| <!---6--->
+| <!---7--->
+| <!---8--->
+| <!---9--->
+| <!---10--->
+| <!---11--->
+| <!---12--->
+| <!---13--->
+| <!---14--->
+| <!---15--->
+| <!---16--->
+| <!---17--->
+| <!---18--->
+! 1,005
+! 3
+! 0
+|-
+| 20
+| align="left" | {{flagicon|USA}} [[Robert Cash]]<br/>{{flagicon|USA}} [[JJ Tracy]]
+| bgcolor="lime" | [[2026 Grand Prix Hassan II – Doubles|'''W''']]<br/>250
+| bgcolor="afeeee" | [[2026 Australian Open – Men's doubles|R16]]<br/>180
+| bgcolor="lime" | [[2026 Open Aix Provence – Doubles|'''W''']]<br/>175
+| bgcolor="afeeee" | [[2026 French Open – Men's doubles|R32]]<br/>90
+| bgcolor="afeeee" | [[2026 Italian Open – Men's doubles|R16]]<br/>90
+| bgcolor="yellow" | [[2026 Delray Beach Open – Doubles|SF]]<br/>90
+| bgcolor="ffebcd" | [[2026 Arizona Tennis Classic – Doubles|QF]]<br/>32
+| bgcolor="afeeee" | [[2026 BNP Paribas Open – Men's doubles|R32]]<br/>0
+| bgcolor="afeeee" | [[2026 Miami Open – Men's doubles|R32]]<br/>0
+| bgcolor="afeeee" | [[2026 Monte-Carlo Masters – Doubles|R32]]<br/>0
+| bgcolor="afeeee" | [[2026 Mutua Madrid Open – Men's doubles|R32]]<br/>0
+| bgcolor="afeeee" | [[2026 Abierto Mexicano Telcel – Doubles|R16]]<br/>0
+| bgcolor="afeeee" | [[2026 Barcelona Open Banc Sabadell – Doubles|R16]]<br/>0
+| bgcolor="afeeee" | [[2026 Brisbane International – Men's doubles|R16]]<br/>0
+| bgcolor="afeeee" | [[2026 ASB Classic – Men's doubles|R16]]<br/>0
+| bgcolor="afeeee" | [[2026 Dallas Open – Doubles|R16]]<br/>0
+| bgcolor="afeeee" | [[2026 Geneva Open – Doubles|R16]]<br/>0
+| bgcolor="afeeee" | [[2026 Libéma Open – Men's doubles|R16]]<br/>0
+! 907
+! 18
+! 1
+|}
+
+== See also ==
+* [[ATP rankings]]
+* [[2026 ATP Tour]]
+* [[2026 WTA Finals]]
+* [[ATP Finals appearances]]
+
+== References ==
+{{reflist}}
+
+== External links ==
+* {{official website|https://www.nittoatpfinals.com/}} {{in lang|en|es|ja}}
+* [https://www.atptour.com/en/tournaments/nitto-atp-finals/605/overview ATP tournament profile]
+
+{{men's tennis masters tournaments}}
+{{2026 ATP Tour}}
+{{2026 in tennis}}
+
+{{DEFAULTSORT:Atp Finals 2026}}
+[[Category:2026 ATP Tour|*Finals]]
+[[Category:ATP Finals|2026]]
+[[Category:Tennis tournaments in Italy|2026 ATP Finals]]
+[[Category:Sports competitions in Turin]]
+[[Category:Scheduled sports events]]
+[[Category:2020s in Turin]]
+[[Category:2026 in Italian tennis]]

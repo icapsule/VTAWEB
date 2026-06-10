@@ -3,7 +3,6 @@ import { revalidatePath } from 'next/cache';
 import { db } from '@/server/db';
 import { rankings, tournaments } from '@/server/db/schema';
 import Papa from 'papaparse';
-import { atpRaceRankings, wtaRaceRankings } from '@/lib/mock-data';
 
 async function fetchAndParseCsv(url: string) {
   const response = await fetch(url);
@@ -19,6 +18,55 @@ async function fetchAndParseCsv(url: string) {
   });
 }
 
+async function fetchWikiRaceRankings(tour: 'atp' | 'wta') {
+  const year = new Date().getUTCFullYear();
+  const pageName = tour === 'atp' ? `${year}_ATP_Finals` : `${year}_WTA_Finals`;
+  const url = `https://en.wikipedia.org/w/api.php?action=parse&page=${pageName}&prop=wikitext&format=json`;
+
+  try {
+    const response = await fetch(url, { headers: { 'User-Agent': 'VTAWEB_Bot/1.0' } });
+    if (!response.ok) return [];
+    const data = await response.json();
+    const wikitext = data?.parse?.wikitext?.['*'] || '';
+
+    const tableMatch = wikitext.match(/===\s*Singles\s*===.*?\{\|class="wikitable.*?\n(.*?)\n\|\}/s);
+    if (!tableMatch) return [];
+
+    const singlesText = tableMatch[1];
+    const rowsRaw = singlesText.split('|-');
+    const results = [];
+
+    for (const row of rowsRaw) {
+      if (!/align="?left"?/.test(row)) continue;
+
+      const rankMatch = row.match(/\|\s*(\d+)/);
+      const nameMatch = row.match(/\[\[(.*?)\]\]/);
+      const pointsMatch = row.match(/\!\s*([\d,]+)/);
+
+      if (rankMatch && nameMatch && pointsMatch) {
+        const rank = parseInt(rankMatch[1], 10);
+        const nameRaw = nameMatch[1];
+        const name = nameRaw.includes('|') ? nameRaw.split('|')[0] : nameRaw;
+        const points = parseInt(pointsMatch[1].replace(/,/g, ''), 10);
+
+        results.push({
+          tour,
+          type: 'race' as const,
+          rank,
+          name,
+          country: 'UNK', 
+          points,
+          change: 0
+        });
+      }
+    }
+    return results;
+  } catch (error) {
+    console.error(`Failed to fetch ${tour} race from wiki:`, error);
+    return [];
+  }
+}
+
 export async function POST(request: Request) {
   try {
     const authHeader = request.headers.get('authorization');
@@ -28,12 +76,14 @@ export async function POST(request: Request) {
 
     console.log('🔄 Cron Triggered: Fetching real ranking data from Jeff Sackmann...');
 
-    // 1. Fetch CSVs for Rankings
-    const [atpRankings, atpPlayers, wtaRankings, wtaPlayers] = await Promise.all([
+    // 1. Fetch CSVs for Rankings and Wiki for Race
+    const [atpRankings, atpPlayers, wtaRankings, wtaPlayers, realAtpRace, realWtaRace] = await Promise.all([
       fetchAndParseCsv('https://raw.githubusercontent.com/JeffSackmann/tennis_atp/master/atp_rankings_current.csv'),
       fetchAndParseCsv('https://raw.githubusercontent.com/JeffSackmann/tennis_atp/master/atp_players.csv'),
       fetchAndParseCsv('https://raw.githubusercontent.com/JeffSackmann/tennis_wta/master/wta_rankings_current.csv'),
-      fetchAndParseCsv('https://raw.githubusercontent.com/JeffSackmann/tennis_wta/master/wta_players.csv')
+      fetchAndParseCsv('https://raw.githubusercontent.com/JeffSackmann/tennis_wta/master/wta_players.csv'),
+      fetchWikiRaceRankings('atp'),
+      fetchWikiRaceRankings('wta')
     ]);
 
     // Build Player Maps
@@ -95,8 +145,8 @@ export async function POST(request: Request) {
           change: change
         };
       }),
-      ...atpRaceRankings.map(p => ({ tour: 'atp' as const, type: 'race' as const, rank: p.rank, name: p.name, country: p.country, points: p.points, change: p.change })),
-      ...wtaRaceRankings.map(p => ({ tour: 'wta' as const, type: 'race' as const, rank: p.rank, name: p.name, country: p.country, points: p.points, change: p.change }))
+      ...realAtpRace,
+      ...realWtaRace
     ];
 
     console.log(`Prepared ${insertData.length} ranking rows. Inserting to DB...`);

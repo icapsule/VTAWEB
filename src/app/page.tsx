@@ -75,30 +75,65 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ---- Stats Overview ---- */}
-      <section className="section" id="stats-section">
+      {/* ---- Big Titles Leaderboard ---- */}
+      <section className="section" id="big-titles-section">
         <div className="container">
-          <div className="stats-grid">
-            <div className="stat-card animate-in">
-              <span className="stat-card__label">ATP #1</span>
-              <span className="stat-card__value">{topATP[0]?.name.split(' ').pop() || 'N/A'}</span>
-              <span className="stat-card__sub">{topATP[0]?.points.toLocaleString() || 0} pts</span>
-            </div>
-            <div className="stat-card animate-in" style={{ animationDelay: '0.1s' }}>
-              <span className="stat-card__label">WTA #1</span>
-              <span className="stat-card__value">{topWTA[0]?.name.split(' ').pop() || 'N/A'}</span>
-              <span className="stat-card__sub">{topWTA[0]?.points.toLocaleString() || 0} pts</span>
-            </div>
-            <div className="stat-card animate-in" style={{ animationDelay: '0.2s' }}>
-              <span className="stat-card__label">Live Tournaments</span>
-              <span className="stat-card__value">{liveTournaments.length}</span>
-              <span className="stat-card__sub">In progress now</span>
-            </div>
-            <div className="stat-card animate-in" style={{ animationDelay: '0.3s' }}>
-              <span className="stat-card__label">Upcoming</span>
-              <span className="stat-card__value">{upcomingTournaments.length}</span>
-              <span className="stat-card__sub">Next 30 days</span>
-            </div>
+          <h2 className="section-title" style={{ marginBottom: 'var(--space-md)' }}>Official Big Titles Leaderboard</h2>
+          <div className="table-container animate-in">
+            <table className="big-titles-table">
+              <thead>
+                <tr>
+                  <th>Tournament Category</th>
+                  <th>🇷🇸 Novak Djokovic</th>
+                  <th>🇪🇸 Rafael Nadal</th>
+                  <th>🇨🇭 Roger Federer</th>
+                  <th>🇪🇸 Carlos Alcaraz</th>
+                  <th>🇮🇹 Jannik Sinner</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="animate-in" style={{ animationDelay: '0.1s' }}>
+                  <td>Grand Slams</td>
+                  <td className="highlight-cell">24 👑</td>
+                  <td>22</td>
+                  <td>20</td>
+                  <td>4</td>
+                  <td>2</td>
+                </tr>
+                <tr className="animate-in" style={{ animationDelay: '0.2s' }}>
+                  <td>ATP Masters 1000</td>
+                  <td className="highlight-cell">40 👑</td>
+                  <td>36</td>
+                  <td>28</td>
+                  <td>5</td>
+                  <td>4</td>
+                </tr>
+                <tr className="animate-in" style={{ animationDelay: '0.3s' }}>
+                  <td>ATP Finals</td>
+                  <td className="highlight-cell">7 👑</td>
+                  <td>0</td>
+                  <td>6</td>
+                  <td>0</td>
+                  <td>1</td>
+                </tr>
+                <tr className="animate-in" style={{ animationDelay: '0.4s' }}>
+                  <td>Olympic Singles Gold</td>
+                  <td className="highlight-cell">1 🥇</td>
+                  <td className="highlight-cell">1 🥇</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                </tr>
+                <tr className="total-row animate-in" style={{ animationDelay: '0.5s' }}>
+                  <td>Total "Big Titles"</td>
+                  <td className="highlight-cell" style={{ fontSize: '1.4rem' }}>72 👑</td>
+                  <td>59</td>
+                  <td>54</td>
+                  <td>9</td>
+                  <td>7</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
@@ -179,6 +214,79 @@ export default async function HomePage() {
           transition: opacity var(--transition-fast);
         }
         .view-all-link:hover { opacity: 0.7; }
+        
+        .table-container {
+          background: var(--color-bg-elevated);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-lg);
+          overflow-x: auto;
+          box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        
+        .big-titles-table {
+          width: 100%;
+          border-collapse: collapse;
+          text-align: center;
+          font-family: var(--font-sans);
+        }
+        
+        .big-titles-table th {
+          padding: var(--space-md);
+          font-weight: 700;
+          color: var(--color-text-secondary);
+          border-bottom: 2px solid var(--color-border);
+          font-size: 0.9rem;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+        
+        .big-titles-table th:first-child {
+          text-align: left;
+        }
+        
+        .big-titles-table tr {
+          transition: background-color var(--transition-normal), transform var(--transition-normal);
+        }
+        
+        .big-titles-table tbody tr:hover {
+          background-color: rgba(255, 255, 255, 0.03);
+          transform: scale(1.01);
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+          border-radius: var(--radius-md);
+        }
+        
+        .big-titles-table td {
+          padding: var(--space-md);
+          border-bottom: 1px solid var(--color-border);
+          color: var(--color-text);
+          font-variant-numeric: tabular-nums;
+          transition: color var(--transition-fast);
+        }
+        
+        .highlight-cell {
+          color: var(--color-accent) !important;
+          font-weight: 700;
+          text-shadow: 0 0 10px rgba(46, 213, 115, 0.4);
+        }
+        
+        .big-titles-table td:first-child {
+          text-align: left;
+          font-weight: 600;
+          color: var(--color-text-secondary);
+        }
+        
+        .big-titles-table tr:last-child td {
+          border-bottom: none;
+        }
+        
+        .big-titles-table .total-row td {
+          font-weight: 700;
+          color: var(--color-accent);
+          background: linear-gradient(90deg, rgba(46, 213, 115, 0.05) 0%, rgba(46, 213, 115, 0.15) 50%, rgba(46, 213, 115, 0.05) 100%);
+          font-size: 1.1rem;
+          border-top: 2px solid var(--color-accent);
+        }
+        
         .change--up { color: var(--color-accent); font-size: 0.8rem; }
         .change--down { color: var(--color-accent-red); font-size: 0.8rem; }
         .change--stable { color: var(--color-text-muted); font-size: 0.8rem; }
