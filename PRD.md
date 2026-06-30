@@ -61,4 +61,5 @@
 - [x] [Tech Debt - *Deprecated v2.0*]: Utilized the Wikipedia Revision History API to calculate accurate week-over-week rank deltas (+/-) for the Race to Turin without retaining historical database state.
 - [x] [Architecture - *v3.0*]: Complete migration to **RapidAPI** (Standard Rankings) and **Supabase (Serverless Postgres)** to guarantee pipeline uptime. 
 - [x] [Architecture - *v3.0*]: Implemented Database-Native Week-over-Week Delta (`+/-`) Computation inside the Next.js API, allowing the removal of fragile external Revision APIs and fully centralizing the pipeline.
-- [ ] [Feature]: Expand the Tournament Tracker to dynamically fetch live ATP/WTA schedules, moving beyond static data arrays.
+- [x] [Feature - *v4.0*]: Expanded the Tournament Tracker to dynamically serve real-time ATP/WTA schedules. Integrated the official WTA native API and offline ATP PDF extraction (`parse_pdf.py`) to build a robust, serverless-friendly hybrid static calendar.
+- [x] [Architecture - *v4.0*]: Optimized the automated GitHub Actions CRON trigger to run semi-weekly (Mondays & Thursdays). This mitigates Supabase's 7-day serverless auto-pause risk while ensuring data remains fresh throughout the week.

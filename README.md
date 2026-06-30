@@ -35,7 +35,7 @@ The platform relies on a 100% serverless, zero-maintenance infrastructure.
 
 ```mermaid
 graph TD
-    A[GitHub Actions<br>Cron Trigger] -->|Mon 12:00 UTC| B(Next.js Route Handler<br>/api/cron/sync)
+    A[GitHub Actions<br>Cron Trigger] -->|Semi-Weekly (Mon, Thu)| B(Next.js Route Handler<br>/api/cron/sync)
     B -->|Fetch JSON Rankings| C[(RapidAPI<br>Tennis API)]
     B -->|Regex Parse Wikitext| W[(Wikipedia API<br>Race Rankings)]
     B -->|Memory-Map & Compute Deltas| D{Compute Engine}
@@ -54,7 +54,7 @@ graph TD
 ```
 
 ### 🔄 The Pipeline Lifecycle
-1. **Trigger**: GitHub Action fires an HTTP POST request to the Vercel Production API.
+1. **Trigger**: GitHub Action fires an HTTP POST request to the Vercel Production API semi-weekly (Mondays and Thursdays) to guarantee the database never hits the 7-day serverless auto-pause limit.
 2. **Ingestion & Computation**: The Next.js API route streams JSON datasets from RapidAPI for 52-week rankings and directly scrapes the Wikipedia API for "Race" rankings. It uses the Wikipedia Revision History API to fetch 7-day-old wikitext, executes a high-performance memory-map algorithm to stitch player IOC codes, computes week-over-week ranking deltas (+/-), and formats the payload.
 3. **Persistence**: A single transactional batch insertion pushes 200+ records into Supabase via Drizzle ORM.
 4. **Cache Invalidation**: The Next.js API calls `revalidatePath()`, purging the stale Edge CDN cache.
@@ -140,4 +140,5 @@ To ensure the highest standards of maintainability and stability, the VTAWEB arc
 - **v1.0 (Static UI Generation)**: Initial Proof of Concept built using hardcoded mock data. Focused purely on establishing the Glassmorphism aesthetic and React Server Components (RSC) rendering patterns.
 - **v2.0 (The Python Scraper Era - *Deprecated*)**: Introduced dynamic data via `JeffSackmann` open-source CSVs and Wikipedia Revision APIs. Relied on external Python web scrapers and Cloudflare D1. *Deprecated due to third-party repository instability (404 errors) and the architectural friction of maintaining fragmented external data pipelines.*
 - **v3.0 (Modern Serverless)**: Complete architectural migration to **RapidAPI** (Standard Rankings) and **Supabase Serverless Postgres**. We implemented an advanced **Database-Native Week-over-Week Delta Algorithm** entirely within the Next.js Edge API. This elegantly eliminated complex Wikipedia revision API calls for calculating `+/-` ranking changes, centralizing the entire ingestion and computation pipeline natively within the Next.js runtime environment.
-- **v3.1 (Lazy Loading External Media - *Current*)**: To preserve zero-cost database scalability, we rejected storing 200 high-res player avatars in Supabase during CRON syncs. Instead, we built an elegant **Glassmorphism Player Modal** that intercepts row clicks and dynamically queries the `en.wikipedia.org/api/rest_v1` API on the client side, fetching localized biographies and HD avatars instantly with zero backend load.
+- **v3.1 (Lazy Loading External Media)**: To preserve zero-cost database scalability, we rejected storing 200 high-res player avatars in Supabase during CRON syncs. Instead, we built an elegant **Glassmorphism Player Modal** that intercepts row clicks and dynamically queries the `en.wikipedia.org/api/rest_v1` API on the client side, fetching localized biographies and HD avatars instantly with zero backend load.
+- **v4.0 (Native APIs & Hybrid Offline Parsing - *Current*)**: Removed heavy, fragile web scrapers (Playwright). Shifted to the official WTA native API for real-time women's tournament data. For complex PDF calendars (ATP Challengers), we adopted a strictly offline Python parsing pipeline (`parse_pdf.py`), converting raw PDFs into statically served JSON. GitHub Actions cron was optimized to semi-weekly to prevent Supabase auto-pauses, delivering a rock-solid, zero-maintenance runtime.

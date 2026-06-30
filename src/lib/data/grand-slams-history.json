@@ -1,0 +1,1894 @@
+{
+  "australian-open": {
+    "name": "Australian Open",
+    "surface": "Hard",
+    "location": "Melbourne, Australia",
+    "trophy": "/trophies/ao.svg",
+    "color": "#005BBB",
+    "champions": [
+      {
+        "year": 2026,
+        "champion": "Carlos Alcaraz",
+        "champCountry": "ESP",
+        "runnerUp": "Novak Djokovic",
+        "runnerCountry": "SRB",
+        "score": "2–6, 6–2, 6–3, 7–5"
+      },
+      {
+        "year": 2025,
+        "champion": "Jannik Sinner",
+        "champCountry": "ITA",
+        "runnerUp": "Alexander Zverev",
+        "runnerCountry": "GER",
+        "score": "6–3, 7–6(7–4), 6–3"
+      },
+      {
+        "year": 2024,
+        "champion": "Jannik Sinner",
+        "champCountry": "ITA",
+        "runnerUp": "Daniil Medvedev",
+        "runnerCountry": "RUS",
+        "score": "3–6, 3–6, 6–4, 6–4, 6–3"
+      },
+      {
+        "year": 2023,
+        "champion": "Novak Djokovic",
+        "champCountry": "SRB",
+        "runnerUp": "Stefanos Tsitsipas",
+        "runnerCountry": "GRE",
+        "score": "6–3, 7–6(7–4), 7–6(7–5)"
+      },
+      {
+        "year": 2022,
+        "champion": "Rafael Nadal",
+        "champCountry": "ESP",
+        "runnerUp": "Daniil Medvedev",
+        "runnerCountry": "RUS",
+        "score": "2–6, 6–7(5–7), 6–4, 6–4, 7–5"
+      },
+      {
+        "year": 2021,
+        "champion": "Novak Djokovic",
+        "champCountry": "SRB",
+        "runnerUp": "Daniil Medvedev",
+        "runnerCountry": "RUS",
+        "score": "7–5, 6–2, 6–2"
+      },
+      {
+        "year": 2020,
+        "champion": "Novak Djokovic",
+        "champCountry": "SRB",
+        "runnerUp": "Dominic Thiem",
+        "runnerCountry": "AUT",
+        "score": "6–4, 4–6, 2–6, 6–3, 6–4"
+      },
+      {
+        "year": 2019,
+        "champion": "Novak Djokovic",
+        "champCountry": "SRB",
+        "runnerUp": "Rafael Nadal",
+        "runnerCountry": "ESP",
+        "score": "6–3, 6–2, 6–3"
+      },
+      {
+        "year": 2018,
+        "champion": "Roger Federer",
+        "champCountry": "SUI",
+        "runnerUp": "Marin Čilić",
+        "runnerCountry": "CRO",
+        "score": "6–2, 6–7(5–7), 6–3, 3–6, 6–1"
+      },
+      {
+        "year": 2017,
+        "champion": "Roger Federer",
+        "champCountry": "SUI",
+        "runnerUp": "Rafael Nadal",
+        "runnerCountry": "ESP",
+        "score": "6–4, 3–6, 6–1, 3–6, 6–3"
+      },
+      {
+        "year": 2016,
+        "champion": "Novak Djokovic",
+        "champCountry": "SRB",
+        "runnerUp": "Andy Murray",
+        "runnerCountry": "GBR",
+        "score": "6–1, 7–5, 7–6(7–3)"
+      },
+      {
+        "year": 2015,
+        "champion": "Novak Djokovic",
+        "champCountry": "SRB",
+        "runnerUp": "Andy Murray",
+        "runnerCountry": "GBR",
+        "score": "7–6(7–5), 6–7(4–7), 6–3, 6–0"
+      },
+      {
+        "year": 2014,
+        "champion": "Stan Wawrinka",
+        "champCountry": "SUI",
+        "runnerUp": "Rafael Nadal",
+        "runnerCountry": "ESP",
+        "score": "6–3, 6–2, 3–6, 6–3"
+      },
+      {
+        "year": 2013,
+        "champion": "Novak Djokovic",
+        "champCountry": "SRB",
+        "runnerUp": "Andy Murray",
+        "runnerCountry": "GBR",
+        "score": "6–7(2–7), 7–6(7–3), 6–3, 6–2"
+      },
+      {
+        "year": 2012,
+        "champion": "Novak Djokovic",
+        "champCountry": "SRB",
+        "runnerUp": "Rafael Nadal",
+        "runnerCountry": "ESP",
+        "score": "5–7, 6–4, 6–2, 6–7(5–7), 7–5"
+      },
+      {
+        "year": 2011,
+        "champion": "Novak Djokovic",
+        "champCountry": "SRB",
+        "runnerUp": "Andy Murray",
+        "runnerCountry": "GBR",
+        "score": "6–4, 6–2, 6–3"
+      },
+      {
+        "year": 2010,
+        "champion": "Roger Federer",
+        "champCountry": "SUI",
+        "runnerUp": "Andy Murray",
+        "runnerCountry": "GBR",
+        "score": "6–3, 6–4, 7–6(13–11)"
+      },
+      {
+        "year": 2009,
+        "champion": "Rafael Nadal",
+        "champCountry": "ESP",
+        "runnerUp": "Roger Federer",
+        "runnerCountry": "SUI",
+        "score": "7–5, 3–6, 7–6(7–3), 3–6, 6–2"
+      },
+      {
+        "year": 2008,
+        "champion": "Novak Djokovic",
+        "champCountry": "SRB",
+        "runnerUp": "Jo-Wilfried Tsonga",
+        "runnerCountry": "FRA",
+        "score": "4–6, 6–4, 6–3, 7–6(7–2)"
+      },
+      {
+        "year": 2007,
+        "champion": "Roger Federer",
+        "champCountry": "SUI",
+        "runnerUp": "Fernando González",
+        "runnerCountry": "CHI",
+        "score": "7–6(7–2), 6–4, 6–4"
+      },
+      {
+        "year": 2006,
+        "champion": "Roger Federer",
+        "champCountry": "SUI",
+        "runnerUp": "Marcos Baghdatis",
+        "runnerCountry": "CYP",
+        "score": "5–7, 7–5, 6–0, 6–2"
+      },
+      {
+        "year": 2005,
+        "champion": "Marat Safin",
+        "champCountry": "RUS",
+        "runnerUp": "Lleyton Hewitt",
+        "runnerCountry": "AUS",
+        "score": "1–6, 6–3, 6–4, 6–4"
+      },
+      {
+        "year": 2004,
+        "champion": "Roger Federer",
+        "champCountry": "SUI",
+        "runnerUp": "Marat Safin",
+        "runnerCountry": "RUS",
+        "score": "7–6(7–3), 6–4, 6–2"
+      },
+      {
+        "year": 2003,
+        "champion": "Andre Agassi",
+        "champCountry": "USA",
+        "runnerUp": "Rainer Schüttler",
+        "runnerCountry": "GER",
+        "score": "6–2, 6–2, 6–1"
+      },
+      {
+        "year": 2002,
+        "champion": "Thomas Johansson",
+        "champCountry": "SWE",
+        "runnerUp": "Marat Safin",
+        "runnerCountry": "RUS",
+        "score": "3–6, 6–4, 6–4, 7–6(7–4)"
+      },
+      {
+        "year": 2001,
+        "champion": "Andre Agassi",
+        "champCountry": "USA",
+        "runnerUp": "Arnaud Clément",
+        "runnerCountry": "FRA",
+        "score": "6–4, 6–2, 6–2"
+      },
+      {
+        "year": 2000,
+        "champion": "Andre Agassi",
+        "champCountry": "USA",
+        "runnerUp": "Yevgeny Kafelnikov",
+        "runnerCountry": "RUS",
+        "score": "3–6, 6–3, 6–2, 6–4"
+      },
+      {
+        "year": 1999,
+        "champion": "Yevgeny Kafelnikov",
+        "champCountry": "RUS",
+        "runnerUp": "Thomas Enqvist",
+        "runnerCountry": "SWE",
+        "score": "4–6, 6–0, 6–3, 7–6(7–1)"
+      },
+      {
+        "year": 1998,
+        "champion": "Petr Korda",
+        "champCountry": "CZE",
+        "runnerUp": "Marcelo Ríos",
+        "runnerCountry": "CHI",
+        "score": "6–2, 6–2, 6–2"
+      },
+      {
+        "year": 1997,
+        "champion": "Pete Sampras",
+        "champCountry": "USA",
+        "runnerUp": "Carlos Moyá",
+        "runnerCountry": "ESP",
+        "score": "6–2, 6–3, 6–3"
+      },
+      {
+        "year": 1996,
+        "champion": "Boris Becker",
+        "champCountry": "GER",
+        "runnerUp": "Michael Chang",
+        "runnerCountry": "USA",
+        "score": "6–2, 6–4, 2–6, 6–2"
+      },
+      {
+        "year": 1995,
+        "champion": "Andre Agassi",
+        "champCountry": "USA",
+        "runnerUp": "Pete Sampras",
+        "runnerCountry": "USA",
+        "score": "4–6, 6–1, 7–6(8–6), 6–4"
+      },
+      {
+        "year": 1994,
+        "champion": "Pete Sampras",
+        "champCountry": "USA",
+        "runnerUp": "Todd Martin",
+        "runnerCountry": "USA",
+        "score": "7–6(7–4), 6–4, 6–4"
+      },
+      {
+        "year": 1993,
+        "champion": "Jim Courier",
+        "champCountry": "USA",
+        "runnerUp": "Stefan Edberg",
+        "runnerCountry": "SWE",
+        "score": "6–2, 6–1, 2–6, 7–5"
+      },
+      {
+        "year": 1992,
+        "champion": "Jim Courier",
+        "champCountry": "USA",
+        "runnerUp": "Stefan Edberg",
+        "runnerCountry": "SWE",
+        "score": "6–3, 3–6, 6–4, 6–2"
+      },
+      {
+        "year": 1991,
+        "champion": "Boris Becker",
+        "champCountry": "GER",
+        "runnerUp": "Ivan Lendl",
+        "runnerCountry": "TCH",
+        "score": "1–6, 6–4, 6–4, 6–4"
+      },
+      {
+        "year": 1990,
+        "champion": "Ivan Lendl",
+        "champCountry": "CZE",
+        "runnerUp": "Stefan Edberg",
+        "runnerCountry": "SWE",
+        "score": "4–6, 7–6(7–3), 5–2 retiredk"
+      },
+      {
+        "year": 1989,
+        "champion": "Ivan Lendl",
+        "champCountry": "CZE",
+        "runnerUp": "Miloslav Mečíř",
+        "runnerCountry": "TCH",
+        "score": "6–2, 6–2, 6–2"
+      },
+      {
+        "year": 1988,
+        "champion": "Mats Wilander",
+        "champCountry": "SWE",
+        "runnerUp": "Pat Cash",
+        "runnerCountry": "AUS",
+        "score": "6–3, 6–7(3–7), 3–6, 6–1, 8–6"
+      },
+      {
+        "year": 1987,
+        "champion": "Stefan Edberg",
+        "champCountry": "SWE",
+        "runnerUp": "Pat Cash",
+        "runnerCountry": "AUS",
+        "score": "6–3, 6–4, 3–6, 5–7, 6–3"
+      },
+      {
+        "year": 1985,
+        "champion": "Stefan Edberg",
+        "champCountry": "SWE",
+        "runnerUp": "Mats Wilander",
+        "runnerCountry": "SWE",
+        "score": "6–4, 6–3, 6–3"
+      },
+      {
+        "year": 1984,
+        "champion": "Mats Wilander",
+        "champCountry": "SWE",
+        "runnerUp": "Kevin Curren",
+        "runnerCountry": "RSA",
+        "score": "6–7(5–7), 6–4, 7–6(7–3), 6–2"
+      },
+      {
+        "year": 1983,
+        "champion": "Mats Wilander",
+        "champCountry": "SWE",
+        "runnerUp": "Ivan Lendl",
+        "runnerCountry": "TCH",
+        "score": "6–1, 6–4, 6–4"
+      },
+      {
+        "year": 1982,
+        "champion": "Johan Kriek",
+        "champCountry": "USA",
+        "runnerUp": "Steve Denton",
+        "runnerCountry": "USA",
+        "score": "6–3, 6–3, 6–2"
+      },
+      {
+        "year": 1981,
+        "champion": "Johan Kriek",
+        "champCountry": "RSA",
+        "runnerUp": "Steve Denton",
+        "runnerCountry": "USA",
+        "score": "6–2, 7–6(7–1), 6–7(1–7), 6–4"
+      },
+      {
+        "year": 1980,
+        "champion": "Brian Teacher",
+        "champCountry": "USA",
+        "runnerUp": "Kim Warwick",
+        "runnerCountry": "AUS",
+        "score": "7–5, 7–6(7–4), 6–3"
+      },
+      {
+        "year": 1979,
+        "champion": "Guillermo Vilas",
+        "champCountry": "ARG",
+        "runnerUp": "John Sadri",
+        "runnerCountry": "USA",
+        "score": "7–6(7–4), 6–3, 6–2"
+      },
+      {
+        "year": 1978,
+        "champion": "Guillermo Vilas",
+        "champCountry": "ARG",
+        "runnerUp": "John Marks",
+        "runnerCountry": "AUS",
+        "score": "6–4, 6–4, 3–6, 6–3"
+      },
+      {
+        "year": 1977,
+        "champion": "Roscoe Tanner",
+        "champCountry": "USA",
+        "runnerUp": "Guillermo Vilas",
+        "runnerCountry": "ARG",
+        "score": "6–3, 6–3, 6–3"
+      },
+      {
+        "year": 1976,
+        "champion": "Mark Edmondson",
+        "champCountry": "AUS",
+        "runnerUp": "John Newcombe",
+        "runnerCountry": "AUS",
+        "score": "6–7, 6–3, 7–6, 6–1"
+      },
+      {
+        "year": 1975,
+        "champion": "John Newcombe",
+        "champCountry": "AUS",
+        "runnerUp": "Jimmy Connors",
+        "runnerCountry": "USA",
+        "score": "7–5, 3–6, 6–4, 7–6(9–7)"
+      },
+      {
+        "year": 1974,
+        "champion": "Jimmy Connors",
+        "champCountry": "USA",
+        "runnerUp": "Phil Dent",
+        "runnerCountry": "AUS",
+        "score": "7–6(9–7), 6–4, 4–6, 6–3"
+      },
+      {
+        "year": 1973,
+        "champion": "John Newcombe",
+        "champCountry": "AUS",
+        "runnerUp": "Onny Parun",
+        "runnerCountry": "NZL",
+        "score": "6–3, 6–7, 7–5, 6–1"
+      },
+      {
+        "year": 1972,
+        "champion": "Ken Rosewall",
+        "champCountry": "AUS",
+        "runnerUp": "Mal Anderson",
+        "runnerCountry": "AUS",
+        "score": "7–6(7–2), 6–3, 7–5"
+      },
+      {
+        "year": 1971,
+        "champion": "Ken Rosewall",
+        "champCountry": "AUS",
+        "runnerUp": "Arthur Ashe",
+        "runnerCountry": "USA",
+        "score": "6–1, 7–5, 6–3"
+      },
+      {
+        "year": 1970,
+        "champion": "Arthur Ashe",
+        "champCountry": "USA",
+        "runnerUp": "Dick Crealy",
+        "runnerCountry": "AUS",
+        "score": "6–4, 9–7, 6–2"
+      },
+      {
+        "year": 1969,
+        "champion": "Rod Laver",
+        "champCountry": "AUS",
+        "runnerUp": "Andrés Gimeno",
+        "runnerCountry": "ESP",
+        "score": "6–3, 6–4, 7–5"
+      },
+      {
+        "year": 1968,
+        "champion": "Bill Bowrey",
+        "champCountry": "AUS",
+        "runnerUp": "Juan Gisbert Sr.",
+        "runnerCountry": "ESP",
+        "score": "7–5, 2–6, 9–7, 6–4"
+      }
+    ]
+  },
+  "roland-garros": {
+    "name": "Roland Garros",
+    "surface": "Clay",
+    "location": "Paris, France",
+    "trophy": "/trophies/fo.svg",
+    "color": "#CB5A36",
+    "champions": [
+      {
+        "year": 2026,
+        "champion": "Alexander Zverev",
+        "champCountry": "GER",
+        "runnerUp": "Flavio Cobolli",
+        "runnerCountry": "ITA",
+        "score": "6–1, 4–6, 6–4, 6–7(5–7), 6–1"
+      },
+      {
+        "year": 2025,
+        "champion": "Carlos Alcaraz",
+        "champCountry": "ESP",
+        "runnerUp": "Jannik Sinner",
+        "runnerCountry": "ITA",
+        "score": "4–6, 6–7(4–7), 6–4, 7–6(7–3), 7–6(10–2)"
+      },
+      {
+        "year": 2024,
+        "champion": "Carlos Alcaraz",
+        "champCountry": "ESP",
+        "runnerUp": "Alexander Zverev",
+        "runnerCountry": "GER",
+        "score": "6–3, 2–6, 5–7, 6–1, 6–2"
+      },
+      {
+        "year": 2023,
+        "champion": "Novak Djokovic",
+        "champCountry": "SRB",
+        "runnerUp": "Casper Ruud",
+        "runnerCountry": "NOR",
+        "score": "7–6(7–1), 6–3, 7–5"
+      },
+      {
+        "year": 2022,
+        "champion": "Rafael Nadal",
+        "champCountry": "ESP",
+        "runnerUp": "Casper Ruud",
+        "runnerCountry": "NOR",
+        "score": "6–3, 6–3, 6–0"
+      },
+      {
+        "year": 2021,
+        "champion": "Novak Djokovic",
+        "champCountry": "SRB",
+        "runnerUp": "Stefanos Tsitsipas",
+        "runnerCountry": "GRE",
+        "score": "6–7(6–8), 2–6, 6–3, 6–2, 6–4"
+      },
+      {
+        "year": 2020,
+        "champion": "Rafael Nadal",
+        "champCountry": "ESP",
+        "runnerUp": "Novak Djokovic",
+        "runnerCountry": "SRB",
+        "score": "6–0, 6–2, 7–5"
+      },
+      {
+        "year": 2019,
+        "champion": "Rafael Nadal",
+        "champCountry": "ESP",
+        "runnerUp": "Dominic Thiem",
+        "runnerCountry": "AUT",
+        "score": "6–3, 5–7, 6–1, 6–1"
+      },
+      {
+        "year": 2018,
+        "champion": "Rafael Nadal",
+        "champCountry": "ESP",
+        "runnerUp": "Dominic Thiem",
+        "runnerCountry": "AUT",
+        "score": "6–4, 6–3, 6–2"
+      },
+      {
+        "year": 2017,
+        "champion": "Rafael Nadal",
+        "champCountry": "ESP",
+        "runnerUp": "Stan Wawrinka",
+        "runnerCountry": "SUI",
+        "score": "6–2, 6–3, 6–1"
+      },
+      {
+        "year": 2016,
+        "champion": "Novak Djokovic",
+        "champCountry": "SRB",
+        "runnerUp": "Andy Murray",
+        "runnerCountry": "GBR",
+        "score": "3–6, 6–1, 6–2, 6–4"
+      },
+      {
+        "year": 2015,
+        "champion": "Stan Wawrinka",
+        "champCountry": "SUI",
+        "runnerUp": "Novak Djokovic",
+        "runnerCountry": "SRB",
+        "score": "4–6, 6–4, 6–3, 6–4"
+      },
+      {
+        "year": 2014,
+        "champion": "Rafael Nadal",
+        "champCountry": "ESP",
+        "runnerUp": "Novak Djokovic",
+        "runnerCountry": "SRB",
+        "score": "3–6, 7–5, 6–2, 6–4"
+      },
+      {
+        "year": 2013,
+        "champion": "Rafael Nadal",
+        "champCountry": "ESP",
+        "runnerUp": "David Ferrer",
+        "runnerCountry": "ESP",
+        "score": "6–3, 6–2, 6–3"
+      },
+      {
+        "year": 2012,
+        "champion": "Rafael Nadal",
+        "champCountry": "ESP",
+        "runnerUp": "Novak Djokovic",
+        "runnerCountry": "SRB",
+        "score": "6–4, 6–3, 2–6, 7–5"
+      },
+      {
+        "year": 2011,
+        "champion": "Rafael Nadal",
+        "champCountry": "ESP",
+        "runnerUp": "Roger Federer",
+        "runnerCountry": "SUI",
+        "score": "7–5, 7–6(7–3), 5–7, 6–1"
+      },
+      {
+        "year": 2010,
+        "champion": "Rafael Nadal",
+        "champCountry": "ESP",
+        "runnerUp": "Robin Söderling",
+        "runnerCountry": "SWE",
+        "score": "6–4, 6–2, 6–4"
+      },
+      {
+        "year": 2009,
+        "champion": "Roger Federer",
+        "champCountry": "SUI",
+        "runnerUp": "Robin Söderling",
+        "runnerCountry": "SWE",
+        "score": "6–1, 7–6(7–1), 6–4"
+      },
+      {
+        "year": 2008,
+        "champion": "Rafael Nadal",
+        "champCountry": "ESP",
+        "runnerUp": "Roger Federer",
+        "runnerCountry": "SUI",
+        "score": "6–1, 6–3, 6–0"
+      },
+      {
+        "year": 2007,
+        "champion": "Rafael Nadal",
+        "champCountry": "ESP",
+        "runnerUp": "Roger Federer",
+        "runnerCountry": "SUI",
+        "score": "6–3, 4–6, 6–3, 6–4"
+      },
+      {
+        "year": 2006,
+        "champion": "Rafael Nadal",
+        "champCountry": "ESP",
+        "runnerUp": "Roger Federer",
+        "runnerCountry": "SUI",
+        "score": "1–6, 6–1, 6–4, 7–6(7–4)"
+      },
+      {
+        "year": 2005,
+        "champion": "Rafael Nadal",
+        "champCountry": "ESP",
+        "runnerUp": "Mariano Puerta",
+        "runnerCountry": "ARG",
+        "score": "6–7(6–8), 6–3, 6–1, 7–5"
+      },
+      {
+        "year": 2004,
+        "champion": "Gastón Gaudio",
+        "champCountry": "ARG",
+        "runnerUp": "Guillermo Coria",
+        "runnerCountry": "ARG",
+        "score": "0–6, 3–6, 6–4, 6–1, 8–6"
+      },
+      {
+        "year": 2003,
+        "champion": "Juan Carlos Ferrero",
+        "champCountry": "ESP",
+        "runnerUp": "Martin Verkerk",
+        "runnerCountry": "NED",
+        "score": "6–1, 6–3, 6–2"
+      },
+      {
+        "year": 2002,
+        "champion": "Albert Costa",
+        "champCountry": "ESP",
+        "runnerUp": "Juan Carlos Ferrero",
+        "runnerCountry": "ESP",
+        "score": "6–1, 6–0, 4–6, 6–3"
+      },
+      {
+        "year": 2001,
+        "champion": "Gustavo Kuerten",
+        "champCountry": "BRA",
+        "runnerUp": "Àlex Corretja",
+        "runnerCountry": "ESP",
+        "score": "6–7(3–7), 7–5, 6–2, 6–0"
+      },
+      {
+        "year": 2000,
+        "champion": "Gustavo Kuerten",
+        "champCountry": "BRA",
+        "runnerUp": "Magnus Norman",
+        "runnerCountry": "SWE",
+        "score": "6–2, 6–3, 2–6, 7–6(8–6)"
+      },
+      {
+        "year": 1999,
+        "champion": "Andre Agassi",
+        "champCountry": "USA",
+        "runnerUp": "Andrei Medvedev",
+        "runnerCountry": "UKR",
+        "score": "1–6, 2–6, 6–4, 6–3, 6–4"
+      },
+      {
+        "year": 1998,
+        "champion": "Carlos Moyá",
+        "champCountry": "ESP",
+        "runnerUp": "Àlex Corretja",
+        "runnerCountry": "ESP",
+        "score": "6–3, 7–5, 6–3"
+      },
+      {
+        "year": 1997,
+        "champion": "Gustavo Kuerten",
+        "champCountry": "BRA",
+        "runnerUp": "Sergi Bruguera",
+        "runnerCountry": "ESP",
+        "score": "6–3, 6–4, 6–2"
+      },
+      {
+        "year": 1996,
+        "champion": "Yevgeny Kafelnikov",
+        "champCountry": "RUS",
+        "runnerUp": "Michael Stich",
+        "runnerCountry": "GER",
+        "score": "7–6(7–4), 7–5, 7–6(7–4)"
+      },
+      {
+        "year": 1995,
+        "champion": "Thomas Muster",
+        "champCountry": "AUT",
+        "runnerUp": "Michael Chang",
+        "runnerCountry": "USA",
+        "score": "7–5, 6–2, 6–4"
+      },
+      {
+        "year": 1994,
+        "champion": "Sergi Bruguera",
+        "champCountry": "ESP",
+        "runnerUp": "Alberto Berasategui",
+        "runnerCountry": "ESP",
+        "score": "6–3, 7–5, 2–6, 6–1"
+      },
+      {
+        "year": 1993,
+        "champion": "Sergi Bruguera",
+        "champCountry": "ESP",
+        "runnerUp": "Jim Courier",
+        "runnerCountry": "USA",
+        "score": "6–4, 2–6, 6–2, 3–6, 6–3"
+      },
+      {
+        "year": 1992,
+        "champion": "Jim Courier",
+        "champCountry": "USA",
+        "runnerUp": "Petr Korda",
+        "runnerCountry": "TCH",
+        "score": "7–5, 6–2, 6–1"
+      },
+      {
+        "year": 1991,
+        "champion": "Jim Courier",
+        "champCountry": "USA",
+        "runnerUp": "Andre Agassi",
+        "runnerCountry": "USA",
+        "score": "3–6, 6–4, 2–6, 6–1, 6–4"
+      },
+      {
+        "year": 1990,
+        "champion": "Andrés Gómez",
+        "champCountry": "ECU",
+        "runnerUp": "Andre Agassi",
+        "runnerCountry": "USA",
+        "score": "6–3, 2–6, 6–4, 6–4"
+      },
+      {
+        "year": 1989,
+        "champion": "Michael Chang",
+        "champCountry": "USA",
+        "runnerUp": "Stefan Edberg",
+        "runnerCountry": "SWE",
+        "score": "6–1, 3–6, 4–6, 6–4, 6–2"
+      },
+      {
+        "year": 1988,
+        "champion": "Mats Wilander",
+        "champCountry": "SWE",
+        "runnerUp": "Henri Leconte",
+        "runnerCountry": "FRA",
+        "score": "7–5, 6–2, 6–1"
+      },
+      {
+        "year": 1987,
+        "champion": "Ivan Lendl",
+        "champCountry": "CZE",
+        "runnerUp": "Mats Wilander",
+        "runnerCountry": "SWE",
+        "score": "7–5, 6–2, 3–6, 7–6(7–3)"
+      },
+      {
+        "year": 1986,
+        "champion": "Ivan Lendl",
+        "champCountry": "CZE",
+        "runnerUp": "Mikael Pernfors",
+        "runnerCountry": "SWE",
+        "score": "6–3, 6–2, 6–4"
+      },
+      {
+        "year": 1985,
+        "champion": "Mats Wilander",
+        "champCountry": "SWE",
+        "runnerUp": "Ivan Lendl",
+        "runnerCountry": "TCH",
+        "score": "3–6, 6–4, 6–2, 6–2"
+      },
+      {
+        "year": 1984,
+        "champion": "Ivan Lendl",
+        "champCountry": "CZE",
+        "runnerUp": "John McEnroe",
+        "runnerCountry": "USA",
+        "score": "3–6, 2–6, 6–4, 7–5, 7–5"
+      },
+      {
+        "year": 1983,
+        "champion": "Yannick Noah",
+        "champCountry": "FRA",
+        "runnerUp": "Mats Wilander",
+        "runnerCountry": "SWE",
+        "score": "6–2, 7–5, 7–6(7–3)"
+      },
+      {
+        "year": 1982,
+        "champion": "Mats Wilander",
+        "champCountry": "SWE",
+        "runnerUp": "Guillermo Vilas",
+        "runnerCountry": "ARG",
+        "score": "1–6, 7–6(8–6), 6–0, 6–4"
+      },
+      {
+        "year": 1981,
+        "champion": "Björn Borg",
+        "champCountry": "SWE",
+        "runnerUp": "Ivan Lendl",
+        "runnerCountry": "TCH",
+        "score": "6–1, 4–6, 6–2, 3–6, 6–1"
+      },
+      {
+        "year": 1980,
+        "champion": "Björn Borg",
+        "champCountry": "SWE",
+        "runnerUp": "Vitas Gerulaitis",
+        "runnerCountry": "USA",
+        "score": "6–4, 6–1, 6–2"
+      },
+      {
+        "year": 1979,
+        "champion": "Björn Borg",
+        "champCountry": "SWE",
+        "runnerUp": "Víctor Pecci",
+        "runnerCountry": "PAR",
+        "score": "6–3, 6–1, 6–7(6–8), 6–4"
+      },
+      {
+        "year": 1978,
+        "champion": "Björn Borg",
+        "champCountry": "SWE",
+        "runnerUp": "Guillermo Vilas",
+        "runnerCountry": "ARG",
+        "score": "6–1, 6–1, 6–3"
+      },
+      {
+        "year": 1977,
+        "champion": "Guillermo Vilas",
+        "champCountry": "ARG",
+        "runnerUp": "Brian Gottfried",
+        "runnerCountry": "USA",
+        "score": "6–0, 6–3, 6–0"
+      },
+      {
+        "year": 1976,
+        "champion": "Adriano Panatta",
+        "champCountry": "ITA",
+        "runnerUp": "Harold Solomon",
+        "runnerCountry": "USA",
+        "score": "6–1, 6–4, 4–6, 7–6(7–3)"
+      },
+      {
+        "year": 1975,
+        "champion": "Björn Borg",
+        "champCountry": "SWE",
+        "runnerUp": "Guillermo Vilas",
+        "runnerCountry": "ARG",
+        "score": "6–2, 6–3, 6–4"
+      },
+      {
+        "year": 1974,
+        "champion": "Björn Borg",
+        "champCountry": "SWE",
+        "runnerUp": "Manuel Orantes",
+        "runnerCountry": "ESP",
+        "score": "2–6, 6–7(4–7),h 6–0, 6–1, 6–1"
+      },
+      {
+        "year": 1973,
+        "champion": "Ilie Năstase",
+        "champCountry": "ROU",
+        "runnerUp": "Nikola Pilić",
+        "runnerCountry": "YUG",
+        "score": "6–3, 6–3, 6–0"
+      },
+      {
+        "year": 1972,
+        "champion": "Andrés Gimeno",
+        "champCountry": "ESP",
+        "runnerUp": "Patrick Proisy",
+        "runnerCountry": "FRA",
+        "score": "4–6, 6–3, 6–1, 6–1"
+      },
+      {
+        "year": 1971,
+        "champion": "Jan Kodeš",
+        "champCountry": "TCH",
+        "runnerUp": "Ilie Năstase",
+        "runnerCountry": "ROU",
+        "score": "8–6, 6–2, 2–6, 7–5"
+      },
+      {
+        "year": 1970,
+        "champion": "Jan Kodeš",
+        "champCountry": "TCH",
+        "runnerUp": "Željko Franulović",
+        "runnerCountry": "YUG",
+        "score": "6–2, 6–4, 6–0"
+      },
+      {
+        "year": 1969,
+        "champion": "Rod Laver",
+        "champCountry": "AUS",
+        "runnerUp": "Ken Rosewall",
+        "runnerCountry": "AUS",
+        "score": "6–4, 6–3, 6–4"
+      },
+      {
+        "year": 1968,
+        "champion": "Ken Rosewall",
+        "champCountry": "AUS",
+        "runnerUp": "Rod Laver",
+        "runnerCountry": "AUS",
+        "score": "6–3, 6–1, 2–6, 6–2"
+      }
+    ]
+  },
+  "wimbledon": {
+    "name": "Wimbledon",
+    "surface": "Grass",
+    "location": "London, UK",
+    "trophy": "/trophies/wim.svg",
+    "color": "#006B3F",
+    "champions": [
+      {
+        "year": 2025,
+        "champion": "Jannik Sinner",
+        "champCountry": "ITA",
+        "runnerUp": "Carlos Alcaraz",
+        "runnerCountry": "ESP",
+        "score": "4–6, 6–4, 6–4, 6–4"
+      },
+      {
+        "year": 2024,
+        "champion": "Carlos Alcaraz",
+        "champCountry": "ESP",
+        "runnerUp": "Novak Djokovic",
+        "runnerCountry": "SRB",
+        "score": "6–2, 6–2, 7–6(7–4)"
+      },
+      {
+        "year": 2023,
+        "champion": "Carlos Alcaraz",
+        "champCountry": "ESP",
+        "runnerUp": "Novak Djokovic",
+        "runnerCountry": "SRB",
+        "score": "1–6, 7–6(8–6), 6–1, 3–6, 6–4"
+      },
+      {
+        "year": 2022,
+        "champion": "Novak Djokovic",
+        "champCountry": "SRB",
+        "runnerUp": "Nick Kyrgios",
+        "runnerCountry": "AUS",
+        "score": "4–6, 6–3, 6–4, 7–6(7–3)"
+      },
+      {
+        "year": 2021,
+        "champion": "Novak Djokovic",
+        "champCountry": "SRB",
+        "runnerUp": "Matteo Berrettini",
+        "runnerCountry": "ITA",
+        "score": "6–7(4–7), 6–4, 6–4, 6–3"
+      },
+      {
+        "year": 2019,
+        "champion": "Novak Djokovic",
+        "champCountry": "SRB",
+        "runnerUp": "Roger Federer",
+        "runnerCountry": "SUI",
+        "score": "7–6(7–5), 1–6, 7–6(7–4), 4–6, 13–12(7–3)"
+      },
+      {
+        "year": 2018,
+        "champion": "Novak Djokovic",
+        "champCountry": "SRB",
+        "runnerUp": "Kevin Anderson",
+        "runnerCountry": "RSA",
+        "score": "6–2, 6–2, 7–6(7–3)"
+      },
+      {
+        "year": 2017,
+        "champion": "Roger Federer",
+        "champCountry": "SUI",
+        "runnerUp": "Marin Čilić",
+        "runnerCountry": "CRO",
+        "score": "6–3, 6–1, 6–4"
+      },
+      {
+        "year": 2016,
+        "champion": "Andy Murray",
+        "champCountry": "GBR",
+        "runnerUp": "Milos Raonic",
+        "runnerCountry": "CAN",
+        "score": "6–4, 7–6(7–3), 7–6(7–2)"
+      },
+      {
+        "year": 2015,
+        "champion": "Novak Djokovic",
+        "champCountry": "SRB",
+        "runnerUp": "Roger Federer",
+        "runnerCountry": "SUI",
+        "score": "7–6(7–1), 6–7(10–12), 6–4, 6–3"
+      },
+      {
+        "year": 2014,
+        "champion": "Novak Djokovic",
+        "champCountry": "SRB",
+        "runnerUp": "Roger Federer",
+        "runnerCountry": "SUI",
+        "score": "6–7(7–9), 6–4, 7–6(7–4), 5–7, 6–4"
+      },
+      {
+        "year": 2013,
+        "champion": "Andy Murray",
+        "champCountry": "GBR",
+        "runnerUp": "Novak Djokovic",
+        "runnerCountry": "SRB",
+        "score": "6–4, 7–5, 6–4"
+      },
+      {
+        "year": 2012,
+        "champion": "Roger Federer",
+        "champCountry": "SUI",
+        "runnerUp": "Andy Murray",
+        "runnerCountry": "GBR",
+        "score": "4–6, 7–5, 6–3, 6–4"
+      },
+      {
+        "year": 2011,
+        "champion": "Novak Djokovic",
+        "champCountry": "SRB",
+        "runnerUp": "Rafael Nadal",
+        "runnerCountry": "ESP",
+        "score": "6–4, 6–1, 1–6, 6–3"
+      },
+      {
+        "year": 2010,
+        "champion": "Rafael Nadal",
+        "champCountry": "ESP",
+        "runnerUp": "Tomáš Berdych",
+        "runnerCountry": "CZE",
+        "score": "6–3, 7–5, 6–4"
+      },
+      {
+        "year": 2009,
+        "champion": "Roger Federer",
+        "champCountry": "SUI",
+        "runnerUp": "Andy Roddick",
+        "runnerCountry": "USA",
+        "score": "5–7, 7–6(8–6), 7–6(7–5), 3–6, 16–14"
+      },
+      {
+        "year": 2008,
+        "champion": "Rafael Nadal",
+        "champCountry": "ESP",
+        "runnerUp": "Roger Federer",
+        "runnerCountry": "SUI",
+        "score": "6–4, 6–4, 6–7(5–7), 6–7(8–10), 9–7"
+      },
+      {
+        "year": 2007,
+        "champion": "Roger Federer",
+        "champCountry": "SUI",
+        "runnerUp": "Rafael Nadal",
+        "runnerCountry": "ESP",
+        "score": "7–6(9–7), 4–6, 7–6(7–3), 2–6, 6–2"
+      },
+      {
+        "year": 2006,
+        "champion": "Roger Federer",
+        "champCountry": "SUI",
+        "runnerUp": "Rafael Nadal",
+        "runnerCountry": "ESP",
+        "score": "6–0, 7–6(7–5), 6–7(2–7), 6–3"
+      },
+      {
+        "year": 2005,
+        "champion": "Roger Federer",
+        "champCountry": "SUI",
+        "runnerUp": "Andy Roddick",
+        "runnerCountry": "USA",
+        "score": "6–2, 7–6(7–2), 6–4"
+      },
+      {
+        "year": 2004,
+        "champion": "Roger Federer",
+        "champCountry": "SUI",
+        "runnerUp": "Andy Roddick",
+        "runnerCountry": "USA",
+        "score": "4–6, 7–5, 7–6(7–3), 6–4"
+      },
+      {
+        "year": 2003,
+        "champion": "Roger Federer",
+        "champCountry": "SUI",
+        "runnerUp": "Mark Philippoussis",
+        "runnerCountry": "AUS",
+        "score": "7–6(7–5), 6–2, 7–6(7–3)"
+      },
+      {
+        "year": 2002,
+        "champion": "Lleyton Hewitt",
+        "champCountry": "AUS",
+        "runnerUp": "David Nalbandian",
+        "runnerCountry": "ARG",
+        "score": "6–1, 6–3, 6–2"
+      },
+      {
+        "year": 2001,
+        "champion": "Goran Ivanišević",
+        "champCountry": "CRO",
+        "runnerUp": "Patrick Rafter",
+        "runnerCountry": "AUS",
+        "score": "6–3, 3–6, 6–3, 2–6, 9–7"
+      },
+      {
+        "year": 2000,
+        "champion": "Pete Sampras",
+        "champCountry": "USA",
+        "runnerUp": "Patrick Rafter",
+        "runnerCountry": "AUS",
+        "score": "6–7(10–12), 7–6(7–5), 6–4, 6–2"
+      },
+      {
+        "year": 1999,
+        "champion": "Pete Sampras",
+        "champCountry": "USA",
+        "runnerUp": "Andre Agassi",
+        "runnerCountry": "USA",
+        "score": "6–3, 6–4, 7–5"
+      },
+      {
+        "year": 1998,
+        "champion": "Pete Sampras",
+        "champCountry": "USA",
+        "runnerUp": "Goran Ivanišević",
+        "runnerCountry": "CRO",
+        "score": "6–7(2–7), 7–6(11–9), 6–4, 3–6, 6–2"
+      },
+      {
+        "year": 1997,
+        "champion": "Pete Sampras",
+        "champCountry": "USA",
+        "runnerUp": "Cédric Pioline",
+        "runnerCountry": "FRA",
+        "score": "6–4, 6–2, 6–4"
+      },
+      {
+        "year": 1996,
+        "champion": "Richard Krajicek",
+        "champCountry": "NED",
+        "runnerUp": "MaliVai Washington",
+        "runnerCountry": "USA",
+        "score": "6–3, 6–4, 6–3"
+      },
+      {
+        "year": 1995,
+        "champion": "Pete Sampras",
+        "champCountry": "USA",
+        "runnerUp": "Boris Becker",
+        "runnerCountry": "GER",
+        "score": "6–7(5–7), 6–2, 6–4, 6–2"
+      },
+      {
+        "year": 1994,
+        "champion": "Pete Sampras",
+        "champCountry": "USA",
+        "runnerUp": "Goran Ivanišević",
+        "runnerCountry": "CRO",
+        "score": "7–6(7–2), 7–6(7–5), 6–0"
+      },
+      {
+        "year": 1993,
+        "champion": "Pete Sampras",
+        "champCountry": "USA",
+        "runnerUp": "Jim Courier",
+        "runnerCountry": "USA",
+        "score": "7–6(7–3), 7–6(8–6), 3–6, 6–3"
+      },
+      {
+        "year": 1992,
+        "champion": "Andre Agassi",
+        "champCountry": "USA",
+        "runnerUp": "Goran Ivanišević",
+        "runnerCountry": "CRO",
+        "score": "6–7(8–10), 6–4, 6–4, 1–6, 6–4"
+      },
+      {
+        "year": 1991,
+        "champion": "Michael Stich",
+        "champCountry": "GER",
+        "runnerUp": "Boris Becker",
+        "runnerCountry": "GER",
+        "score": "6–4, 7–6(7–4), 6–4"
+      },
+      {
+        "year": 1990,
+        "champion": "Stefan Edberg",
+        "champCountry": "SWE",
+        "runnerUp": "Boris Becker",
+        "runnerCountry": "FRG",
+        "score": "6–2, 6–2, 3–6, 3–6, 6–4"
+      },
+      {
+        "year": 1989,
+        "champion": "Boris Becker",
+        "champCountry": "GER",
+        "runnerUp": "Stefan Edberg",
+        "runnerCountry": "SWE",
+        "score": "6–0, 7–6(7–1), 6–4"
+      },
+      {
+        "year": 1988,
+        "champion": "Stefan Edberg",
+        "champCountry": "SWE",
+        "runnerUp": "Boris Becker",
+        "runnerCountry": "FRG",
+        "score": "4–6, 7–6(7–2), 6–4, 6–2"
+      },
+      {
+        "year": 1987,
+        "champion": "Pat Cash",
+        "champCountry": "AUS",
+        "runnerUp": "Ivan Lendl",
+        "runnerCountry": "TCH",
+        "score": "7–6(7–5), 6–2, 7–5"
+      },
+      {
+        "year": 1986,
+        "champion": "Boris Becker",
+        "champCountry": "GER",
+        "runnerUp": "Ivan Lendl",
+        "runnerCountry": "TCH",
+        "score": "6–4, 6–3, 7–5"
+      },
+      {
+        "year": 1985,
+        "champion": "Boris Becker",
+        "champCountry": "GER",
+        "runnerUp": "Kevin Curren",
+        "runnerCountry": "USA",
+        "score": "6–3, 6–7(4–7), 7–6(7–3), 6–4"
+      },
+      {
+        "year": 1984,
+        "champion": "John McEnroe",
+        "champCountry": "USA",
+        "runnerUp": "Jimmy Connors",
+        "runnerCountry": "USA",
+        "score": "6–1, 6–1, 6–2"
+      },
+      {
+        "year": 1983,
+        "champion": "John McEnroe",
+        "champCountry": "USA",
+        "runnerUp": "Chris Lewis",
+        "runnerCountry": "NZL",
+        "score": "6–2, 6–2, 6–2"
+      },
+      {
+        "year": 1982,
+        "champion": "Jimmy Connors",
+        "champCountry": "USA",
+        "runnerUp": "John McEnroe",
+        "runnerCountry": "USA",
+        "score": "3–6, 6–3, 6–7(2–7), 7–6(7–5), 6–4"
+      },
+      {
+        "year": 1981,
+        "champion": "John McEnroe",
+        "champCountry": "USA",
+        "runnerUp": "Björn Borg",
+        "runnerCountry": "SWE",
+        "score": "4–6, 7–6(7–1), 7–6(7–4), 6–4"
+      },
+      {
+        "year": 1980,
+        "champion": "Björn Borg",
+        "champCountry": "SWE",
+        "runnerUp": "John McEnroe",
+        "runnerCountry": "USA",
+        "score": "1–6, 7–5, 6–3, 6–7(16–18), 8–6"
+      },
+      {
+        "year": 1979,
+        "champion": "Björn Borg",
+        "champCountry": "SWE",
+        "runnerUp": "Roscoe Tanner",
+        "runnerCountry": "USA",
+        "score": "6–7(4–7), 6–1, 3–6, 6–3, 6–4"
+      },
+      {
+        "year": 1978,
+        "champion": "Björn Borg",
+        "champCountry": "SWE",
+        "runnerUp": "Jimmy Connors",
+        "runnerCountry": "USA",
+        "score": "6–2, 6–2, 6–3"
+      },
+      {
+        "year": 1977,
+        "champion": "Björn Borg",
+        "champCountry": "SWE",
+        "runnerUp": "Jimmy Connors",
+        "runnerCountry": "USA",
+        "score": "3–6, 6–2, 6–1, 5–7, 6–4"
+      },
+      {
+        "year": 1976,
+        "champion": "Björn Borg",
+        "champCountry": "SWE",
+        "runnerUp": "Ilie Năstase",
+        "runnerCountry": "ROU",
+        "score": "6–4, 6–2, 9–7"
+      },
+      {
+        "year": 1975,
+        "champion": "Arthur Ashe",
+        "champCountry": "USA",
+        "runnerUp": "Jimmy Connors",
+        "runnerCountry": "USA",
+        "score": "6–1, 6–1, 5–7, 6–4"
+      },
+      {
+        "year": 1974,
+        "champion": "Jimmy Connors",
+        "champCountry": "USA",
+        "runnerUp": "Ken Rosewall",
+        "runnerCountry": "AUS",
+        "score": "6–1, 6–1, 6–4"
+      },
+      {
+        "year": 1973,
+        "champion": "Jan Kodeš",
+        "champCountry": "TCH",
+        "runnerUp": "Alex Metreveli",
+        "runnerCountry": "URS",
+        "score": "6–1, 9–8(7–5), 6–3"
+      },
+      {
+        "year": 1972,
+        "champion": "Stan Smith",
+        "champCountry": "USA",
+        "runnerUp": "Ilie Năstase",
+        "runnerCountry": "ROU",
+        "score": "4–6, 6–3, 6–3, 4–6, 7–5"
+      },
+      {
+        "year": 1971,
+        "champion": "John Newcombe",
+        "champCountry": "AUS",
+        "runnerUp": "Stan Smith",
+        "runnerCountry": "USA",
+        "score": "6–3, 5–7, 2–6, 6–4, 6–4"
+      },
+      {
+        "year": 1970,
+        "champion": "John Newcombe",
+        "champCountry": "AUS",
+        "runnerUp": "Ken Rosewall",
+        "runnerCountry": "AUS",
+        "score": "5–7, 6–3, 6–2, 3–6, 6–1"
+      },
+      {
+        "year": 1969,
+        "champion": "Rod Laver",
+        "champCountry": "AUS",
+        "runnerUp": "John Newcombe",
+        "runnerCountry": "AUS",
+        "score": "6–4, 5–7, 6–4, 6–4"
+      },
+      {
+        "year": 1968,
+        "champion": "Rod Laver",
+        "champCountry": "AUS",
+        "runnerUp": "Tony Roche",
+        "runnerCountry": "AUS",
+        "score": "6–3, 6–4, 6–2"
+      }
+    ]
+  },
+  "us-open": {
+    "name": "US Open",
+    "surface": "Hard",
+    "location": "New York, USA",
+    "trophy": "/trophies/uso.svg",
+    "color": "#002868",
+    "champions": [
+      {
+        "year": 2025,
+        "champion": "Carlos Alcaraz",
+        "champCountry": "ESP",
+        "runnerUp": "Jannik Sinner",
+        "runnerCountry": "ITA",
+        "score": "6–2, 3–6, 6–1, 6–4"
+      },
+      {
+        "year": 2024,
+        "champion": "Jannik Sinner",
+        "champCountry": "ITA",
+        "runnerUp": "Taylor Fritz",
+        "runnerCountry": "USA",
+        "score": "6–3, 6–4, 7–5"
+      },
+      {
+        "year": 2023,
+        "champion": "Novak Djokovic",
+        "champCountry": "SRB",
+        "runnerUp": "Daniil Medvedev",
+        "runnerCountry": "RUS",
+        "score": "6–3, 7–6(7–5), 6–3"
+      },
+      {
+        "year": 2022,
+        "champion": "Carlos Alcaraz",
+        "champCountry": "ESP",
+        "runnerUp": "Casper Ruud",
+        "runnerCountry": "NOR",
+        "score": "6–4, 2–6, 7–6(7–1), 6–3"
+      },
+      {
+        "year": 2021,
+        "champion": "Daniil Medvedev",
+        "champCountry": "RUS",
+        "runnerUp": "Novak Djokovic",
+        "runnerCountry": "SRB",
+        "score": "6–4, 6–4, 6–4"
+      },
+      {
+        "year": 2020,
+        "champion": "Dominic Thiem",
+        "champCountry": "AUT",
+        "runnerUp": "Alexander Zverev",
+        "runnerCountry": "GER",
+        "score": "2–6, 4–6, 6–4, 6–3, 7–6(8–6)"
+      },
+      {
+        "year": 2019,
+        "champion": "Rafael Nadal",
+        "champCountry": "ESP",
+        "runnerUp": "Daniil Medvedev",
+        "runnerCountry": "RUS",
+        "score": "7–5, 6–3, 5–7, 4–6, 6–4"
+      },
+      {
+        "year": 2018,
+        "champion": "Novak Djokovic",
+        "champCountry": "SRB",
+        "runnerUp": "Juan Martín del Potro",
+        "runnerCountry": "ARG",
+        "score": "6–3, 7–6(7–4), 6–3"
+      },
+      {
+        "year": 2017,
+        "champion": "Rafael Nadal",
+        "champCountry": "ESP",
+        "runnerUp": "Kevin Anderson",
+        "runnerCountry": "RSA",
+        "score": "6–3, 6–3, 6–4"
+      },
+      {
+        "year": 2016,
+        "champion": "Stan Wawrinka",
+        "champCountry": "SUI",
+        "runnerUp": "Novak Djokovic",
+        "runnerCountry": "SRB",
+        "score": "6–7(1–7), 6–4, 7–5, 6–3"
+      },
+      {
+        "year": 2015,
+        "champion": "Novak Djokovic",
+        "champCountry": "SRB",
+        "runnerUp": "Roger Federer",
+        "runnerCountry": "SUI",
+        "score": "6–4, 5–7, 6–4, 6–4"
+      },
+      {
+        "year": 2014,
+        "champion": "Marin Čilić",
+        "champCountry": "CRO",
+        "runnerUp": "Kei Nishikori",
+        "runnerCountry": "JPN",
+        "score": "6–3, 6–3, 6–3"
+      },
+      {
+        "year": 2013,
+        "champion": "Rafael Nadal",
+        "champCountry": "ESP",
+        "runnerUp": "Novak Djokovic",
+        "runnerCountry": "SRB",
+        "score": "6–2, 3–6, 6–4, 6–1"
+      },
+      {
+        "year": 2012,
+        "champion": "Andy Murray",
+        "champCountry": "GBR",
+        "runnerUp": "Novak Djokovic",
+        "runnerCountry": "SRB",
+        "score": "7–6(12–10), 7–5, 2–6, 3–6, 6–2"
+      },
+      {
+        "year": 2011,
+        "champion": "Novak Djokovic",
+        "champCountry": "SRB",
+        "runnerUp": "Rafael Nadal",
+        "runnerCountry": "ESP",
+        "score": "6–2, 6–4, 6–7(3–7), 6–1"
+      },
+      {
+        "year": 2010,
+        "champion": "Rafael Nadal",
+        "champCountry": "ESP",
+        "runnerUp": "Novak Djokovic",
+        "runnerCountry": "SRB",
+        "score": "6–4, 5–7, 6–4, 6–2"
+      },
+      {
+        "year": 2009,
+        "champion": "Juan Martín del Potro",
+        "champCountry": "ARG",
+        "runnerUp": "Roger Federer",
+        "runnerCountry": "SUI",
+        "score": "3–6, 7–6(7–5), 4–6, 7–6(7–4), 6–2"
+      },
+      {
+        "year": 2008,
+        "champion": "Roger Federer",
+        "champCountry": "SUI",
+        "runnerUp": "Andy Murray",
+        "runnerCountry": "GBR",
+        "score": "6–2, 7–5, 6–2"
+      },
+      {
+        "year": 2007,
+        "champion": "Roger Federer",
+        "champCountry": "SUI",
+        "runnerUp": "Novak Djokovic",
+        "runnerCountry": "SRB",
+        "score": "7–6(7–4), 7–6(7–2), 6–4"
+      },
+      {
+        "year": 2006,
+        "champion": "Roger Federer",
+        "champCountry": "SUI",
+        "runnerUp": "Andy Roddick",
+        "runnerCountry": "USA",
+        "score": "6–2, 4–6, 7–5, 6–1"
+      },
+      {
+        "year": 2005,
+        "champion": "Roger Federer",
+        "champCountry": "SUI",
+        "runnerUp": "Andre Agassi",
+        "runnerCountry": "USA",
+        "score": "6–3, 2–6, 7–6(7–1), 6–1"
+      },
+      {
+        "year": 2004,
+        "champion": "Roger Federer",
+        "champCountry": "SUI",
+        "runnerUp": "Lleyton Hewitt",
+        "runnerCountry": "AUS",
+        "score": "6–0, 7–6(7–3), 6–0"
+      },
+      {
+        "year": 2003,
+        "champion": "Andy Roddick",
+        "champCountry": "USA",
+        "runnerUp": "Juan Carlos Ferrero",
+        "runnerCountry": "ESP",
+        "score": "6–3, 7–6(7–2), 6–3"
+      },
+      {
+        "year": 2002,
+        "champion": "Pete Sampras",
+        "champCountry": "USA",
+        "runnerUp": "Andre Agassi",
+        "runnerCountry": "USA",
+        "score": "6–3, 6–4, 5–7, 6–4"
+      },
+      {
+        "year": 2001,
+        "champion": "Lleyton Hewitt",
+        "champCountry": "AUS",
+        "runnerUp": "Pete Sampras",
+        "runnerCountry": "USA",
+        "score": "7–6(7–4), 6–1, 6–1"
+      },
+      {
+        "year": 2000,
+        "champion": "Marat Safin",
+        "champCountry": "RUS",
+        "runnerUp": "Pete Sampras",
+        "runnerCountry": "USA",
+        "score": "6–4, 6–3, 6–3"
+      },
+      {
+        "year": 1999,
+        "champion": "Andre Agassi",
+        "champCountry": "USA",
+        "runnerUp": "Todd Martin",
+        "runnerCountry": "USA",
+        "score": "6–4, 6–7(5–7), 6–7(2–7), 6–3, 6–2"
+      },
+      {
+        "year": 1998,
+        "champion": "Patrick Rafter",
+        "champCountry": "AUS",
+        "runnerUp": "Mark Philippoussis",
+        "runnerCountry": "AUS",
+        "score": "6–3, 3–6, 6–2, 6–0"
+      },
+      {
+        "year": 1997,
+        "champion": "Patrick Rafter",
+        "champCountry": "AUS",
+        "runnerUp": "Greg Rusedski",
+        "runnerCountry": "GBR",
+        "score": "6–3, 6–2, 4–6, 7–5"
+      },
+      {
+        "year": 1996,
+        "champion": "Pete Sampras",
+        "champCountry": "USA",
+        "runnerUp": "Michael Chang",
+        "runnerCountry": "USA",
+        "score": "6–1, 6–4, 7–6(7–3)"
+      },
+      {
+        "year": 1995,
+        "champion": "Pete Sampras",
+        "champCountry": "USA",
+        "runnerUp": "Andre Agassi",
+        "runnerCountry": "USA",
+        "score": "6–4, 6–3, 4–6, 7–5"
+      },
+      {
+        "year": 1994,
+        "champion": "Andre Agassi",
+        "champCountry": "USA",
+        "runnerUp": "Michael Stich",
+        "runnerCountry": "GER",
+        "score": "6–1, 7–6(7–5), 7–5"
+      },
+      {
+        "year": 1993,
+        "champion": "Pete Sampras",
+        "champCountry": "USA",
+        "runnerUp": "Cédric Pioline",
+        "runnerCountry": "FRA",
+        "score": "6–4, 6–4, 6–3"
+      },
+      {
+        "year": 1992,
+        "champion": "Stefan Edberg",
+        "champCountry": "SWE",
+        "runnerUp": "Pete Sampras",
+        "runnerCountry": "USA",
+        "score": "3–6, 6–4, 7–6(7–5), 6–2"
+      },
+      {
+        "year": 1991,
+        "champion": "Stefan Edberg",
+        "champCountry": "SWE",
+        "runnerUp": "Jim Courier",
+        "runnerCountry": "USA",
+        "score": "6–2, 6–4, 6–0"
+      },
+      {
+        "year": 1990,
+        "champion": "Pete Sampras",
+        "champCountry": "USA",
+        "runnerUp": "Andre Agassi",
+        "runnerCountry": "USA",
+        "score": "6–4, 6–3, 6–2"
+      },
+      {
+        "year": 1989,
+        "champion": "Boris Becker",
+        "champCountry": "GER",
+        "runnerUp": "Ivan Lendl",
+        "runnerCountry": "TCH",
+        "score": "7–6(7–2), 1–6, 6–3, 7–6(7–4)"
+      },
+      {
+        "year": 1988,
+        "champion": "Mats Wilander",
+        "champCountry": "SWE",
+        "runnerUp": "Ivan Lendl",
+        "runnerCountry": "TCH",
+        "score": "6–4, 4–6, 6–3, 5–7, 6–4"
+      },
+      {
+        "year": 1987,
+        "champion": "Ivan Lendl",
+        "champCountry": "CZE",
+        "runnerUp": "Mats Wilander",
+        "runnerCountry": "SWE",
+        "score": "6–7(7–9), 6–0, 7–6(7–4), 6–4"
+      },
+      {
+        "year": 1986,
+        "champion": "Ivan Lendl",
+        "champCountry": "CZE",
+        "runnerUp": "Miloslav Mečíř",
+        "runnerCountry": "TCH",
+        "score": "6–4, 6–2, 6–0"
+      },
+      {
+        "year": 1985,
+        "champion": "Ivan Lendl",
+        "champCountry": "CZE",
+        "runnerUp": "John McEnroe",
+        "runnerCountry": "USA",
+        "score": "7–6(7–1), 6–3, 6–4"
+      },
+      {
+        "year": 1984,
+        "champion": "John McEnroe",
+        "champCountry": "USA",
+        "runnerUp": "Ivan Lendl",
+        "runnerCountry": "TCH",
+        "score": "6–3, 6–4, 6–1"
+      },
+      {
+        "year": 1983,
+        "champion": "Jimmy Connors",
+        "champCountry": "USA",
+        "runnerUp": "Ivan Lendl",
+        "runnerCountry": "TCH",
+        "score": "6–3, 6–7(2–7), 7–5, 6–0"
+      },
+      {
+        "year": 1982,
+        "champion": "Jimmy Connors",
+        "champCountry": "USA",
+        "runnerUp": "Ivan Lendl",
+        "runnerCountry": "TCH",
+        "score": "6–3, 6–2, 4–6, 6–4"
+      },
+      {
+        "year": 1981,
+        "champion": "John McEnroe",
+        "champCountry": "USA",
+        "runnerUp": "Björn Borg",
+        "runnerCountry": "SWE",
+        "score": "4–6, 6–2, 6–4, 6–3"
+      },
+      {
+        "year": 1980,
+        "champion": "John McEnroe",
+        "champCountry": "USA",
+        "runnerUp": "Björn Borg",
+        "runnerCountry": "SWE",
+        "score": "7–6(7–4), 6–1, 6–7(5–7), 5–7, 6–4"
+      },
+      {
+        "year": 1979,
+        "champion": "John McEnroe",
+        "champCountry": "USA",
+        "runnerUp": "Vitas Gerulaitis",
+        "runnerCountry": "USA",
+        "score": "7–5, 6–3, 6–3"
+      },
+      {
+        "year": 1978,
+        "champion": "Jimmy Connors",
+        "champCountry": "USA",
+        "runnerUp": "Björn Borg",
+        "runnerCountry": "SWE",
+        "score": "6–4, 6–2, 6–2"
+      },
+      {
+        "year": 1977,
+        "champion": "Guillermo Vilas",
+        "champCountry": "ARG",
+        "runnerUp": "Jimmy Connors",
+        "runnerCountry": "USA",
+        "score": "2–6, 6–3, 7–6(7–4), 6–0"
+      },
+      {
+        "year": 1976,
+        "champion": "Jimmy Connors",
+        "champCountry": "USA",
+        "runnerUp": "Björn Borg",
+        "runnerCountry": "SWE",
+        "score": "6–4, 3–6, 7–6(11–9), 6–4"
+      },
+      {
+        "year": 1975,
+        "champion": "Manuel Orantes",
+        "champCountry": "ESP",
+        "runnerUp": "Jimmy Connors",
+        "runnerCountry": "USA",
+        "score": "6–4, 6–3, 6–3"
+      },
+      {
+        "year": 1974,
+        "champion": "Jimmy Connors",
+        "champCountry": "USA",
+        "runnerUp": "Ken Rosewall",
+        "runnerCountry": "AUS",
+        "score": "6–1, 6–0, 6–1"
+      },
+      {
+        "year": 1973,
+        "champion": "John Newcombe",
+        "champCountry": "AUS",
+        "runnerUp": "Jan Kodeš",
+        "runnerCountry": "TCH",
+        "score": "6–4, 1–6, 4–6, 6–2, 6–3"
+      },
+      {
+        "year": 1972,
+        "champion": "Ilie Năstase",
+        "champCountry": "ROU",
+        "runnerUp": "Arthur Ashe",
+        "runnerCountry": "USA",
+        "score": "3–6, 6–3, 6–7(1–5), 6–4, 6–3"
+      },
+      {
+        "year": 1971,
+        "champion": "Stan Smith",
+        "champCountry": "USA",
+        "runnerUp": "Jan Kodeš",
+        "runnerCountry": "TCH",
+        "score": "3–6, 6–3, 6–2, 7–6(5–3)"
+      },
+      {
+        "year": 1970,
+        "champion": "Ken Rosewall",
+        "champCountry": "AUS",
+        "runnerUp": "Tony Roche",
+        "runnerCountry": "AUS",
+        "score": "2–6, 6–4, 7–6(5–2), 6–3g"
+      },
+      {
+        "year": 1969,
+        "champion": "Rod Laver",
+        "champCountry": "AUS",
+        "runnerUp": "Tony Roche",
+        "runnerCountry": "AUS",
+        "score": "7–9, 6–1, 6–2, 6–2"
+      },
+      {
+        "year": 1968,
+        "champion": "Arthur Ashe",
+        "champCountry": "USA",
+        "runnerUp": "Tom Okker",
+        "runnerCountry": "NED",
+        "score": "14–12, 5–7, 6–3, 3–6, 6–3"
+      }
+    ]
+  }
+}

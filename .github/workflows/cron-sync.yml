@@ -1,9 +1,9 @@
-name: Weekly Rankings Sync
+name: Semi-Weekly Rankings Sync
 
 on:
   schedule:
-    # Run every Monday at 12:00 UTC
-    - cron: '0 12 * * 1'
+    # Run every Monday and Thursday at 12:00 UTC to prevent Supabase 7-day auto-pause
+    - cron: '0 12 * * 1,4'
   workflow_dispatch: # Allows manual trigger from GitHub UI
 
 jobs:

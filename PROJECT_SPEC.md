@@ -127,3 +127,9 @@ graph TD
 - **[2026-06-30] [Decision - *Current (v3.1)*]**: Lazy Loading External Media (Player Avatars).
   - *Context*: Adding player avatars to the ranking table requires 200 high-res images, which RapidAPI does not natively provide. Querying image APIs during the weekly CRON sync would blow up API quotas and unnecessarily bloat the Supabase DB.
   - *Execution*: Instead of storing images in the DB, the client UI intercepts row clicks and dynamically queries the free `en.wikipedia.org/api/rest_v1/page/summary` API on-demand. This preserves a zero-cost database while delivering a premium user experience via a Glassmorphism modal.
+- **[2026-06-30] [Decision - *Current (v4.0)*]**: Native API Ingestion & Hybrid Static Calendar.
+  - *Context*: Playwright-based web scraping proved too heavy and fragile for serverless deployment. Furthermore, Supabase 7-day auto-pause limits required a more frequent heartbeat.
+  - *Execution*: 
+    1. **Data Source Pivot**: Scrapped Playwright completely. Shifted to the official WTA native API (`https://api.wtatennis.com/tennis/tournaments`) for real-time women's tournament data.
+    2. **Offline Processing**: Processed the ATP Challenger PDF strictly offline via a Python script (`parse_pdf.py`), decoupling heavy OCR/PDF parsing from the Next.js runtime. 
+    3. **Cron Optimization**: Updated the GitHub Actions sync pipeline to run semi-weekly (Mondays and Thursdays) instead of weekly, ensuring the Serverless Postgres database never hits the 7-day inactivity pause limit.

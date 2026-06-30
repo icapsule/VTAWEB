@@ -1,3 +1,5 @@
+import React from 'react';
+import Link from 'next/link';
 import { db } from '@/server/db';
 import { rankings, tournaments } from '@/server/db/schema';
 import { asc } from 'drizzle-orm';
@@ -18,7 +20,7 @@ export default async function HomePage() {
   
   // Get Grand Slams and process them
   const uniqueGrandSlams = staticTournaments
-    .filter((t: any) => t.category === 'Grand Slam')
+    .filter((t: any) => t.category === 'Grand Slam' && t.startDate.startsWith('2026'))
     .map((t: any) => {
       const start = new Date(`${t.startDate}T00:00:00`);
       const end = new Date(`${t.endDate}T23:59:59`);
@@ -417,41 +419,65 @@ function GrandSlamCard({ tournament }: { tournament: any }) {
   const nameLower = t.name.toLowerCase();
   
   // Hardcoded Theme and Champions
-  let logo = '🎾';
+  let logoPath = '';
   let color = 'var(--color-accent)';
   let menChamp = 'TBD';
   let womenChamp = 'TBD';
+  let slug = 'australian-open';
+  let displayName = t.name;
 
   if (nameLower.includes('australian')) {
-    logo = '🦘';
+    slug = 'australian-open';
+    logoPath = '/trophies/ao.svg';
     color = '#005BBB'; // AO Blue
     menChamp = '🇮🇹 Jannik Sinner';
     womenChamp = '🏳️ Aryna Sabalenka';
+    displayName = 'AUSTRALIAN OPEN';
   } else if (nameLower.includes('roland') || nameLower.includes('french')) {
-    logo = '🗼';
+    slug = 'roland-garros';
+    logoPath = '/trophies/fo.svg';
     color = '#CB5A36'; // Roland Garros Clay
     menChamp = '🇪🇸 Carlos Alcaraz';
     womenChamp = '🇵🇱 Iga Świątek';
+    displayName = 'ROLAND-GARROS';
   } else if (nameLower.includes('wimbledon')) {
-    logo = '🍓';
+    slug = 'wimbledon';
+    logoPath = '/trophies/wim.svg';
     color = '#006B3F'; // Wimbledon Green
     menChamp = '🇪🇸 Carlos Alcaraz';
     womenChamp = '🇨🇿 Barbora Krejčíková';
+    displayName = 'WIMBLEDON';
   } else if (nameLower.includes('us open')) {
-    logo = '🗽';
+    slug = 'us-open';
+    logoPath = '/trophies/uso.svg';
     color = '#002868'; // US Open Blue
     menChamp = '🇮🇹 Jannik Sinner';
     womenChamp = '🏳️ Aryna Sabalenka';
+    displayName = 'US OPEN';
   }
 
   const isCompleted = t.status === 'completed';
-  const champLabel = isCompleted ? 'Champ:' : 'Defending Champ:';
+  const champLabel = isCompleted ? 'Champ:' : 'Defending:';
 
   return (
-    <div className="gs-card animate-in" style={{ '--gs-color': color } as React.CSSProperties}>
-      <div className="gs-card__header">
-        <div className="gs-card__name">{t.name}</div>
-        <div className="gs-card__logo">{logo}</div>
+    <Link href={`/tournaments/${slug}`} style={{ textDecoration: 'none', display: 'block' }}>
+      <div className="gs-card animate-in" style={{ '--gs-color': color } as React.CSSProperties}>
+        <div className="gs-card__header" style={{ alignItems: 'center' }}>
+        <div className="gs-card__name" style={{ flex: 1, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{displayName}</div>
+        <div className="gs-card__logo">
+          {logoPath ? (
+            <img 
+              src={logoPath} 
+              alt={`${t.name} Trophy`} 
+              style={{ 
+                height: '70px', 
+                width: 'auto', 
+                filter: 'drop-shadow(0px 4px 6px rgba(0,0,0,0.4))',
+                transition: 'transform 0.3s ease'
+              }} 
+            />
+          ) : '🎾'}
+        </div>
       </div>
       <div className="gs-card__info">
         <div>📍 {t.city}, {t.country === 'UNK' ? t.city : t.country}</div>
@@ -467,6 +493,7 @@ function GrandSlamCard({ tournament }: { tournament: any }) {
           <span className="gs-card__champ-name">{womenChamp}</span>
         </div>
       </div>
-    </div>
+      </div>
+    </Link>
   );
 }
