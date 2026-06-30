@@ -35,7 +35,7 @@ The platform relies on a 100% serverless, zero-maintenance infrastructure.
 
 ```mermaid
 graph TD
-    A[GitHub Actions<br>Cron Trigger] -->|Semi-Weekly (Mon, Thu)| B(Next.js Route Handler<br>/api/cron/sync)
+    A["GitHub Actions<br>Cron Trigger"] -->|"Semi-Weekly (Mon, Thu)"| B("Next.js Route Handler<br>/api/cron/sync")
     B -->|Fetch JSON Rankings| C[(RapidAPI<br>Tennis API)]
     B -->|Regex Parse Wikitext| W[(Wikipedia API<br>Race Rankings)]
     B -->|Memory-Map & Compute Deltas| D{Compute Engine}
