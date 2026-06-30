@@ -139,35 +139,41 @@ export async function POST(request: Request) {
       nameToCountryMap.set(r.name.toLowerCase().trim(), r.country);
     });
 
-    // Build previous rankings maps to calculate deltas (Race)
-    const atpPrevRaceMap = new Map();
-    histAtpRace.forEach(r => atpPrevRaceMap.set(r.name, r.rank));
+    // 2. Fetch existing DB records to compute week-over-week deltas
+    const existingRankings = await db.select().from(rankings);
+    const oldRankMap = new Map();
+    existingRankings.forEach(r => {
+      oldRankMap.set(`${r.tour}-${r.type}-${r.name.toLowerCase().trim()}`, r);
+    });
 
-    const wtaPrevRaceMap = new Map();
-    histWtaRace.forEach(r => wtaPrevRaceMap.set(r.name, r.rank));
+    // Helper to compute change. If the old record was updated within the last 4 days, 
+    // we consider it a "same-week re-sync" and carry over the existing change value.
+    // Otherwise, we compute the true week-over-week delta.
+    const computeChange = (tour: 'atp' | 'wta', type: 'standard' | 'race', name: string, newRank: number) => {
+      const old = oldRankMap.get(`${tour}-${type}-${name.toLowerCase().trim()}`);
+      if (!old) return 0;
+      
+      const diffDays = (Date.now() - new Date(old.updatedAt).getTime()) / (1000 * 60 * 60 * 24);
+      if (diffDays < 4) {
+        return old.change; // Re-syncing same week, carry over existing change
+      }
+      return old.rank - newRank; // New week, calculate delta (e.g. old: 10, new: 8 -> +2)
+    };
 
     // Construct DB payload
     const insertData = [
-      ...atpStandard,
-      ...wtaStandard,
-      ...realAtpRace.map((r: any) => {
-        const previousRank = atpPrevRaceMap.get(r.name);
-        const change = previousRank ? previousRank - r.rank : 0;
-        return {
-          ...r,
-          change,
-          country: nameToCountryMap.get(r.name.toLowerCase().trim()) || r.country
-        };
-      }),
-      ...realWtaRace.map((r: any) => {
-        const previousRank = wtaPrevRaceMap.get(r.name);
-        const change = previousRank ? previousRank - r.rank : 0;
-        return {
-          ...r,
-          change,
-          country: nameToCountryMap.get(r.name.toLowerCase().trim()) || r.country
-        };
-      })
+      ...atpStandard.map(r => ({ ...r, change: computeChange('atp', 'standard', r.name, r.rank) })),
+      ...wtaStandard.map(r => ({ ...r, change: computeChange('wta', 'standard', r.name, r.rank) })),
+      ...realAtpRace.map((r: any) => ({
+        ...r,
+        change: computeChange('atp', 'race', r.name, r.rank),
+        country: nameToCountryMap.get(r.name.toLowerCase().trim()) || r.country
+      })),
+      ...realWtaRace.map((r: any) => ({
+        ...r,
+        change: computeChange('wta', 'race', r.name, r.rank),
+        country: nameToCountryMap.get(r.name.toLowerCase().trim()) || r.country
+      }))
     ];
 
     if (insertData.length === 0) {
