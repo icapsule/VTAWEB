@@ -29,8 +29,8 @@ export default async function GrandSlamDetail({ params }: { params: Promise<{ sl
     .filter(([_, count]: any) => count >= 2)
     .sort((a: any, b: any) => b[1] - a[1]); // Sort by count descending
     
-  const top3 = honorRoll.slice(0, 3);
-  const others = honorRoll.slice(3);
+  const top3 = honorRoll.slice(0, 3) as [string, number][];
+  const others = honorRoll.slice(3) as [string, number][];
 
   // Helper for flags
   const getFlagEmoji = (countryCode: string) => {

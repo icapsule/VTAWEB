@@ -71,7 +71,7 @@ async function fetchWTA() {
 
     return {
       id: safeId,
-      name: (wta.tournamentGroup?.name || wta.title || 'WTA Event').replace(/\b\w/g, c => c.toUpperCase()), // Title Case
+      name: (wta.tournamentGroup?.name || wta.title || 'WTA Event').replace(/\b\w/g, (c: string) => c.toUpperCase()), // Title Case
       city: wta.city || 'Unknown',
       country: wta.country || 'UNK',
       surface: surface,

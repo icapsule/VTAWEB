@@ -41,11 +41,11 @@ const SLAMS = [
   }
 ];
 
-function extractText(el: cheerio.Cheerio<cheerio.Element>) {
+function extractText(el: cheerio.Cheerio<any>) {
   return el.text().replace(/[\*\†\]\[]/g, '').replace(/\(.*?\]/g, '').replace(/ \(.*/, '').split('\\n')[0].trim();
 }
 
-function extractCountry(el: cheerio.Cheerio<cheerio.Element>) {
+function extractCountry(el: cheerio.Cheerio<any>) {
   // If the cell contains an anchor with a title like "Spain", or just 3 letters.
   // We can look at the <a> tags or just grab the text. 
   // Usually it's a 3 letter code like "ESP" or "ESP".
