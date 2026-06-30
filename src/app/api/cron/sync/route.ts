@@ -1,21 +1,44 @@
 import { NextResponse } from 'next/server';
 import { revalidatePath } from 'next/cache';
 import { db } from '@/server/db';
-import { rankings, tournaments } from '@/server/db/schema';
-import Papa from 'papaparse';
+import { rankings } from '@/server/db/schema';
 
-async function fetchAndParseCsv(url: string) {
-  const response = await fetch(url);
-  if (!response.ok) throw new Error(`Failed to fetch ${url}: ${response.statusText}`);
-  const csvText = await response.text();
-  return new Promise<any[]>((resolve, reject) => {
-    Papa.parse(csvText, {
-      header: true,
-      skipEmptyLines: true,
-      complete: (results) => resolve(results.data),
-      error: (error: any) => reject(error),
-    });
+async function fetchRapidApiRankings(tour: 'atp' | 'wta', top_n = 100) {
+  const url = `https://tennis-api-atp-wta-itf.p.rapidapi.com/tennis/v2/${tour}/ranking/singles`;
+  const resp = await fetch(url, {
+    headers: {
+      'X-RapidAPI-Key': process.env.RAPIDAPI_KEY || '',
+      'X-RapidAPI-Host': 'tennis-api-atp-wta-itf.p.rapidapi.com'
+    },
+    cache: 'no-store'
   });
+  
+  if (!resp.ok) {
+    console.error(`RapidAPI fetch failed: ${resp.status}`);
+    return [];
+  }
+  
+  const rawData = await resp.json();
+  const dataList = Array.isArray(rawData?.data) ? rawData.data : (Array.isArray(rawData) ? rawData : []);
+  
+  const results = [];
+  for (const item of dataList.slice(0, top_n)) {
+    const rank = parseInt(item.ranking || item.rank || '0', 10);
+    
+    let change = parseInt(String(item.movement), 10);
+    if (isNaN(change)) change = 0;
+    
+    results.push({
+      tour,
+      type: 'standard' as const,
+      rank,
+      name: item.name || item.player || `Unknown #${rank}`,
+      country: item.country || 'UNK',
+      points: parseInt(item.points || '0', 10),
+      change
+    });
+  }
+  return results;
 }
 
 async function fetchWikiRaceRankings(tour: 'atp' | 'wta', isHistorical: boolean = false) {
@@ -90,50 +113,27 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    console.log('🔄 Cron Triggered: Fetching real ranking data from Jeff Sackmann...');
+    if (!process.env.RAPIDAPI_KEY) {
+      console.warn('⚠️ RAPIDAPI_KEY is missing in environment variables!');
+    }
 
-    // 1. Fetch CSVs for Rankings and Wiki for Race (Current + Historical)
-    const [atpRankings, atpPlayers, wtaRankings, wtaPlayers, realAtpRace, realWtaRace, histAtpRace, histWtaRace] = await Promise.all([
-      fetchAndParseCsv('https://raw.githubusercontent.com/JeffSackmann/tennis_atp/master/atp_rankings_current.csv'),
-      fetchAndParseCsv('https://raw.githubusercontent.com/JeffSackmann/tennis_atp/master/atp_players.csv'),
-      fetchAndParseCsv('https://raw.githubusercontent.com/JeffSackmann/tennis_wta/master/wta_rankings_current.csv'),
-      fetchAndParseCsv('https://raw.githubusercontent.com/JeffSackmann/tennis_wta/master/wta_players.csv'),
+    console.log('🔄 Cron Triggered: Fetching real ranking data from RapidAPI and Wikipedia...');
+
+    // 1. Fetch RapidAPI for Rankings and Wiki for Race (Current + Historical)
+    const [atpStandard, wtaStandard, realAtpRace, realWtaRace, histAtpRace, histWtaRace] = await Promise.all([
+      fetchRapidApiRankings('atp', 100),
+      fetchRapidApiRankings('wta', 100),
       fetchWikiRaceRankings('atp', false),
       fetchWikiRaceRankings('wta', false),
       fetchWikiRaceRankings('atp', true),
       fetchWikiRaceRankings('wta', true)
     ]);
 
-    // Build Player Maps
-    const atpPlayerMap = new Map();
-    const atpNameMap = new Map();
-    atpPlayers.forEach(p => {
-      atpPlayerMap.set(p.player_id, p);
-      atpNameMap.set(`${p.name_first} ${p.name_last}`.trim().toLowerCase(), p.ioc);
+    // Build Name Maps to inject countries into Race rankings
+    const nameToCountryMap = new Map();
+    [...atpStandard, ...wtaStandard].forEach(r => {
+      nameToCountryMap.set(r.name.toLowerCase().trim(), r.country);
     });
-
-    const wtaPlayerMap = new Map();
-    const wtaNameMap = new Map();
-    wtaPlayers.forEach(p => {
-      wtaPlayerMap.set(p.player_id, p);
-      wtaNameMap.set(`${p.name_first} ${p.name_last}`.trim().toLowerCase(), p.ioc);
-    });
-
-    // Find latest dates and previous dates
-    const atpDates = [...new Set(atpRankings.map(r => r.ranking_date))].filter(Boolean).sort((a, b) => b.localeCompare(a));
-    const atpMaxDate = atpDates[0] || '0';
-    const atpPrevDate = atpDates[1] || '0';
-
-    const wtaDates = [...new Set(wtaRankings.map(r => r.ranking_date))].filter(Boolean).sort((a, b) => b.localeCompare(a));
-    const wtaMaxDate = wtaDates[0] || '0';
-    const wtaPrevDate = wtaDates[1] || '0';
-
-    // Build previous rankings maps to calculate deltas (Standard)
-    const atpPrevMap = new Map();
-    atpRankings.filter(r => r.ranking_date === atpPrevDate).forEach(r => atpPrevMap.set(r.player, parseInt(r.rank)));
-
-    const wtaPrevMap = new Map();
-    wtaRankings.filter(r => r.ranking_date === wtaPrevDate).forEach(r => wtaPrevMap.set(r.player, parseInt(r.rank)));
 
     // Build previous rankings maps to calculate deltas (Race)
     const atpPrevRaceMap = new Map();
@@ -142,49 +142,17 @@ export async function POST(request: Request) {
     const wtaPrevRaceMap = new Map();
     histWtaRace.forEach(r => wtaPrevRaceMap.set(r.name, r.rank));
 
-    // Filter current Top 100
-    const atpCurrent = atpRankings.filter(r => r.ranking_date === atpMaxDate && parseInt(r.rank) <= 100);
-    const wtaCurrent = wtaRankings.filter(r => r.ranking_date === wtaMaxDate && parseInt(r.rank) <= 100);
-
-    // Construct DB payload (Real Standard + Mock Race)
+    // Construct DB payload
     const insertData = [
-      ...atpCurrent.map(r => {
-        const p = atpPlayerMap.get(r.player);
-        const currentRank = parseInt(r.rank);
-        const previousRank = atpPrevMap.get(r.player);
-        const change = previousRank ? previousRank - currentRank : 0;
-        return {
-          tour: 'atp' as const,
-          type: 'standard' as const,
-          rank: currentRank,
-          name: p ? `${p.name_first} ${p.name_last}`.trim() : 'Unknown Player',
-          country: p ? p.ioc : 'UNK',
-          points: parseInt(r.points),
-          change: change
-        };
-      }),
-      ...wtaCurrent.map(r => {
-        const p = wtaPlayerMap.get(r.player);
-        const currentRank = parseInt(r.rank);
-        const previousRank = wtaPrevMap.get(r.player);
-        const change = previousRank ? previousRank - currentRank : 0;
-        return {
-          tour: 'wta' as const,
-          type: 'standard' as const,
-          rank: currentRank,
-          name: p ? `${p.name_first} ${p.name_last}`.trim() : 'Unknown Player',
-          country: p ? p.ioc : 'UNK',
-          points: parseInt(r.points),
-          change: change
-        };
-      }),
+      ...atpStandard,
+      ...wtaStandard,
       ...realAtpRace.map((r: any) => {
         const previousRank = atpPrevRaceMap.get(r.name);
         const change = previousRank ? previousRank - r.rank : 0;
         return {
           ...r,
           change,
-          country: atpNameMap.get(r.name.toLowerCase()) || r.country
+          country: nameToCountryMap.get(r.name.toLowerCase().trim()) || r.country
         };
       }),
       ...realWtaRace.map((r: any) => {
@@ -193,10 +161,14 @@ export async function POST(request: Request) {
         return {
           ...r,
           change,
-          country: wtaNameMap.get(r.name.toLowerCase()) || r.country
+          country: nameToCountryMap.get(r.name.toLowerCase().trim()) || r.country
         };
       })
     ];
+
+    if (insertData.length === 0) {
+      return NextResponse.json({ error: 'Failed to fetch any data. Check API keys and external services.' }, { status: 500 });
+    }
 
     console.log(`Prepared ${insertData.length} ranking rows. Inserting to DB...`);
 
@@ -221,4 +193,3 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
-

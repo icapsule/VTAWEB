@@ -57,7 +57,7 @@ graph TD
     end
     
     %% External Data Sources
-    SportRadar["Jeff Sackmann Open Source (Data Source)"]:::external
+    RapidAPI["RapidAPI (Tennis API - ATP WTA ITF)"]:::external
     WikiAPI["Wikipedia Open API (Race Data Source)"]:::external
     
     %% --- Core Data Flow ---
@@ -69,9 +69,9 @@ graph TD
     
     %% Write/Ingestion Flow
     GitHub -- "A. Trigger Every Monday" --> API
-    API -- "B. Fetch Latest CSV Rankings" --> SportRadar
+    API -- "B. Fetch Latest Rankings JSON" --> RapidAPI
     API -- "B2. Fetch Wikitext & Regex Parse" --> WikiAPI
-    SportRadar -- "C. Return Raw CSV" --> API
+    RapidAPI -- "C. Return JSON" --> API
     WikiAPI -- "C2. Return JSON Wikitext" --> API
     API -- "D. Parse, Compute Deltas, and Drizzle Upsert" --> Postgres
     API -- "E. Call revalidatePath() to purge stale cache" --> Cache
@@ -85,7 +85,7 @@ graph TD
   - `/rankings` -> Full Rankings Page (Dual-Track Toggle)
 - **Data Channel Principles**:
   - **Data Fetching**: Pure Server-Side Rendering (Server Components) directly invoking `db.select()` to inject into pages.
-  - **Data Ingestion**: Internal secure interface `/api/cron/sync` triggered by GitHub Actions to ingest external CSV data.
+  - **Data Ingestion**: Internal secure interface `/api/cron/sync` triggered by GitHub Actions to ingest external RapidAPI and Wikipedia data.
 
 ## 4. 🗃 Data Retention Policy
 *(Declares the core database table design intent and garbage collection mechanisms)*
@@ -104,14 +104,14 @@ graph TD
 ## 6. 🧠 Architecture Thought Log
 *(Append Only Zone. Records major architectural trade-offs between Humans and AI during project evolution, serving as contextual diagnostic memory for future Agents)*
 
-- **[2026-06-10] [Decision]**: Decided to adopt PostgreSQL + Real open-source CSV data sources, abandoning pure static Mock Data.
+- **[2026-06-10] [Decision]**: Decided to adopt PostgreSQL + API data sources, abandoning pure static Mock Data.
   - *Context*: As a high-level technical Demo, it needs to cover the full stack (data flow, database, cron jobs).
   - *Trade-off*: Introduced database reliance, but solved via a cost-free Serverless Postgres + Weekly Wipe & Upsert strategy.
 - **[2026-06-10] [Decision]**: Dynamically computing week-over-week deltas (+/-).
-  - *Context*: The raw CSV doesn't track weekly changes.
+  - *Context*: Some APIs don't track weekly changes.
   - *Execution*: Built an algorithmic pipeline inside the Vercel API to memory-map the top 2 historical dates, calculating the precise ranking change before persistence.
 - **[2026-06-10] [Decision]**: Consolidated the "Race to Turin/Finals" web scraper into the Next.js API route.
-  - *Context*: Needed Race rankings alongside the 52-week standard rankings, but standard CSV sources don't cover live Race points.
+  - *Context*: Needed Race rankings alongside the 52-week standard rankings, but standard API sources don't cover live Race points.
   - *Trade-off*: Wrote a custom Regex parser for Wikipedia's raw Wikitext API in TypeScript. This eliminated the need for a separate Python scraper pipeline, centralizing all DB ingestion directly inside the Next.js edge environment for architectural purity.
 - **[2026-06-10] [Decision]**: Leveraged Wikipedia Revision API for week-over-week tracking.
   - *Context*: Calculating the `+/-` delta for Race rankings requires historical data, but the DB overwrites daily/weekly to save space.
