@@ -23,18 +23,22 @@ async function fetchRapidApiRankings(tour: 'atp' | 'wta', top_n = 100) {
   
   const results = [];
   for (const item of dataList.slice(0, top_n)) {
-    const rank = parseInt(item.ranking || item.rank || '0', 10);
+    const rank = parseInt(item.position || item.ranking || item.rank || '0', 10);
     
     let change = parseInt(String(item.movement), 10);
     if (isNaN(change)) change = 0;
+    
+    const playerName = item.player?.name || item.name || `Unknown #${rank}`;
+    const country = item.player?.countryAcr || item.country || 'UNK';
+    const points = parseInt(item.point || item.rankingPoints || item.points || '0', 10);
     
     results.push({
       tour,
       type: 'standard' as const,
       rank,
-      name: item.name || item.player || `Unknown #${rank}`,
-      country: item.country || 'UNK',
-      points: parseInt(item.points || '0', 10),
+      name: playerName,
+      country: country,
+      points: points,
       change
     });
   }
