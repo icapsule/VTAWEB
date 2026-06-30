@@ -54,8 +54,11 @@
 *(A record of spontaneous ideas or tech debt generated during development to prevent the main branch from derailing.)*
 
 - [x] [Tech Debt]: Migrate fake data in `src/lib/mock-data.ts` to a real PostgreSQL database powered by Drizzle ORM.
-- [x] [Idea]: Integrate external open-source CSVs (Jeff Sackmann) to automatically fetch and calculate daily tennis rankings into the DB.
+- [x] [Idea - *Deprecated v2.0*]: Integrate external open-source CSVs (Jeff Sackmann) to automatically fetch and calculate daily tennis rankings into the DB.
 - [x] [Idea]: Implement an internal lightweight scraper hitting the Wikipedia API to parse and synchronize real-time ATP/WTA "Race to Turin/WTA Finals" rankings, bypassing complex external python scraping services.
 - [x] [Design]: Redesigned the homepage metrics section into a highly polished, glassmorphism "Big Titles Leaderboard" featuring dynamic player flags and statistics.
 - [x] [Design]: Implemented a Cinematic Full-Bleed 1080p MP4 Background Video of Novak Djokovic (1000fps slow-motion) with a triple-gradient overlay for the Hero section.
-- [x] [Tech Debt]: Utilized the Wikipedia Revision History API to calculate accurate week-over-week rank deltas (+/-) for the Race to Turin without retaining historical database state.
+- [x] [Tech Debt - *Deprecated v2.0*]: Utilized the Wikipedia Revision History API to calculate accurate week-over-week rank deltas (+/-) for the Race to Turin without retaining historical database state.
+- [x] [Architecture - *v3.0*]: Complete migration to **RapidAPI** (Standard Rankings) and **Supabase (Serverless Postgres)** to guarantee pipeline uptime. 
+- [x] [Architecture - *v3.0*]: Implemented Database-Native Week-over-Week Delta (`+/-`) Computation inside the Next.js API, allowing the removal of fragile external Revision APIs and fully centralizing the pipeline.
+- [ ] [Feature]: Expand the Tournament Tracker to dynamically fetch live ATP/WTA schedules, moving beyond static data arrays.

@@ -73,8 +73,10 @@ graph TD
     API -- "B2. Fetch Wikitext & Regex Parse" --> WikiAPI
     RapidAPI -- "C. Return JSON" --> API
     WikiAPI -- "C2. Return JSON Wikitext" --> API
-    API -- "D. Parse, Compute Deltas, and Drizzle Upsert" --> Postgres
-    API -- "E. Call revalidatePath() to purge stale cache" --> Cache
+    API -- "D. Query Previous Week's Rankings" --> Postgres
+    Postgres -- "E. Return Old Rankings for Delta Calc" --> API
+    API -- "F. Parse, Compute Deltas, and Drizzle Upsert" --> Postgres
+    API -- "G. Call revalidatePath() to purge stale cache" --> Cache
 ```
 
 ## 3. 🔌 API Contracts & Routes
@@ -110,9 +112,15 @@ graph TD
 - **[2026-06-10] [Decision]**: Dynamically computing week-over-week deltas (+/-).
   - *Context*: Some APIs don't track weekly changes.
   - *Execution*: Built an algorithmic pipeline inside the Vercel API to memory-map the top 2 historical dates, calculating the precise ranking change before persistence.
-- **[2026-06-10] [Decision]**: Consolidated the "Race to Turin/Finals" web scraper into the Next.js API route.
+- **[2026-06-10] [Decision - *Deprecated (v2.0)*]**: Consolidated the "Race to Turin/Finals" web scraper into the Next.js API route.
   - *Context*: Needed Race rankings alongside the 52-week standard rankings, but standard API sources don't cover live Race points.
   - *Trade-off*: Wrote a custom Regex parser for Wikipedia's raw Wikitext API in TypeScript. This eliminated the need for a separate Python scraper pipeline, centralizing all DB ingestion directly inside the Next.js edge environment for architectural purity.
-- **[2026-06-10] [Decision]**: Leveraged Wikipedia Revision API for week-over-week tracking.
+- **[2026-06-10] [Decision - *Deprecated (v2.0)*]**: Leveraged Wikipedia Revision API for week-over-week tracking.
   - *Context*: Calculating the `+/-` delta for Race rankings requires historical data, but the DB overwrites daily/weekly to save space.
-  - *Execution*: Instead of building a complex historical snapshotting system in PostgreSQL, the backend calculates exactly `T-7 days`, queries Wikipedia's Revision History API for the exact wikitext from a week ago, and compares it in-memory against today's parsed data. Zero DB schema changes needed.
+  - *Execution*: Instead of building a complex historical snapshotting system in PostgreSQL, the backend calculates exactly `T-7 days`, queries Wikipedia's Revision History API for the exact wikitext from a week ago, and compares it in-memory against today's parsed data.
+- **[2026-06-30] [Decision - *Current (v3.0)*]**: Migrated core data source from Jeff Sackmann CSVs to RapidAPI.
+  - *Context*: The original open-source CSV repository became highly unstable (frequent 404s), causing the automated CRON pipeline to fail.
+  - *Trade-off*: RapidAPI provides reliable current standard rankings but lacks historical `movement` data natively. We accepted this to guarantee pipeline uptime and data integrity.
+- **[2026-06-30] [Decision - *Current (v3.0)*]**: Implemented Database-Native Week-over-Week Delta (`+/-`) Computation.
+  - *Context*: Because RapidAPI doesn't provide rank changes, and the Wikipedia Revision API proved too fragile and complex, we required a unified, robust way to calculate deltas without making redundant external network requests.
+  - *Execution*: Modified the Next.js API to fetch the *previous* week's state directly from Supabase *before* performing the weekly wipe. The delta is dynamically computed (`oldRank - newRank`) in-memory. If the synchronization occurs multiple times within a 4-day window, the system intelligently preserves the existing delta to prevent resetting to 0. This drastically simplified the architecture and allowed us to drop the legacy Wikipedia Revision API scraper entirely.

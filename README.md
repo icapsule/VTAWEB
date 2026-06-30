@@ -130,3 +130,13 @@ VTAWEB utilizes an automated CI/CD pipeline:
 1. **Vercel**: Commits to the `main` branch trigger immutable production builds.
 2. **GitHub Secrets**: The repository uses `CRON_SECRET` and `VTAWEB_API_URL` to securely invoke the Vercel API.
 3. **Database Branching**: Schema changes are pushed to Supabase via Drizzle migrations during the deployment phase.
+
+---
+
+## 7. 📅 Architecture Iteration History
+
+To ensure the highest standards of maintainability and stability, the VTAWEB architecture has undergone rigorous iterations. Below is the version control history documenting the evolution from a static PoC to a production-grade serverless pipeline:
+
+- **v1.0 (Static UI Generation)**: Initial Proof of Concept built using hardcoded mock data. Focused purely on establishing the Glassmorphism aesthetic and React Server Components (RSC) rendering patterns.
+- **v2.0 (The Python Scraper Era - *Deprecated*)**: Introduced dynamic data via `JeffSackmann` open-source CSVs and Wikipedia Revision APIs. Relied on external Python web scrapers and Cloudflare D1. *Deprecated due to third-party repository instability (404 errors) and the architectural friction of maintaining fragmented external data pipelines.*
+- **v3.0 (Modern Serverless - *Current*)**: Complete architectural migration to **RapidAPI** (Standard Rankings) and **Supabase Serverless Postgres**. We implemented an advanced **Database-Native Week-over-Week Delta Algorithm** entirely within the Next.js Edge API. This elegantly eliminated complex Wikipedia revision API calls for calculating `+/-` ranking changes, centralizing the entire ingestion and computation pipeline natively within the Next.js runtime environment.
