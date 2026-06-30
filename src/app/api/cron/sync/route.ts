@@ -7,7 +7,7 @@ async function fetchRapidApiRankings(tour: 'atp' | 'wta', top_n = 100) {
   const url = `https://tennis-api-atp-wta-itf.p.rapidapi.com/tennis/v2/${tour}/ranking/singles`;
   const resp = await fetch(url, {
     headers: {
-      'X-RapidAPI-Key': process.env.RAPIDAPI_KEY || 'b227990755msh1153e885c15988ep129c2ajsn28bc88339cd2',
+      'X-RapidAPI-Key': process.env.RAPIDAPI_KEY || '',
       'X-RapidAPI-Host': 'tennis-api-atp-wta-itf.p.rapidapi.com'
     },
     cache: 'no-store'
