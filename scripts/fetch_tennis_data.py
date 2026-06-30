@@ -144,37 +144,55 @@ def fetch_sackmann_rankings(tour="atp", top_n=50):
 
 def fetch_rapidapi_rankings(tour="atp", top_n=50):
     """
-    Fetch rankings from RapidAPI Tennis API.
+    Fetch rankings from RapidAPI 'Tennis API - ATP WTA ITF'.
     Requires RAPIDAPI_KEY environment variable.
     """
-    url = "https://api-tennis.com/tennis/"
-    params = {
-        "method": "get_standings",
-        "event_type": "ATP" if tour == "atp" else "WTA",
-        "APIkey": RAPIDAPI_KEY,
+    url = f"https://tennis-api-atp-wta-itf.p.rapidapi.com/tennis/v2/{tour}/ranking/singles"
+    headers = {
+        "X-RapidAPI-Key": RAPIDAPI_KEY,
+        "X-RapidAPI-Host": "tennis-api-atp-wta-itf.p.rapidapi.com"
     }
 
     log(f"Fetching {tour.upper()} rankings from RapidAPI...")
-    resp = requests.get(url, params=params, timeout=30)
+    resp = requests.get(url, headers=headers, timeout=30)
+    
+    # Check if subscription error before raise_for_status
+    if resp.status_code in [401, 403]:
+        try:
+            msg = resp.json().get("message", "")
+            if "subscribe" in msg.lower():
+                log("ERROR: RapidAPI says 'You are not subscribed to this API.' Please click 'Subscribe to Test' on the RapidAPI website and select a plan.")
+                return []
+        except:
+            pass
+
     resp.raise_for_status()
     data = resp.json()
 
-    results_raw = data.get("result", [])
-    if not results_raw:
+    # Data is usually inside 'data' array
+    results_raw = data.get("data", []) if isinstance(data, dict) else data
+    if not isinstance(results_raw, list) or not results_raw:
         log(f"WARNING: No data returned from RapidAPI for {tour.upper()}")
         return []
 
     results = []
     for item in results_raw[:top_n]:
-        rank = int(item.get("place", 0))
+        rank = int(item.get("ranking", item.get("rank", 0)))
+        player_id = item.get("id", rank)
+        
+        movement = item.get("movement", "")
+        rank_change = 0
+        if str(movement).lstrip('-').isdigit():
+            rank_change = int(movement)
+            
         results.append({
-            "id": f"{tour}_{item.get('player_key', rank)}",
+            "id": f"{tour}_{player_id}",
             "tour": tour,
             "rank": rank,
-            "player_name": item.get("player", f"Unknown #{rank}"),
+            "player_name": item.get("name", item.get("player", f"Unknown #{rank}")),
             "country": item.get("country", ""),
             "points": int(item.get("points", 0)),
-            "rank_change": 0,
+            "rank_change": rank_change,
             "updated_at": NOW_ISO,
         })
 
