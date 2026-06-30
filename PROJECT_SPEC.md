@@ -133,3 +133,6 @@ graph TD
     1. **Data Source Pivot**: Scrapped Playwright completely. Shifted to the official WTA native API (`https://api.wtatennis.com/tennis/tournaments`) for real-time women's tournament data.
     2. **Offline Processing**: Processed the ATP Challenger PDF strictly offline via a Python script (`parse_pdf.py`), decoupling heavy OCR/PDF parsing from the Next.js runtime. 
     3. **Cron Optimization**: Updated the GitHub Actions sync pipeline to run semi-weekly (Mondays and Thursdays) instead of weekly, ensuring the Serverless Postgres database never hits the 7-day inactivity pause limit.
+- **[2026-06-30] [Decision - *Current (v4.1)*]**: Ambient BGM Toggle (Cinematic Audio).
+  - *Context*: Added background music to elevate the cinematic "Vibe" of the full-bleed dashboard, but browsers strictly block unmuted autoplay.
+  - *Execution*: Implemented an "Ambient Toggle" pattern. The audio defaults to muted, and a global glassmorphism client component (`<BgmToggle />`) is injected into the root layout. It manages state and triggers a smooth volume fade-in upon user interaction to ensure compliance with browser policies without sacrificing immersion.

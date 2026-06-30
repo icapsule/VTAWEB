@@ -11,6 +11,8 @@ export const metadata = {
   },
 };
 
+import BgmToggle from '../components/features/BgmToggle';
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
@@ -18,6 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <BgmToggle />
       </body>
     </html>
   );
@@ -160,8 +163,30 @@ function Navbar() {
           align-items: center;
         }
         @media (max-width: 768px) {
-          .navbar__status { display: none; }
-          .navbar__links { gap: 0; }
+          .navbar__inner {
+            padding: 0 var(--space-sm);
+          }
+          .navbar__name {
+            display: none; /* Hide 'VTAWEB' text, keep 🎾 */
+          }
+          .navbar__brand {
+            flex: 0 0 auto;
+          }
+          .navbar__right-spacer {
+            display: none;
+          }
+          .navbar__links { 
+            flex: 1;
+            gap: 0; 
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            white-space: nowrap;
+            scrollbar-width: none;
+            justify-content: flex-end;
+          }
+          .navbar__links::-webkit-scrollbar {
+            display: none;
+          }
           .navbar__link {
             padding: var(--space-sm) var(--space-sm);
             font-size: 0.8rem;

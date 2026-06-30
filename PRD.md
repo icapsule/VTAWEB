@@ -34,6 +34,7 @@
 ### P1 (Should Have - Experience Enhancements)
 - [ ] **US-04 (Tournament Calendar)**: As a fan, I want a Tournament Tracker page that chronologically lists Grand Slams, Masters 1000s, and core tour dates and statuses.
 - [x] **US-05 (Player Detail Card)**: As a fan, I want to click on a player's name to open a Glassmorphism modal displaying their historical performance, dynamically fetching their Wikipedia image and bio on-demand.
+- [x] **US-06 (Ambient BGM Toggle)**: As a fan, I want the option to enable an epic background music track (e.g., Avicii - The Nights) via an elegant floating toggle button, so that I can immerse myself in a cinematic atmosphere while browsing stats.
 
 ## 4. ⚙️ Core Requirements & States
 *(Deeply defines the system's business state dictionaries and transition logic to guide AI in generating type definitions and DB schemas.)*
