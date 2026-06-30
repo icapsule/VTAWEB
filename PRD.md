@@ -33,7 +33,7 @@
 
 ### P1 (Should Have - Experience Enhancements)
 - [ ] **US-04 (Tournament Calendar)**: As a fan, I want a Tournament Tracker page that chronologically lists Grand Slams, Masters 1000s, and core tour dates and statuses.
-- [ ] **US-05 (Player Detail Card)**: As a fan, I want to click on a player's name to open a Glassmorphism modal displaying their historical performance.
+- [x] **US-05 (Player Detail Card)**: As a fan, I want to click on a player's name to open a Glassmorphism modal displaying their historical performance, dynamically fetching their Wikipedia image and bio on-demand.
 
 ## 4. ⚙️ Core Requirements & States
 *(Deeply defines the system's business state dictionaries and transition logic to guide AI in generating type definitions and DB schemas.)*

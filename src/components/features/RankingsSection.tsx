@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { formatRankChange, getCountryFlag } from '@/lib/utils';
+import { PlayerModal } from './PlayerModal';
 
 interface Player {
   rank: number;
@@ -27,6 +28,8 @@ export function RankingsSection({
   raceTitle,
 }: RankingsSectionProps) {
   const [isRace, setIsRace] = useState(false);
+  const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null);
+  
   const currentRankings = isRace ? raceRankings : standardRankings;
 
   return (
@@ -79,12 +82,22 @@ export function RankingsSection({
         </div>
       </div>
 
-      <FullRankingsTable rankings={currentRankings} tour={tour} isRace={isRace} />
+      <FullRankingsTable 
+        rankings={currentRankings} 
+        tour={tour} 
+        isRace={isRace} 
+        onPlayerClick={setSelectedPlayer}
+      />
+      
+      <PlayerModal 
+        player={selectedPlayer} 
+        onClose={() => setSelectedPlayer(null)} 
+      />
     </section>
   );
 }
 
-function FullRankingsTable({ rankings, tour, isRace }: { rankings: Player[], tour: string, isRace: boolean }) {
+function FullRankingsTable({ rankings, tour, isRace, onPlayerClick }: { rankings: Player[], tour: string, isRace: boolean, onPlayerClick: (p: Player) => void }) {
   return (
     <div className="data-table-wrapper">
       <table className="data-table" id={`${tour}-${isRace ? 'race' : 'full'}-rankings-table`}>
@@ -101,7 +114,11 @@ function FullRankingsTable({ rankings, tour, isRace }: { rankings: Player[], tou
           {rankings.map((player) => {
             const change = formatRankChange(player.change);
             return (
-              <tr key={`${tour}-${isRace ? 'race' : 'std'}-${player.rank}`}>
+              <tr 
+                key={`${tour}-${isRace ? 'race' : 'std'}-${player.rank}`}
+                onClick={() => onPlayerClick(player)}
+                style={{ cursor: 'pointer' }}
+              >
                 <td className={`rank-cell ${player.rank <= 3 ? 'rank-cell--top3' : ''}`}>
                   {player.rank}
                 </td>
