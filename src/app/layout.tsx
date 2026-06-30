@@ -51,12 +51,14 @@ function Navbar() {
 
       <style>{`
         .navbar {
-          position: sticky;
+          position: fixed;
           top: var(--space-md);
+          left: 50%;
+          transform: translateX(-50%);
+          width: calc(100% - var(--space-lg) * 2);
+          max-width: 800px;
           z-index: 100;
           height: var(--nav-height);
-          max-width: 800px;
-          margin: 0 auto;
           background: rgba(15, 20, 35, 0.65);
           backdrop-filter: blur(24px);
           -webkit-backdrop-filter: blur(24px);

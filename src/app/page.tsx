@@ -69,9 +69,9 @@ export default async function HomePage() {
   const topWTA = wtaStandard.slice(0, 10);
 
   return (
-    <div className="page-content">
+    <div className="page-content home-page-content">
       {/* ---- Hero Section (Cinematic Full-Bleed) ---- */}
-      <section className="hero" id="hero-section" style={{ position: 'relative', overflow: 'hidden', minHeight: '80vh', display: 'flex', alignItems: 'center' }}>
+      <section className="hero" id="hero-section" style={{ position: 'relative', overflow: 'hidden', minHeight: '88vh', display: 'flex', alignItems: 'center' }}>
         
         {/* Cinematic Background Video Layer */}
         <div className="hero-video-wrapper">
@@ -262,8 +262,8 @@ export default async function HomePage() {
           position: absolute;
           inset: 0;
           background: 
-            linear-gradient(to bottom, transparent 60%, var(--color-bg) 100%),
-            linear-gradient(to right, var(--color-bg) 0%, transparent 30%, transparent 70%, var(--color-bg) 100%),
+            linear-gradient(to bottom, transparent 60%, var(--color-bg-primary) 100%),
+            linear-gradient(to right, var(--color-bg-primary) 0%, transparent 30%, transparent 70%, var(--color-bg-primary) 100%),
             rgba(10, 15, 25, 0.5); /* Base tint for text legibility */
         }
 

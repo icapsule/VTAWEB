@@ -472,7 +472,7 @@ ul, ol {
 
 /* ---- Hero Section ---- */
 .hero {
-  padding: var(--space-3xl) 0 var(--space-2xl);
+  padding: calc(var(--nav-height) + var(--space-xl)) 0 var(--space-2xl);
   position: relative;
   overflow: hidden;
 }
@@ -562,8 +562,12 @@ ul, ol {
 /* ---- Page Content Wrapper ---- */
 .page-content {
   min-height: calc(100vh - var(--nav-height) - 200px);
-  padding-top: var(--space-xl);
+  padding-top: calc(var(--nav-height) + var(--space-xl) + var(--space-md));
   padding-bottom: var(--space-3xl);
+}
+
+.home-page-content {
+  padding-top: 0 !important;
 }
 
 /* ---- Modal & Dialog ---- */
