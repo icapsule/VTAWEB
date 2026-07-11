@@ -188,6 +188,28 @@ export async function POST(request: Request) {
 
     console.log('✅ Real Rankings synced to DB successfully.');
 
+    // --- Supabase Anti-Pause Keep-Alive Ping ---
+    // Make a lightweight REST API request to Supabase to reset the 7-day inactivity timer.
+    // Direct Postgres connections (Drizzle) do not count as activity on the free tier.
+    try {
+      const supaUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+      const supaKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+      if (supaUrl && supaKey) {
+        await fetch(`${supaUrl}/rest/v1/`, {
+          headers: { 
+            'apikey': supaKey, 
+            'Authorization': `Bearer ${supaKey}` 
+          }
+        });
+        console.log('✅ Sent Supabase REST API keep-alive ping.');
+      } else {
+        console.warn('⚠️ Skipping Supabase keep-alive: NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY is missing.');
+      }
+    } catch (pingErr) {
+      console.error('⚠️ Failed to send Supabase keep-alive ping:', pingErr);
+    }
+    // -------------------------------------------
+
     // Revalidate Cache
     revalidatePath('/');
     revalidatePath('/rankings');
