@@ -56,7 +56,9 @@ export default async function HomePage() {
   try {
     allRankings = await db.select().from(rankings).orderBy(asc(rankings.rank));
   } catch (error) {
-    console.warn("⚠️ Failed to fetch rankings from database at build time:", error);
+    console.error("⚠️ Failed to fetch rankings from database:", error);
+    // 抛出错误以防止 Next.js ISR 缓存空白页面 (Supabase休眠时)
+    throw new Error("Failed to fetch rankings from database. Is Supabase paused?");
   }
   
   const atpStandard = allRankings.filter(r => r.tour === 'atp' && r.type === 'standard');
