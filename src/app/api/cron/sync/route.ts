@@ -3,6 +3,8 @@ import { revalidatePath } from 'next/cache';
 import { db } from '@/server/db';
 import { rankings } from '@/server/db/schema';
 
+export const maxDuration = 60; // 60 seconds timeout limit on Vercel
+
 async function fetchRapidApiRankings(tour: 'atp' | 'wta', top_n = 100) {
   const url = `https://tennis-api-atp-wta-itf.p.rapidapi.com/tennis/v2/${tour}/ranking/singles`;
   const resp = await fetch(url, {
@@ -117,16 +119,42 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
+    // --- Supabase Anti-Pause Keep-Alive Ping ---
+    // Make a lightweight REST API request to Supabase to reset the 7-day inactivity timer.
+    // We execute this at the very beginning to keep Supabase awake before any DB connection attempt,
+    // and query `/rest/v1/rankings?limit=1` using the anon key to get a valid 200 OK response.
+    try {
+      const supaUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+      const supaKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+      if (supaUrl && supaKey) {
+        await fetch(`${supaUrl}/rest/v1/rankings?limit=1`, {
+          headers: { 
+            'apikey': supaKey, 
+            'Authorization': `Bearer ${supaKey}` 
+          }
+        });
+        console.log('✅ Sent Supabase REST API keep-alive ping.');
+      } else {
+        console.warn('⚠️ Skipping Supabase keep-alive: NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY is missing.');
+      }
+    } catch (pingErr) {
+      console.error('⚠️ Failed to send Supabase keep-alive ping:', pingErr);
+    }
+    // -------------------------------------------
+
     if (!process.env.RAPIDAPI_KEY) {
       console.warn('⚠️ RAPIDAPI_KEY is missing in environment variables!');
     }
 
     console.log('🔄 Cron Triggered: Fetching real ranking data from RapidAPI and Wikipedia...');
 
-    // 1. Fetch RapidAPI for Rankings and Wiki for Race (Current + Historical)
-    const [atpStandard, wtaStandard, realAtpRace, realWtaRace, histAtpRace, histWtaRace] = await Promise.all([
-      fetchRapidApiRankings('atp', 100),
-      fetchRapidApiRankings('wta', 100),
+    // 1. Fetch RapidAPI for Rankings (Sequentially with delay to prevent 429 Rate Limit)
+    const atpStandard = await fetchRapidApiRankings('atp', 100);
+    await new Promise(res => setTimeout(res, 1500)); // 1.5s delay
+    const wtaStandard = await fetchRapidApiRankings('wta', 100);
+
+    // Fetch Wiki for Race (Current + Historical) - Promise.all is fine here
+    const [realAtpRace, realWtaRace, histAtpRace, histWtaRace] = await Promise.all([
       fetchWikiRaceRankings('atp', false),
       fetchWikiRaceRankings('wta', false),
       fetchWikiRaceRankings('atp', true),
@@ -187,28 +215,6 @@ export async function POST(request: Request) {
     await db.insert(rankings).values(insertData);
 
     console.log('✅ Real Rankings synced to DB successfully.');
-
-    // --- Supabase Anti-Pause Keep-Alive Ping ---
-    // Make a lightweight REST API request to Supabase to reset the 7-day inactivity timer.
-    // Direct Postgres connections (Drizzle) do not count as activity on the free tier.
-    try {
-      const supaUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-      const supaKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-      if (supaUrl && supaKey) {
-        await fetch(`${supaUrl}/rest/v1/`, {
-          headers: { 
-            'apikey': supaKey, 
-            'Authorization': `Bearer ${supaKey}` 
-          }
-        });
-        console.log('✅ Sent Supabase REST API keep-alive ping.');
-      } else {
-        console.warn('⚠️ Skipping Supabase keep-alive: NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY is missing.');
-      }
-    } catch (pingErr) {
-      console.error('⚠️ Failed to send Supabase keep-alive ping:', pingErr);
-    }
-    // -------------------------------------------
 
     // Revalidate Cache
     revalidatePath('/');
