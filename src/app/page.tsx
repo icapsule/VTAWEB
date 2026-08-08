@@ -480,7 +480,7 @@ function GrandSlamCard({ tournament, dbChamps }: { tournament: any; dbChamps: an
     color = '#005BBB'; // AO Blue
     displayName = 'AUSTRALIAN OPEN';
   } else if (nameLower.includes('roland') || nameLower.includes('french')) {
-    slug = 'roland-garros';
+    slug = 'french-open';
     logoPath = '/trophies/fo.svg';
     color = '#CB5A36'; // Roland Garros Clay
     displayName = 'ROLAND-GARROS';
@@ -496,13 +496,20 @@ function GrandSlamCard({ tournament, dbChamps }: { tournament: any; dbChamps: an
     displayName = 'US OPEN';
   }
 
-  // Dynamic Champions lookup from DB (with fallback to default)
+  // Fallback defaults from static data if DB hasn't populated yet
+  const staticDefaults: Record<string, { men: string; women: string }> = {
+    'australian-open': { men: '🇮🇹 Jannik Sinner', women: '🏳️ Aryna Sabalenka' },
+    'french-open': { men: '🇪🇸 Carlos Alcaraz', women: '🇵🇱 Iga Świątek' },
+    'wimbledon': { men: '🇪🇸 Carlos Alcaraz', women: '🇨🇿 Barbora Krejčíková' },
+    'us-open': { men: '🇮🇹 Jannik Sinner', women: '🏳️ Aryna Sabalenka' },
+  };
+
   const getFlagEmoji = (countryCode: string) => {
     const flags: Record<string, string> = {
       SRB: '🇷🇸', ESP: '🇪🇸', SUI: '🇨🇭', USA: '🇺🇸', SWE: '🇸🇪', 
       AUS: '🇦🇺', GBR: '🇬🇧', GER: '🇩🇪', FRG: '🇩🇪', RUS: '🇷🇺',
       ITA: '🇮🇹', ARG: '🇦🇷', CRO: '🇭🇷', AUT: '🇦🇹', CZE: '🇨🇿',
-      POL: '🇵🇱', NOR: '🇳🇴', CAN: '🇨🇦', JPN: '🇯🇵'
+      POL: '🇵🇱', NOR: '🇳🇴', CAN: '🇨🇦', JPN: '🇯🇵', BLR: '🏳️'
     };
     return flags[countryCode] || '';
   };
@@ -510,8 +517,10 @@ function GrandSlamCard({ tournament, dbChamps }: { tournament: any; dbChamps: an
   const latestMen = dbChamps.find(c => c.slamId === slug && c.tour === 'atp');
   const latestWomen = dbChamps.find(c => c.slamId === slug && c.tour === 'wta');
 
-  const menChamp = latestMen ? `${getFlagEmoji(latestMen.champCountry)} ${latestMen.champion}`.trim() : 'TBD';
-  const womenChamp = latestWomen ? `${getFlagEmoji(latestWomen.champCountry)} ${latestWomen.champion}`.trim() : 'TBD';
+  const fallback = staticDefaults[slug] || { men: 'TBD', women: 'TBD' };
+  const menChamp = latestMen ? `${getFlagEmoji(latestMen.champCountry)} ${latestMen.champion}`.trim() : fallback.men;
+  const womenChamp = latestWomen ? `${getFlagEmoji(latestWomen.champCountry)} ${latestWomen.champion}`.trim() : fallback.women;
+
 
   const isCompleted = t.status === 'completed';
   const champLabel = isCompleted ? 'Champ:' : 'Defending:';
