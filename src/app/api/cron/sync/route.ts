@@ -145,15 +145,31 @@ async function fetchWikiGrandSlamChampions() {
         const year = parseInt(yearMatch[1], 10);
         if (year < 1968 || year > currentYear + 1) continue;
 
-        const matches = Array.from(row.matchAll(/\[\[(.*?)\]\]/g)) as RegExpExecArray[];
-        // Filter out Wikipedia categories, images, or non-player links
-        const validLinks = matches
-          .map(m => m[1].split('|')[0].trim())
-          .filter(link => !link.includes(':') && !link.toLowerCase().includes('open') && !link.toLowerCase().includes('championships'));
+        // Extract names from {{sortname|First|Last}} or [[Full Name]]
+        const names: string[] = [];
 
-        if (validLinks.length >= 2) {
-          const champion = validLinks[0];
-          const runnerUp = validLinks[1];
+        // 1. Sortname macro {{sortname|First|Last}}
+        const sortnameMatches = Array.from(row.matchAll(/\{\{sortname\|(.*?)\|(.*?)\}\}/gi)) as RegExpExecArray[];
+        sortnameMatches.forEach(m => {
+          names.push(`${m[1]} ${m[2]}`.trim());
+        });
+
+        // 2. Bracketed links [[Player Name]]
+        if (names.length < 2) {
+          const matches = Array.from(row.matchAll(/\[\[(.*?)\]\]/g)) as RegExpExecArray[];
+          matches.forEach(m => {
+            const link = m[1].split('|')[0].trim();
+            if (!link.includes(':') && !link.toLowerCase().includes('open') && !link.toLowerCase().includes('championships') && !link.toLowerCase().includes('final')) {
+              if (!names.includes(link)) {
+                names.push(link);
+              }
+            }
+          });
+        }
+
+        if (names.length >= 2) {
+          const champion = names[0];
+          const runnerUp = names[1];
           
           const flagMatches = Array.from(row.matchAll(/\{\{flag(?:icon|u)?\|(.*?)\}\}/gi)) as RegExpExecArray[];
           const flags = flagMatches.map(m => m[1].substring(0, 3).toUpperCase());
@@ -175,6 +191,7 @@ async function fetchWikiGrandSlamChampions() {
           });
         }
       }
+
     } catch (err) {
       console.error(`Error fetching Grand Slam ${s.id} (${s.tour}):`, err);
     }
