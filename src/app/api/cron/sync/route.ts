@@ -297,9 +297,13 @@ export async function POST(request: Request) {
     ];
 
     if (insertRankingsData.length > 0) {
-      await db.delete(rankings);
-      await db.insert(rankings).values(insertRankingsData);
-      console.log(`✅ Synced ${insertRankingsData.length} rankings to DB.`);
+      try {
+        await db.delete(rankings);
+        await db.insert(rankings).values(insertRankingsData);
+        console.log(`✅ Synced ${insertRankingsData.length} rankings to DB.`);
+      } catch (e) {
+        console.error('⚠️ Failed to sync rankings:', e);
+      }
     }
 
     // 2. Fetch Grand Slams & Big Titles Leaderboard
@@ -309,15 +313,23 @@ export async function POST(request: Request) {
     ]);
 
     if (slamChamps.length > 0) {
-      await db.delete(grandSlamChampions);
-      await db.insert(grandSlamChampions).values(slamChamps);
-      console.log(`✅ Synced ${slamChamps.length} Grand Slam champions to DB.`);
+      try {
+        await db.delete(grandSlamChampions);
+        await db.insert(grandSlamChampions).values(slamChamps);
+        console.log(`✅ Synced ${slamChamps.length} Grand Slam champions to DB.`);
+      } catch (e) {
+        console.error('⚠️ Failed to sync grand slam champions:', e);
+      }
     }
 
     if (bigTitles.length > 0) {
-      await db.delete(bigTitlesLeaderboard);
-      await db.insert(bigTitlesLeaderboard).values(bigTitles);
-      console.log(`✅ Synced ${bigTitles.length} Big Titles leaderboard records (including Sinner & Alcaraz) to DB.`);
+      try {
+        await db.delete(bigTitlesLeaderboard);
+        await db.insert(bigTitlesLeaderboard).values(bigTitles);
+        console.log(`✅ Synced ${bigTitles.length} Big Titles leaderboard records to DB.`);
+      } catch (e) {
+        console.error('⚠️ Failed to sync big titles leaderboard:', e);
+      }
     }
 
     // Revalidate Cache
@@ -330,9 +342,10 @@ export async function POST(request: Request) {
       message: `Synced ${insertRankingsData.length} rankings, ${slamChamps.length} slam champions, ${bigTitles.length} big titles.` 
     });
 
-  } catch (error) {
+  } catch (error: any) {
     console.error('❌ Error syncing data:', error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json({ error: 'Internal Server Error', details: String(error?.message || error) }, { status: 500 });
   }
 }
+
 
