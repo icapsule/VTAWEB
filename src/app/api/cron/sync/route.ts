@@ -296,7 +296,9 @@ export async function POST(request: Request) {
       }))
     ];
 
-    if (insertRankingsData.length > 0) {
+    if (insertRankingsData.length === 0) {
+      console.warn('⚠️ RapidAPI returned 0 rankings data (likely key or quota issue). Proceeding with Wiki sync...');
+    } else {
       try {
         await db.delete(rankings);
         await db.insert(rankings).values(insertRankingsData);
@@ -305,6 +307,7 @@ export async function POST(request: Request) {
         console.error('⚠️ Failed to sync rankings:', e);
       }
     }
+
 
     // 2. Fetch Grand Slams & Big Titles Leaderboard
     const [slamChamps, bigTitles] = await Promise.all([
