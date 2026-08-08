@@ -138,19 +138,24 @@ async function fetchWikiGrandSlamChampions() {
       // Extract rows from Open Era tables
       const rows = wikitext.split('|-');
       for (const row of rows) {
-        const yearMatch = row.match(/\|\s*(19[6-9]\d|20[0-2]\d)\s*\|/);
+        // Match year digits (1968 - 2030)
+        const yearMatch = row.match(/(?:\||\!)\s*(19[6-9]\d|20[0-3]\d)\b/);
         if (!yearMatch) continue;
 
         const year = parseInt(yearMatch[1], 10);
-        if (year < 1968 || year > currentYear) continue;
+        if (year < 1968 || year > currentYear + 1) continue;
 
         const matches = Array.from(row.matchAll(/\[\[(.*?)\]\]/g)) as RegExpExecArray[];
-        const names = matches.map(m => m[1].split('|')[0].trim());
-        if (names.length >= 2) {
-          const champion = names[0];
-          const runnerUp = names[1];
+        // Filter out Wikipedia categories, images, or non-player links
+        const validLinks = matches
+          .map(m => m[1].split('|')[0].trim())
+          .filter(link => !link.includes(':') && !link.toLowerCase().includes('open') && !link.toLowerCase().includes('championships'));
+
+        if (validLinks.length >= 2) {
+          const champion = validLinks[0];
+          const runnerUp = validLinks[1];
           
-          const flagMatches = Array.from(row.matchAll(/\{\{flagicon\|(.*?)\}\}/gi)) as RegExpExecArray[];
+          const flagMatches = Array.from(row.matchAll(/\{\{flag(?:icon|u)?\|(.*?)\}\}/gi)) as RegExpExecArray[];
           const flags = flagMatches.map(m => m[1].substring(0, 3).toUpperCase());
           const champCountry = flags[0] || 'UNK';
           const runnerCountry = flags[1] || 'UNK';
@@ -178,10 +183,16 @@ async function fetchWikiGrandSlamChampions() {
 }
 
 async function fetchWikiBigTitlesLeaderboard() {
-  const url = `https://en.wikipedia.org/w/api.php?action=parse&page=List_of_ATP_Tour_big_titles_singles_champions&prop=wikitext&format=json`;
+  const url = `https://en.wikipedia.org/w/api.php?action=parse&page=Big_Titles_ATP_stats&prop=wikitext&format=json`;
+  const fallbackUrl = `https://en.wikipedia.org/w/api.php?action=parse&page=List_of_ATP_Tour_big_titles_singles_champions&prop=wikitext&format=json`;
+
   try {
-    const res = await fetch(url, { headers: { 'User-Agent': 'VTAWEB_Bot/1.0' } });
+    let res = await fetch(url, { headers: { 'User-Agent': 'VTAWEB_Bot/1.0' } });
+    if (!res.ok) {
+      res = await fetch(fallbackUrl, { headers: { 'User-Agent': 'VTAWEB_Bot/1.0' } });
+    }
     if (!res.ok) return [];
+    
     const data = await res.json();
     const wikitext = data?.parse?.wikitext?.['*'] || '';
 
@@ -192,18 +203,19 @@ async function fetchWikiBigTitlesLeaderboard() {
       const nameMatch = row.match(/\[\[(.*?)\]\]/);
       if (!nameMatch) continue;
 
-      const fullName = nameMatch[1].split('|')[0].trim();
-      const flagMatch = row.match(/\{\{flagicon\|(.*?)\}\}/i);
+      const rawName = nameMatch[1].split('|')[0].trim();
+      if (rawName.includes(':') || rawName.toLowerCase().includes('list') || rawName.toLowerCase().includes('atp')) continue;
+
+      const flagMatch = row.match(/\{\{flag(?:icon|u)?\|(.*?)\}\}/i);
       const country = flagMatch ? flagMatch[1].substring(0, 3).toUpperCase() : 'UNK';
 
-      // Parse numbers for Grand Slams, Finals, Masters 1000, Olympics, Total
+      // Parse numbers in the row
       const numMatches = Array.from(row.matchAll(/\|\s*(\d+)\s*/g)) as RegExpExecArray[];
       const numbers = numMatches.map(m => parseInt(m[1], 10));
 
-
       if (numbers.length >= 5) {
         records.push({
-          playerName: fullName,
+          playerName: rawName,
           country,
           grandSlams: numbers[0] || 0,
           atpFinals: numbers[1] || 0,
@@ -219,6 +231,7 @@ async function fetchWikiBigTitlesLeaderboard() {
     return [];
   }
 }
+
 
 export async function POST(request: Request) {
   try {
