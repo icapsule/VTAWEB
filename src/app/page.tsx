@@ -1,8 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 import { db } from '@/server/db';
-import { rankings, tournaments } from '@/server/db/schema';
-import { asc } from 'drizzle-orm';
+import { rankings, tournaments, bigTitlesLeaderboard, grandSlamChampions } from '@/server/db/schema';
+import { asc, desc } from 'drizzle-orm';
 import { recentMatches } from '@/lib/mock-data';
 import { formatDateRange, getSurfaceClass, getStatusBadgeClass } from '@/lib/utils';
 import { RankingsContainer } from '@/components/features/RankingsContainer';
@@ -53,12 +53,18 @@ export default async function HomePage() {
 
   // Fetch from Real DB
   let allRankings: any[] = [];
+  let dbBigTitles: any[] = [];
+  let dbLatestSlamChamps: any[] = [];
+
   try {
     allRankings = await db.select().from(rankings).orderBy(asc(rankings.rank));
+    dbBigTitles = await db.select().from(bigTitlesLeaderboard);
+    dbLatestSlamChamps = await db.select().from(grandSlamChampions).orderBy(desc(grandSlamChampions.year));
   } catch (error) {
-    console.error("⚠️ Failed to fetch rankings from database:", error);
+    console.error("⚠️ Failed to fetch data from database:", error);
     allRankings = [];
   }
+
   
   const atpStandard = allRankings.filter(r => r.tour === 'atp' && r.type === 'standard');
   const atpRace = allRankings.filter(r => r.tour === 'atp' && r.type === 'race');
@@ -104,63 +110,105 @@ export default async function HomePage() {
         <div className="container">
           <h2 className="section-title" style={{ marginBottom: 'var(--space-md)' }}>Official Big Titles Leaderboard</h2>
           <div className="table-container animate-in">
-            <table className="big-titles-table">
-              <thead>
-                <tr>
-                  <th>Tournament Category</th>
-                  <th>🇷🇸 Novak Djokovic</th>
-                  <th>🇪🇸 Rafael Nadal</th>
-                  <th>🇨🇭 Roger Federer</th>
-                  <th>🇪🇸 Carlos Alcaraz</th>
-                  <th>🇮🇹 Jannik Sinner</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="animate-in" style={{ animationDelay: '0.1s' }}>
-                  <td>Grand Slams</td>
-                  <td className="highlight-cell">24 👑</td>
-                  <td>22</td>
-                  <td>20</td>
-                  <td>4</td>
-                  <td>2</td>
-                </tr>
-                <tr className="animate-in" style={{ animationDelay: '0.2s' }}>
-                  <td>ATP Masters 1000</td>
-                  <td className="highlight-cell">40 👑</td>
-                  <td>36</td>
-                  <td>28</td>
-                  <td>5</td>
-                  <td>4</td>
-                </tr>
-                <tr className="animate-in" style={{ animationDelay: '0.3s' }}>
-                  <td>ATP Finals</td>
-                  <td className="highlight-cell">7 👑</td>
-                  <td>0</td>
-                  <td>6</td>
-                  <td>0</td>
-                  <td>1</td>
-                </tr>
-                <tr className="animate-in" style={{ animationDelay: '0.4s' }}>
-                  <td>Olympic Singles Gold</td>
-                  <td className="highlight-cell">1 🥇</td>
-                  <td className="highlight-cell">1 🥇</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                </tr>
-                <tr className="total-row animate-in" style={{ animationDelay: '0.5s' }}>
-                  <td>Total "Big Titles"</td>
-                  <td className="highlight-cell" style={{ fontSize: '1.4rem' }}>72 👑</td>
-                  <td>59</td>
-                  <td>54</td>
-                  <td>9</td>
-                  <td>7</td>
-                </tr>
-              </tbody>
-            </table>
+            {(() => {
+              const getPlayer = (nameSub: string) => dbBigTitles.find(p => p.playerName.toLowerCase().includes(nameSub.toLowerCase()));
+              const djoko = getPlayer('Djokovic');
+              const nadal = getPlayer('Nadal');
+              const fed = getPlayer('Federer');
+              const alcaraz = getPlayer('Alcaraz');
+              const sinner = getPlayer('Sinner');
+
+              const djokoSlams = djoko?.grandSlams ?? 24;
+              const nadalSlams = nadal?.grandSlams ?? 22;
+              const fedSlams = fed?.grandSlams ?? 20;
+              const alcarazSlams = alcaraz?.grandSlams ?? 7;
+              const sinnerSlams = sinner?.grandSlams ?? 5;
+
+              const djokoM1000 = djoko?.masters1000 ?? 40;
+              const nadalM1000 = nadal?.masters1000 ?? 36;
+              const fedM1000 = fed?.masters1000 ?? 28;
+              const alcarazM1000 = alcaraz?.masters1000 ?? 6;
+              const sinnerM1000 = sinner?.masters1000 ?? 4;
+
+              const djokoFinals = djoko?.atpFinals ?? 7;
+              const nadalFinals = nadal?.atpFinals ?? 0;
+              const fedFinals = fed?.atpFinals ?? 6;
+              const alcarazFinals = alcaraz?.atpFinals ?? 0;
+              const sinnerFinals = sinner?.atpFinals ?? 1;
+
+              const djokoOlympics = djoko?.olympics ?? 1;
+              const nadalOlympics = nadal?.olympics ?? 1;
+              const fedOlympics = fed?.olympics ?? 0;
+              const alcarazOlympics = alcaraz?.olympics ?? 0;
+              const sinnerOlympics = sinner?.olympics ?? 0;
+
+              const djokoTotal = djoko?.totalBigTitles ?? 72;
+              const nadalTotal = nadal?.totalBigTitles ?? 59;
+              const fedTotal = fed?.totalBigTitles ?? 54;
+              const alcarazTotal = alcaraz?.totalBigTitles ?? 13;
+              const sinnerTotal = sinner?.totalBigTitles ?? 10;
+
+              return (
+                <table className="big-titles-table">
+                  <thead>
+                    <tr>
+                      <th>Tournament Category</th>
+                      <th>🇷🇸 Novak Djokovic</th>
+                      <th>🇪🇸 Rafael Nadal</th>
+                      <th>🇨🇭 Roger Federer</th>
+                      <th>🇪🇸 Carlos Alcaraz</th>
+                      <th>🇮🇹 Jannik Sinner</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="animate-in" style={{ animationDelay: '0.1s' }}>
+                      <td>Grand Slams</td>
+                      <td className="highlight-cell">{djokoSlams} 👑</td>
+                      <td>{nadalSlams}</td>
+                      <td>{fedSlams}</td>
+                      <td className="highlight-cell">{alcarazSlams}</td>
+                      <td className="highlight-cell">{sinnerSlams}</td>
+                    </tr>
+                    <tr className="animate-in" style={{ animationDelay: '0.2s' }}>
+                      <td>ATP Masters 1000</td>
+                      <td className="highlight-cell">{djokoM1000} 👑</td>
+                      <td>{nadalM1000}</td>
+                      <td>{fedM1000}</td>
+                      <td>{alcarazM1000}</td>
+                      <td>{sinnerM1000}</td>
+                    </tr>
+                    <tr className="animate-in" style={{ animationDelay: '0.3s' }}>
+                      <td>ATP Finals</td>
+                      <td className="highlight-cell">{djokoFinals} 👑</td>
+                      <td>{nadalFinals}</td>
+                      <td>{fedFinals}</td>
+                      <td>{alcarazFinals}</td>
+                      <td>{sinnerFinals}</td>
+                    </tr>
+                    <tr className="animate-in" style={{ animationDelay: '0.4s' }}>
+                      <td>Olympic Singles Gold</td>
+                      <td className="highlight-cell">{djokoOlympics} 🥇</td>
+                      <td className="highlight-cell">{nadalOlympics} 🥇</td>
+                      <td>{fedOlympics}</td>
+                      <td>{alcarazOlympics}</td>
+                      <td>{sinnerOlympics}</td>
+                    </tr>
+                    <tr className="total-row animate-in" style={{ animationDelay: '0.5s' }}>
+                      <td>Total "Big Titles"</td>
+                      <td className="highlight-cell" style={{ fontSize: '1.4rem' }}>{djokoTotal} 👑</td>
+                      <td>{nadalTotal}</td>
+                      <td>{fedTotal}</td>
+                      <td>{alcarazTotal}</td>
+                      <td>{sinnerTotal}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              );
+            })()}
           </div>
         </div>
       </section>
+
 
       {/* ---- Top 10 Rankings (Combined) ---- */}
       <section className="section" id="combined-rankings-section">
@@ -185,7 +233,7 @@ export default async function HomePage() {
             gap: 'var(--space-md)',
           }}>
             {uniqueGrandSlams.map((t: any) => (
-              <GrandSlamCard key={t.id} tournament={t} />
+              <GrandSlamCard key={t.id} tournament={t} dbChamps={dbLatestSlamChamps} />
             ))}
           </div>
           <div style={{ marginTop: 'var(--space-lg)', textAlign: 'right' }}>
@@ -193,6 +241,7 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
 
       {/* ---- Live Scores & Results ---- */}
       <section className="section" id="recent-results-section">
@@ -415,15 +464,13 @@ export default async function HomePage() {
 }
 
 /* ---- Grand Slam Card Component ---- */
-function GrandSlamCard({ tournament }: { tournament: any }) {
+function GrandSlamCard({ tournament, dbChamps }: { tournament: any; dbChamps: any[] }) {
   const t = tournament;
   const nameLower = t.name.toLowerCase();
   
-  // Hardcoded Theme and Champions
+  // Theme and Slugs
   let logoPath = '';
   let color = 'var(--color-accent)';
-  let menChamp = 'TBD';
-  let womenChamp = 'TBD';
   let slug = 'australian-open';
   let displayName = t.name;
 
@@ -431,31 +478,40 @@ function GrandSlamCard({ tournament }: { tournament: any }) {
     slug = 'australian-open';
     logoPath = '/trophies/ao.svg';
     color = '#005BBB'; // AO Blue
-    menChamp = '🇮🇹 Jannik Sinner';
-    womenChamp = '🏳️ Aryna Sabalenka';
     displayName = 'AUSTRALIAN OPEN';
   } else if (nameLower.includes('roland') || nameLower.includes('french')) {
     slug = 'roland-garros';
     logoPath = '/trophies/fo.svg';
     color = '#CB5A36'; // Roland Garros Clay
-    menChamp = '🇪🇸 Carlos Alcaraz';
-    womenChamp = '🇵🇱 Iga Świątek';
     displayName = 'ROLAND-GARROS';
   } else if (nameLower.includes('wimbledon')) {
     slug = 'wimbledon';
     logoPath = '/trophies/wim.svg';
     color = '#006B3F'; // Wimbledon Green
-    menChamp = '🇪🇸 Carlos Alcaraz';
-    womenChamp = '🇨🇿 Barbora Krejčíková';
     displayName = 'WIMBLEDON';
   } else if (nameLower.includes('us open')) {
     slug = 'us-open';
     logoPath = '/trophies/uso.svg';
     color = '#002868'; // US Open Blue
-    menChamp = '🇮🇹 Jannik Sinner';
-    womenChamp = '🏳️ Aryna Sabalenka';
     displayName = 'US OPEN';
   }
+
+  // Dynamic Champions lookup from DB (with fallback to default)
+  const getFlagEmoji = (countryCode: string) => {
+    const flags: Record<string, string> = {
+      SRB: '🇷🇸', ESP: '🇪🇸', SUI: '🇨🇭', USA: '🇺🇸', SWE: '🇸🇪', 
+      AUS: '🇦🇺', GBR: '🇬🇧', GER: '🇩🇪', FRG: '🇩🇪', RUS: '🇷🇺',
+      ITA: '🇮🇹', ARG: '🇦🇷', CRO: '🇭🇷', AUT: '🇦🇹', CZE: '🇨🇿',
+      POL: '🇵🇱', NOR: '🇳🇴', CAN: '🇨🇦', JPN: '🇯🇵'
+    };
+    return flags[countryCode] || '';
+  };
+
+  const latestMen = dbChamps.find(c => c.slamId === slug && c.tour === 'atp');
+  const latestWomen = dbChamps.find(c => c.slamId === slug && c.tour === 'wta');
+
+  const menChamp = latestMen ? `${getFlagEmoji(latestMen.champCountry)} ${latestMen.champion}`.trim() : 'TBD';
+  const womenChamp = latestWomen ? `${getFlagEmoji(latestWomen.champCountry)} ${latestWomen.champion}`.trim() : 'TBD';
 
   const isCompleted = t.status === 'completed';
   const champLabel = isCompleted ? 'Champ:' : 'Defending:';
@@ -498,3 +554,4 @@ function GrandSlamCard({ tournament }: { tournament: any }) {
     </Link>
   );
 }
+
