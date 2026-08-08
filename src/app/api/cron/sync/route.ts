@@ -138,34 +138,23 @@ async function fetchWikiGrandSlamChampions() {
       // Extract rows from Open Era tables
       const rows = wikitext.split('|-');
       for (const row of rows) {
-        // Match year digits (1968 - 2030)
-        const yearMatch = row.match(/(?:\||\!)\s*(19[6-9]\d|20[0-3]\d)\b/);
+        const yearMatch = row.match(/\[\[(\d{4})\s+[^\]]+?\|(\d{4})\]\]/) || row.match(/align="?center"?\|\s*\[\[(\d{4})/) || row.match(/\|\s*(19[6-9]\d|20[0-3]\d)\s*\|/);
         if (!yearMatch) continue;
 
-        const year = parseInt(yearMatch[1], 10);
-        if (year < 1968 || year > currentYear + 1) continue;
+        const year = parseInt(yearMatch[1] || yearMatch[2] || yearMatch[0], 10);
+        if (isNaN(year) || year < 1968 || year > currentYear + 1) continue;
 
-        // Extract names from {{sortname|First|Last}} or [[Full Name]]
         const names: string[] = [];
-
-        // 1. Sortname macro {{sortname|First|Last}}
         const sortnameMatches = Array.from(row.matchAll(/\{\{sortname\|(.*?)\|(.*?)\}\}/gi)) as RegExpExecArray[];
-        sortnameMatches.forEach(m => {
-          names.push(`${m[1]} ${m[2]}`.trim());
-        });
+        sortnameMatches.forEach(m => names.push(`${m[1]} ${m[2]}`.trim()));
 
-        // 2. Bracketed links [[Player Name]]
-        if (names.length < 2) {
-          const matches = Array.from(row.matchAll(/\[\[(.*?)\]\]/g)) as RegExpExecArray[];
-          matches.forEach(m => {
-            const link = m[1].split('|')[0].trim();
-            if (!link.includes(':') && !link.toLowerCase().includes('open') && !link.toLowerCase().includes('championships') && !link.toLowerCase().includes('final')) {
-              if (!names.includes(link)) {
-                names.push(link);
-              }
-            }
-          });
-        }
+        const bracketMatches = Array.from(row.matchAll(/\[\[(.*?)\]\]/g)) as RegExpExecArray[];
+        bracketMatches.forEach(m => {
+          const link = m[1].split('|')[0].trim();
+          if (!link.includes(':') && !link.toLowerCase().includes('open') && !link.toLowerCase().includes('championships') && !link.toLowerCase().includes('final') && !names.includes(link)) {
+            names.push(link);
+          }
+        });
 
         if (names.length >= 2) {
           const champion = names[0];
@@ -191,6 +180,7 @@ async function fetchWikiGrandSlamChampions() {
           });
         }
       }
+
 
     } catch (err) {
       console.error(`Error fetching Grand Slam ${s.id} (${s.tour}):`, err);
