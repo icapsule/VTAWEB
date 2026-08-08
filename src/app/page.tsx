@@ -506,13 +506,14 @@ function GrandSlamCard({ tournament, dbChamps }: { tournament: any; dbChamps: an
     displayName = 'US OPEN';
   }
 
-  // Fallback defaults from static data (accurate 2025/2026 titles)
+  // Fallback defaults from static data (accurate 2026/2025 titles)
   const staticDefaults: Record<string, { men: string; women: string }> = {
-    'australian-open': { men: '🇮🇹 Jannik Sinner', women: '🏳️ Aryna Sabalenka' },
-    'french-open': { men: '🇩🇪 Alexander Zverev', women: '🇵🇱 Iga Świątek' },
-    'wimbledon': { men: '🇪🇸 Carlos Alcaraz', women: '🇨🇿 Barbora Krejčíková' },
-    'us-open': { men: '🇮🇹 Jannik Sinner', women: '🏳️ Aryna Sabalenka' },
+    'australian-open': { men: '🇪🇸 Carlos Alcaraz', women: '🇰🇿 Elena Rybakina' },
+    'french-open': { men: '🇩🇪 Alexander Zverev', women: '🇷🇺 Mirra Andreeva' },
+    'wimbledon': { men: '🇮🇹 Jannik Sinner', women: '🇨🇿 Linda Nosková' },
+    'us-open': { men: '🇪🇸 Carlos Alcaraz', women: '🏳️ Aryna Sabalenka' },
   };
+
 
 
   const getFlagEmoji = (countryCode: string) => {
