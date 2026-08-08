@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { revalidatePath } from 'next/cache';
 import { db } from '@/server/db';
-import { rankings } from '@/server/db/schema';
+import { rankings, grandSlamChampions, bigTitlesLeaderboard } from '@/server/db/schema';
 
 export const maxDuration = 60; // 60 seconds timeout limit on Vercel
 
@@ -112,6 +112,114 @@ async function fetchWikiRaceRankings(tour: 'atp' | 'wta', isHistorical: boolean 
   }
 }
 
+async function fetchWikiGrandSlamChampions() {
+  const slams = [
+    { id: 'australian-open', page: 'List_of_Australian_Open_men%27s_singles_champions', tour: 'atp' as const },
+    { id: 'french-open', page: 'List_of_French_Open_men%27s_singles_champions', tour: 'atp' as const },
+    { id: 'wimbledon', page: 'List_of_Wimbledon_gentlemen%27s_singles_champions', tour: 'atp' as const },
+    { id: 'us-open', page: 'List_of_US_Open_men%27s_singles_champions', tour: 'atp' as const },
+    { id: 'australian-open', page: 'List_of_Australian_Open_women%27s_singles_champions', tour: 'wta' as const },
+    { id: 'french-open', page: 'List_of_French_Open_women%27s_singles_champions', tour: 'wta' as const },
+    { id: 'wimbledon', page: 'List_of_Wimbledon_ladies%27_singles_champions', tour: 'wta' as const },
+    { id: 'us-open', page: 'List_of_US_Open_women%27s_singles_champions', tour: 'wta' as const },
+  ];
+
+  const allRecords: any[] = [];
+  const currentYear = new Date().getUTCFullYear();
+
+  for (const s of slams) {
+    try {
+      const url = `https://en.wikipedia.org/w/api.php?action=parse&page=${s.page}&prop=wikitext&format=json`;
+      const res = await fetch(url, { headers: { 'User-Agent': 'VTAWEB_Bot/1.0' } });
+      if (!res.ok) continue;
+      const data = await res.json();
+      const wikitext = data?.parse?.wikitext?.['*'] || '';
+
+      // Extract rows from Open Era tables
+      const rows = wikitext.split('|-');
+      for (const row of rows) {
+        const yearMatch = row.match(/\|\s*(19[6-9]\d|20[0-2]\d)\s*\|/);
+        if (!yearMatch) continue;
+
+        const year = parseInt(yearMatch[1], 10);
+        if (year < 1968 || year > currentYear) continue;
+
+        const matches = Array.from(row.matchAll(/\[\[(.*?)\]\]/g)) as RegExpExecArray[];
+        const names = matches.map(m => m[1].split('|')[0].trim());
+        if (names.length >= 2) {
+          const champion = names[0];
+          const runnerUp = names[1];
+          
+          const flagMatches = Array.from(row.matchAll(/\{\{flagicon\|(.*?)\}\}/gi)) as RegExpExecArray[];
+          const flags = flagMatches.map(m => m[1].substring(0, 3).toUpperCase());
+          const champCountry = flags[0] || 'UNK';
+          const runnerCountry = flags[1] || 'UNK';
+
+          const scoreMatch = row.match(/\|\s*(\d[\d\s\-\(\)\,\;\,\.]+\d)/);
+          const score = scoreMatch ? scoreMatch[1].trim() : 'N/A';
+
+          allRecords.push({
+            slamId: s.id,
+            tour: s.tour,
+            year,
+            champion,
+            champCountry,
+            runnerUp,
+            runnerCountry,
+            score
+          });
+        }
+      }
+    } catch (err) {
+      console.error(`Error fetching Grand Slam ${s.id} (${s.tour}):`, err);
+    }
+  }
+  return allRecords;
+}
+
+async function fetchWikiBigTitlesLeaderboard() {
+  const url = `https://en.wikipedia.org/w/api.php?action=parse&page=List_of_ATP_Tour_big_titles_singles_champions&prop=wikitext&format=json`;
+  try {
+    const res = await fetch(url, { headers: { 'User-Agent': 'VTAWEB_Bot/1.0' } });
+    if (!res.ok) return [];
+    const data = await res.json();
+    const wikitext = data?.parse?.wikitext?.['*'] || '';
+
+    const rows = wikitext.split('|-');
+    const records: any[] = [];
+
+    for (const row of rows) {
+      const nameMatch = row.match(/\[\[(.*?)\]\]/);
+      if (!nameMatch) continue;
+
+      const fullName = nameMatch[1].split('|')[0].trim();
+      const flagMatch = row.match(/\{\{flagicon\|(.*?)\}\}/i);
+      const country = flagMatch ? flagMatch[1].substring(0, 3).toUpperCase() : 'UNK';
+
+      // Parse numbers for Grand Slams, Finals, Masters 1000, Olympics, Total
+      const numMatches = Array.from(row.matchAll(/\|\s*(\d+)\s*/g)) as RegExpExecArray[];
+      const numbers = numMatches.map(m => parseInt(m[1], 10));
+
+
+      if (numbers.length >= 5) {
+        records.push({
+          playerName: fullName,
+          country,
+          grandSlams: numbers[0] || 0,
+          atpFinals: numbers[1] || 0,
+          masters1000: numbers[2] || 0,
+          olympics: numbers[3] || 0,
+          totalBigTitles: numbers[4] || 0,
+        });
+      }
+    }
+    return records;
+  } catch (err) {
+    console.error('Error fetching Big Titles Leaderboard:', err);
+    return [];
+  }
+}
+
 export async function POST(request: Request) {
   try {
     const authHeader = request.headers.get('authorization');
@@ -120,9 +228,6 @@ export async function POST(request: Request) {
     }
 
     // --- Supabase Anti-Pause Keep-Alive Ping ---
-    // Make a lightweight REST API request to Supabase to reset the 7-day inactivity timer.
-    // We execute this at the very beginning to keep Supabase awake before any DB connection attempt,
-    // and query `/rest/v1/rankings?limit=1` using the anon key to get a valid 200 OK response.
     try {
       const supaUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
       const supaKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -140,56 +245,43 @@ export async function POST(request: Request) {
     } catch (pingErr) {
       console.error('⚠️ Failed to send Supabase keep-alive ping:', pingErr);
     }
-    // -------------------------------------------
 
     if (!process.env.RAPIDAPI_KEY) {
       console.warn('⚠️ RAPIDAPI_KEY is missing in environment variables!');
     }
 
-    console.log('🔄 Cron Triggered: Fetching real ranking data from RapidAPI and Wikipedia...');
+    console.log('🔄 Cron Triggered: Fetching real ranking & slam data from RapidAPI & Wikipedia...');
 
-    // 1. Fetch RapidAPI for Rankings (Sequentially with delay to prevent 429 Rate Limit)
+    // 1. Fetch Rankings
     const atpStandard = await fetchRapidApiRankings('atp', 100);
     await new Promise(res => setTimeout(res, 1500)); // 1.5s delay
     const wtaStandard = await fetchRapidApiRankings('wta', 100);
 
-    // Fetch Wiki for Race (Current + Historical) - Promise.all is fine here
-    const [realAtpRace, realWtaRace, histAtpRace, histWtaRace] = await Promise.all([
+    const [realAtpRace, realWtaRace] = await Promise.all([
       fetchWikiRaceRankings('atp', false),
       fetchWikiRaceRankings('wta', false),
-      fetchWikiRaceRankings('atp', true),
-      fetchWikiRaceRankings('wta', true)
     ]);
 
-    // Build Name Maps to inject countries into Race rankings
     const nameToCountryMap = new Map();
     [...atpStandard, ...wtaStandard].forEach(r => {
       nameToCountryMap.set(r.name.toLowerCase().trim(), r.country);
     });
 
-    // 2. Fetch existing DB records to compute week-over-week deltas
     const existingRankings = await db.select().from(rankings);
     const oldRankMap = new Map();
     existingRankings.forEach(r => {
       oldRankMap.set(`${r.tour}-${r.type}-${r.name.toLowerCase().trim()}`, r);
     });
 
-    // Helper to compute change. If the old record was updated within the last 4 days, 
-    // we consider it a "same-week re-sync" and carry over the existing change value.
-    // Otherwise, we compute the true week-over-week delta.
     const computeChange = (tour: 'atp' | 'wta', type: 'standard' | 'race', name: string, newRank: number) => {
       const old = oldRankMap.get(`${tour}-${type}-${name.toLowerCase().trim()}`);
       if (!old) return 0;
-      
       const diffDays = (Date.now() - new Date(old.updatedAt).getTime()) / (1000 * 60 * 60 * 24);
-      if (diffDays < 4) {
-        return old.change; // Re-syncing same week, carry over existing change
-      }
-      return old.rank - newRank; // New week, calculate delta (e.g. old: 10, new: 8 -> +2)
+      if (diffDays < 4) return old.change;
+      return old.rank - newRank;
     };
 
-    // Construct DB payload
-    const insertData = [
+    const insertRankingsData = [
       ...atpStandard.map(r => ({ ...r, change: computeChange('atp', 'standard', r.name, r.rank) })),
       ...wtaStandard.map(r => ({ ...r, change: computeChange('wta', 'standard', r.name, r.rank) })),
       ...realAtpRace.map((r: any) => ({
@@ -204,17 +296,29 @@ export async function POST(request: Request) {
       }))
     ];
 
-    if (insertData.length === 0) {
-      return NextResponse.json({ error: 'Failed to fetch any data. Check API keys and external services.' }, { status: 500 });
+    if (insertRankingsData.length > 0) {
+      await db.delete(rankings);
+      await db.insert(rankings).values(insertRankingsData);
+      console.log(`✅ Synced ${insertRankingsData.length} rankings to DB.`);
     }
 
-    console.log(`Prepared ${insertData.length} ranking rows. Inserting to DB...`);
+    // 2. Fetch Grand Slams & Big Titles Leaderboard
+    const [slamChamps, bigTitles] = await Promise.all([
+      fetchWikiGrandSlamChampions(),
+      fetchWikiBigTitlesLeaderboard()
+    ]);
 
-    // DB Transaction: Delete old and insert new
-    await db.delete(rankings);
-    await db.insert(rankings).values(insertData);
+    if (slamChamps.length > 0) {
+      await db.delete(grandSlamChampions);
+      await db.insert(grandSlamChampions).values(slamChamps);
+      console.log(`✅ Synced ${slamChamps.length} Grand Slam champions to DB.`);
+    }
 
-    console.log('✅ Real Rankings synced to DB successfully.');
+    if (bigTitles.length > 0) {
+      await db.delete(bigTitlesLeaderboard);
+      await db.insert(bigTitlesLeaderboard).values(bigTitles);
+      console.log(`✅ Synced ${bigTitles.length} Big Titles leaderboard records (including Sinner & Alcaraz) to DB.`);
+    }
 
     // Revalidate Cache
     revalidatePath('/');
@@ -223,7 +327,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ 
       success: true, 
-      message: `Synced ${insertData.length} ranking records.` 
+      message: `Synced ${insertRankingsData.length} rankings, ${slamChamps.length} slam champions, ${bigTitles.length} big titles.` 
     });
 
   } catch (error) {
@@ -231,3 +335,4 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
+

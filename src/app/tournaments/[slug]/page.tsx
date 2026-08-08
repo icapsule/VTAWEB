@@ -2,25 +2,52 @@ import React from 'react';
 import { notFound } from 'next/navigation';
 import gsHistory from '@/lib/data/grand-slams-history.json';
 import Link from 'next/link';
+import { db } from '@/server/db';
+import { grandSlamChampions } from '@/server/db/schema';
+import { eq, desc } from 'drizzle-orm';
+
+export const revalidate = 604800; // 1 week ISR cache
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const data = (gsHistory as any)[slug];
-  if (!data) return { title: 'Tournament Not Found' };
-  return { title: `${data.name} History & Honor Roll | VTAWEB` };
+  const staticData = (gsHistory as any)[slug];
+  if (!staticData) return { title: 'Tournament Not Found' };
+  return { title: `${staticData.name} History & Honor Roll | VTAWEB` };
 }
 
 export default async function GrandSlamDetail({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const data = (gsHistory as any)[slug];
+  const staticData = (gsHistory as any)[slug];
   
-  if (!data) {
+  if (!staticData) {
     notFound();
   }
 
+  // Fetch real champions from DB for this Slam
+  let champions = [];
+  try {
+    const dbChamps = await db.select()
+      .from(grandSlamChampions)
+      .where(eq(grandSlamChampions.slamId, slug))
+      .orderBy(desc(grandSlamChampions.year));
+
+    if (dbChamps.length > 0) {
+      champions = dbChamps;
+    } else {
+      champions = staticData.champions;
+    }
+  } catch (err) {
+    console.warn('⚠️ DB fetch fallback to static json:', err);
+    champions = staticData.champions;
+  }
+
+  const data = {
+    ...staticData,
+    champions
+  };
+
   // Calculate Honor Roll (players with >= 2 championships)
   const championCounts = data.champions.reduce((acc: any, curr: any) => {
-    // curr.champion is just the name now, e.g., "Novak Djokovic"
     acc[curr.champion] = (acc[curr.champion] || 0) + 1;
     return acc;
   }, {});
@@ -31,6 +58,7 @@ export default async function GrandSlamDetail({ params }: { params: Promise<{ sl
     
   const top3 = honorRoll.slice(0, 3) as [string, number][];
   const others = honorRoll.slice(3) as [string, number][];
+
 
   // Helper for flags
   const getFlagEmoji = (countryCode: string) => {
