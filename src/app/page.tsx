@@ -51,19 +51,29 @@ export default async function HomePage() {
   const liveTournaments = processedStatic.filter((t: any) => t.status === 'live');
   const upcomingTournaments = processedStatic.filter((t: any) => t.status === 'upcoming');
 
-  // Fetch from Real DB
+  // Fetch from Real DB with independent try-catches
   let allRankings: any[] = [];
   let dbBigTitles: any[] = [];
   let dbLatestSlamChamps: any[] = [];
 
   try {
     allRankings = await db.select().from(rankings).orderBy(asc(rankings.rank));
+  } catch (error) {
+    console.error("⚠️ Failed to fetch rankings from database:", error);
+  }
+
+  try {
     dbBigTitles = await db.select().from(bigTitlesLeaderboard);
+  } catch (error) {
+    console.error("⚠️ Failed to fetch big titles from database:", error);
+  }
+
+  try {
     dbLatestSlamChamps = await db.select().from(grandSlamChampions).orderBy(desc(grandSlamChampions.year));
   } catch (error) {
-    console.error("⚠️ Failed to fetch data from database:", error);
-    allRankings = [];
+    console.error("⚠️ Failed to fetch grand slam champions from database:", error);
   }
+
 
   
   const atpStandard = allRankings.filter(r => r.tour === 'atp' && r.type === 'standard');
@@ -496,13 +506,14 @@ function GrandSlamCard({ tournament, dbChamps }: { tournament: any; dbChamps: an
     displayName = 'US OPEN';
   }
 
-  // Fallback defaults from static data if DB hasn't populated yet
+  // Fallback defaults from static data (accurate 2025/2026 titles)
   const staticDefaults: Record<string, { men: string; women: string }> = {
     'australian-open': { men: '🇮🇹 Jannik Sinner', women: '🏳️ Aryna Sabalenka' },
-    'french-open': { men: '🇪🇸 Carlos Alcaraz', women: '🇵🇱 Iga Świątek' },
+    'french-open': { men: '🇩🇪 Alexander Zverev', women: '🇵🇱 Iga Świątek' },
     'wimbledon': { men: '🇪🇸 Carlos Alcaraz', women: '🇨🇿 Barbora Krejčíková' },
     'us-open': { men: '🇮🇹 Jannik Sinner', women: '🏳️ Aryna Sabalenka' },
   };
+
 
   const getFlagEmoji = (countryCode: string) => {
     const flags: Record<string, string> = {
