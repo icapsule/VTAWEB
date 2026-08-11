@@ -24,7 +24,10 @@ jobs:
           echo "HTTP Status: $http_code"
           
           if [ "$http_code" -ne 200 ]; then
-            echo "❌ Sync failed with status $http_code"
-            exit 1
+            echo "⚠️ Sync returned non-200 status: $http_code — logged but not fatal."
+            echo "   Body: $body"
+            # Do NOT exit 1 here — repeated failures cause GitHub to auto-disable
+            # the workflow entirely, killing the keep-alive mechanism.
+          else
+            echo "✅ Sync completed successfully"
           fi
-          echo "✅ Sync completed successfully"

@@ -1,0 +1,26 @@
+name: Supabase Keep-Alive Ping
+
+on:
+  schedule:
+    # Every 3 days: Mon, Thu, Sun at 06:00 UTC
+    # (staggered 6 hours from main cron-sync which runs at 12:00 UTC)
+    # This is well under Supabase's 7-day inactivity auto-pause threshold.
+    - cron: '0 6 * * 0,1,4'
+  workflow_dispatch: # Allow manual trigger from GitHub UI
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase via VTAWEB Keep-Alive API
+        run: |
+          echo "🏓 Sending Supabase keep-alive ping..."
+          HTTP_CODE=$(curl -s -o /tmp/keep_alive_response.txt -w "%{http_code}" \
+            "${{ secrets.VTAWEB_API_URL }}/api/cron/keep-alive")
+          BODY=$(cat /tmp/keep_alive_response.txt)
+          echo "HTTP Status : $HTTP_CODE"
+          echo "Response    : $BODY"
+          echo "✅ Keep-alive ping dispatched successfully."
+          # Intentionally never exit 1 — this job must ALWAYS stay alive.
+          # GitHub auto-disables workflows that fail repeatedly.
+          # The API route itself returns 200 even on DB error, so this is safe.
