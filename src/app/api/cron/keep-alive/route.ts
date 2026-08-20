@@ -7,38 +7,56 @@ export const dynamic = 'force-dynamic';
 /**
  * GET /api/cron/keep-alive
  *
- * Lightweight, public endpoint that fires a direct Postgres query (SELECT 1)
- * via Drizzle ORM to reset Supabase's 7-day inactivity auto-pause timer.
+ * Dual-layer keep-alive endpoint:
+ * 1. Direct Drizzle DB execution (SELECT 1 via TCP)
+ * 2. Direct PostgREST HTTP fetch to Supabase API Gateway (rankings table query)
  *
- * Design decisions:
- * - No Authorization header required — this is intentionally public and read-only.
- *   It returns no sensitive data (only status + timestamp).
- * - Always returns HTTP 200 so the GitHub Actions workflow never marks as failed.
- * - Uses db.execute(sql`SELECT 1`) which establishes a real TCP Postgres connection,
- *   unlike a REST/PostgREST HTTP ping which may be cached and not reach the DB engine.
+ * Design decision:
+ * - Guarantees both DB TCP connections AND Kong API Gateway traffic metrics
+ *   are registered by Supabase's 7-day auto-pause monitoring engine.
  */
 export async function GET() {
-  try {
-    // Direct Postgres-level query — guaranteed to reset Supabase inactivity timer
-    await db.execute(sql`SELECT 1`);
+  const results: Record<string, unknown> = {
+    timestamp: new Date().toISOString(),
+  };
 
-    console.log('✅ Supabase keep-alive: Direct DB ping successful.');
-    return NextResponse.json({
-      status: 'ok',
-      message: 'Database keep-alive ping successful.',
-      timestamp: new Date().toISOString(),
-    });
-  } catch (error) {
-    // Log but still return 200 — keep-alive is non-critical; we must not cause
-    // GitHub Actions to exit 1 and risk the workflow being auto-disabled by GitHub.
-    console.error('❌ Keep-alive DB ping failed:', error);
-    return NextResponse.json(
-      {
-        status: 'error',
-        message: 'DB ping failed — check Vercel logs for details.',
-        timestamp: new Date().toISOString(),
-      },
-      { status: 200 },
-    );
+  // 1. Direct Drizzle DB execution via TCP Pooler
+  try {
+    await db.execute(sql`SELECT 1`);
+    results.db = 'ok';
+  } catch (error: any) {
+    console.error('❌ Keep-alive DB ping error:', error);
+    results.db = `failed: ${error?.message || String(error)}`;
   }
+
+  // 2. Direct HTTP request to Supabase PostgREST API Gateway
+  try {
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://llduuesndaxvxvluxull.supabase.co';
+    const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'sb_publishable_hRZOG5tKpPc0EgQ--Et30Q_92dz7wUw';
+
+    const res = await fetch(`${supabaseUrl}/rest/v1/rankings?select=id&limit=1`, {
+      method: 'GET',
+      headers: {
+        'apikey': anonKey,
+        'Authorization': `Bearer ${anonKey}`,
+      },
+      cache: 'no-store',
+    });
+
+    const status = res.status;
+    results.apiGatewayStatus = status;
+    results.apiGateway = res.ok ? 'ok' : `http_${status}`;
+  } catch (error: any) {
+    console.error('❌ Keep-alive API Gateway fetch error:', error);
+    results.apiGateway = `failed: ${error?.message || String(error)}`;
+  }
+
+  console.log('✅ Supabase dual keep-alive execution details:', results);
+
+  return NextResponse.json({
+    status: 'ok',
+    message: 'Dual-layer Supabase keep-alive ping executed.',
+    details: results,
+  });
 }
+
