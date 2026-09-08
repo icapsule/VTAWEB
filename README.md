@@ -16,6 +16,16 @@
 
 ---
 
+> [!IMPORTANT]
+> ### 🚨 Project Migrated to Cloudflare All-in-One Architecture
+> **This repository (`VTAWEB` on Vercel + Supabase) has been officially migrated to a unified Cloudflare All-in-One infrastructure.**
+> - 🌐 **New Live Production Site**: [https://vtaweb.vlta.workers.dev](https://vtaweb.vlta.workers.dev)
+> - 📦 **New Active GitHub Repository**: [https://github.com/icapsule/vtaweb-cf](https://github.com/icapsule/vtaweb-cf)
+> 
+> *The documentation below reflects the legacy Vercel + Supabase architecture and is preserved in full for historical and engineering reference (Zero Knowledge Loss).*
+
+---
+
 > **💡 AI Onboarding Directive**
 > If you are an AI Agent reading this document in a new session: This `README.md` combined with `PROJECT_SPEC.md` and `PRD.md` provides the complete context of the VTAWEB architecture. Do not hallucinate dependencies. Follow the exact pipeline design described below.
 
